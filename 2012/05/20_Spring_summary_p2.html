@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Resumen Spring - Parte 2</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', spring, wdt, web, java' name='keywords' />
+    <meta content='Resumen del Framework Spring - Segunda parte' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+              <h1>
+                Resumen Spring - Parte 2
+              </h1>
+              <div class='meta'>
+                <ul class='tags'>
+                  <li>May 20, 2012</li>
+                  <li>
+                    &middot;
+                  </li>
+                  <li>
+                    <a href='/2012/05/20_Spring_summary_p2.html#disqus_thread'></a>
+                  </li>
+                  <li>&middot;</li>
+                  <li>
+                    <a class='tag' href='/tags/java/'>
+                      java
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/spring/'>
+                      spring
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/wdt/'>
+                      wdt
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/web/'>
+                      web
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='body'>
+                <p>Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro <a href="http://www.manning.com/walls4/" target="_blank">Spring in Action, Third Edition</a></p>
+                
+                <h1>Database</h1>
+                
+                <ul>
+                <li>DAO (Data Access Object): define el acceso a datos por medio de una interface usada por el resto de la aplicación para consultar/guardar información</li>
+                </ul>
+                
+                
+                <h5>Principio POO: Programe para Interfaces para reducir acoplamiento</h5>
+                
+                <h2>Data access exceptions in Spring</h2>
+                
+                <ul>
+                <li>Spring provee un rango mucho mas variado y detallado de excepciones de accesso a base de datos que JDBC.</li>
+                <li>Todas las excepciones extienden <em>DataAccessException</em> la cual es <em>unchecked</em> y por lo tanto no necesita tener un <em>handle</em> (pero en alguna capa superior debe ser tratada).</li>
+                </ul>
+                
+                
+                <h2>Data Access Templates</h2>
+                
+                <ul>
+                <li>Spring sigue el patrón <em>TemplateMethod</em> para definir reducir la escritura de código repetitivo, como inicialización de recursos, transacciones, commits, etc. De esta forma, solo es necesario implementar un método que prepara los datos para la consulta, la ejecuta y procesa los resultados.</li>
+                <li>Spring ofrece diferentes template dependiendo la plataforma, pueden ser JdbcTemplate, HibernateTemplate o JpaTemplate, entre otros.</li>
+                <li>Para la implementación de DAOs, Spring también ofrece varios tipos de DAO  para ser extendidas y reaprovechar código (SimpleJdbcDaoSupport, HibernateDaoSupport, JpaDaoSupport, entre otros).</li>
+                </ul>
+                
+                
+                <h2>Configuración del DataSource</h2>
+                
+                <p>Un DataSource mantiene la configuración de accesso a la base de datos, puede ser JDBC driver, JNDI o Pool connections (último es recomendado)</p>
+                
+                <h3>JNDI</h3>
+                
+                <pre><code>&lt;jee:jndi-lookup id="dataSource"&#x000A;jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&gt;&#x000A;</code></pre>
+                
+                <ul>
+                <li>resource-ref=true: adds <code>java:/comp/env</code> to jndi-name</li>
+                </ul>
+                
+                
+                <h3>Pooled data</h3>
+                
+                <p>Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)</p>
+                
+                <pre><code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&gt;&#x000A;  &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver" /&gt;&#x000A;  &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" /&gt;&#x000A;  &lt;property name="username" value="user" /&gt;&#x000A;  &lt;property name="password" value="pass" /&gt;&#x000A;  &lt;property name="initialSize" value="5" /&gt;&#x000A;  &lt;property name="maxActive" value="10" /&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre>
+                
+                <h3>JDBC driver-based</h3>
+                
+                <p>Ejemplo usa la misma estructura que Pooled data, pero cambia la clase del bean:
+                * org.springframework.jdbc.datasource.DriverManagerDataSource: Retorna una conexión nueva siempre.
+                * org.springframework.jdbc.datasource.SingleConnectionDataSource: retorna siempre la misma conexión.</p>
+                
+                <h2>JDBC template en Spring</h2>
+                
+                <p>Hay tres tipos de templates: (1) JdbcTemplate, (2) NameParameterTemplate y (3) SimpleJdbcTemplate. El tercero es el mas usado actualmente.</p>
+                
+                <h3>SimpleJdbcTemplate</h3>
+                
+                <p>Pasos (ejemplo)</p>
+                
+                <ul>
+                <li><p>Configurar el template incluyendo el <code>datasource</code></p>
+                
+                <p>   &lt;bean id="myJdbcTemplate"</p>
+                
+                <pre><code> class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"&gt;&#x000A; &lt;constructor-arg ref="dataSource" /&gt;&#x000A;</code></pre>
+                
+                <p>   </bean></p></li>
+                <li><p>Configurar los DAO para usar el template</p>
+                
+                <p>   public class MyObjectJdbcDAO implements MyObjectDAO {
+                   ...</p>
+                
+                <pre><code> private SimpleJdbcTemplate jdbcTemplate;&#x000A; public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {&#x000A;   this.jdbcTemplate = jdbcTemplate;&#x000A; }&#x000A;</code></pre>
+                
+                   }
+                   //En el XML
+                
+                <pre><code>&lt;bean id="myObjectDao"&#x000A; class="net.emtg.spring.persistence.SimpleJdbcTemplateSpitterDao"&gt;&#x000A; &lt;property name="jdbcTemplate" ref="jdbcTemplate" /&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre></li>
+                <li><p>Usar el template: para usar el template pueden ser usados <em>named parameters</em> para definir sentencias SQL:</p>
+                
+                <pre><code>public class MyObjectJdbcDAO implements MyObjectDAO {&#x000A; private static final String INSERT_OBJECT="insert into mytable " +&#x000A;   "(name, lastname, birthday) " +&#x000A;   "values (:firstname, :lastname, :birthday)";&#x000A;&#x000A; public saveObject(MyObject myObj){&#x000A;   Map&lt;String, Object&gt; params = new HashMap&lt;String, Object&gt;();&#x000A;   params.put("firstname", myObj.getName());&#x000A;   params.put("lastname", myObj.getLastName());&#x000A;   params.put("birthday", myObj.getBirthday());&#x000A;&#x000A;   jdbcTemplate. update(INSERT_OBJECT, params);&#x000A; }&#x000A;</code></pre></li>
+                <li><p>Consultar la base de datos:</p>
+                
+                <p>  public class MyObjectJdbcDAO implements MyObjectDAO{</p>
+                
+                <pre><code>private static final String SELECT_OBJECT="select * from "+&#x000A;  mytable where id=?";&#x000A;&#x000A;public MyObject getObject(String id){&#x000A;  return jdbTemplate.queryForObject(&#x000A;    SELECT_OBJECT, new ParametrizedRowMapper&lt;MyObject&gt;(){&#x000A;      public MyObject mapRow(ResultSet rs, int rowNum) throws SQLException{&#x000A;        MyObject myObj = new MyObject();&#x000A;        myObj.setId(rs.getString(1));&#x000A;        myObj.setName(rs.getString(2)); &#x000A;        myObj.setLastName(rs.getString(3));&#x000A;        myObj.setBirthday(rs.getString(4));&#x000A;        return myObj;&#x000A;      }&#x000A;    }, id);&#x000A;}&#x000A;</code></pre></li>
+                </ul>
+                
+                
+                <h4>DAO Support</h4>
+                
+                <p>Spring viene con e clases que pueden ser extendidas por los DAOs e evitar código repetitivo (SimpleJdbcDAOSupport).</p>
+                
+                <h2>Integracion Spring / Hibernate</h2>
+                
+                <h3>Hibernate Session Factory</h3>
+                
+                <ul>
+                <li>Interface org.hibernate.Session define todas las operaciones CRUD</li>
+                <li>En Spring se usa Hibernate Session Factory para obtener una Session, las factories son encargadas de administrar la session (abrir, cerrar...)</li>
+                </ul>
+                
+                
+                <p>Hay dos formas de configurar Hiberntate en Spring:</p>
+                
+                <ul>
+                <li><p>LocalSessionFactoryBean: Configura Hibernate usando XML que mapean las tablas, ejemplo:</p>
+                
+                <p>  &lt;bean id="sessionFactory"</p>
+                
+                <pre><code>class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&gt;&#x000A;  &lt;property name="dataSource" ref="dataSource" /&gt;&#x000A;  &lt;property name="mappingResources"&gt;&#x000A;    &lt;list&gt;&#x000A;      &lt;value&gt;MyObject.hbm.xml &lt;/value&gt;&#x000A;    &lt;/list&gt;&#x000A;  &lt;/property&gt;&#x000A;  &lt;property name="hibernateProperties"&gt;&#x000A;    &lt;props&gt;&#x000A;    &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;&#x000A;    &lt;/props&gt;&#x000A;  &lt;/property&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre></li>
+                <li><p>AnnotationSessionFactoryBean: las clases deben estar anotadas con @Entity (JPA), @MappedSuperclass o @Entity (Hibernate)</p>
+                
+                <p>   &lt;bean id="sessionFactory"</p>
+                
+                <pre><code>class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;&#x000A;  &lt;property name="dataSource" ref="dataSource" /&gt;&#x000A;  &lt;property name="packagesToScan"&#x000A;  value="com.habuma.spitter.domain" /&gt;&#x000A;  &lt;property name="hibernateProperties"&gt;&#x000A;    &lt;props&gt;&#x000A;     &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;&#x000A;   &lt;/props&gt;&#x000A;  &lt;/property&gt;&#x000A;</code></pre>
+                
+                <p>  </bean></p></li>
+                </ul>
+                
+                
+                <h3>Usando Hibernate</h3>
+                
+                <pre><code>@Repository&#x000A;public class MyObjectHbDao extends MyObjectDAO{&#x000A;  @Autowired&#x000A;  private SessionFactory sessionFactory;&#x000A;&#x000A;  public setSessionFactory(SessionFactory sessionFactory){&#x000A;    this.sessionFactory = sessionFactory;&#x000A;  }&#x000A;&#x000A;  private Session getSession(){&#x000A;    return sessionFactory.getCurrentSession();&#x000A;  }&#x000A;&#x000A;  public MyObject getMyObject(String id){&#x000A;    return getSession().get(MyObject.class, id);&#x000A;  }&#x000A;&#x000A;  public void save(MyObject obj){&#x000A;    getSession().update(obj);&#x000A;  }&#x000A;}&#x000A;</code></pre>
+                
+                <h3>Exception en Hibernate</h3>
+                
+                <p>Para capturar excepciones de Hibernate usamos <code>PersistenceExceptionTranslationPostProcessor</code>, el cual es un bean que "intercepta" las excepciones de cualquier <code>@Repository</code> y las convierte en Excepciones de Spring.</p>
+              </div>
+            </div>
+        <div id='other-articles'>
+              <div class='older'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2012/04/08/spring_summary.html' title='Resumen del Framework Spring'>
+                        &laquo; Resumen Spring
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2012/03/18/stripes_summary.html' title='Resumen de Desarrollo Web (Stripes)'>
+                        &laquo; Resumen de Stripes
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
+                        &laquo; Commands summary
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+              <div class='newer'>
+                <ul>
+                </ul>
+              </div>
+            </div>
+        <div class='clear'></div>
+        <div class='comments'>
+              <div id='disqus_thread'></div>
+              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+              <noscript>
+                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                  View the discussion thread
+                </a>
+              </noscript>
+            </div>
+            <!-- / disqus adds too much visual crap -->
+            <style type='text/css'>
+              .dsq-dc-logo {
+                display: none !important; }
+            </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

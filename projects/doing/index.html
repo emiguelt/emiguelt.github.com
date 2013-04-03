@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Doing!</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', mobile, doing, pomodoro, timer' name='keywords' />
+    <meta content='' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <h2>What is the Pomodoro Technique?</h2>
+            
+            <p>The <em>Pomodoro Technique</em> is a way to get the most out of time management. Turn time into a valuable ally to accomplish what we want to do and chart continuous improvement in the way we do it. <sup>1</sup></p>
+            
+            <h2>What is <em>Doing</em> ?</h2>
+            
+            <p><img src="/assets/doing/doingLogo.png" alt="Doing" /> is a <em>Java ME</em> software that will implement the features of the Pomodoro Technique.</p>
+            
+            <p><em>Doing!</em> is an Open Source software, the source is hosted in Sourceforge (<a href="https://sourceforge.net/projects/doing/" target="_blank">Go...</a>).</p>
+            
+            <h2>Current features <img src="/assets/doing/doingIcon.png" alt="Doing" /></h2>
+            
+            <ol>
+            <li><p>Pomodoro timer, with a 25 minutes per pomodoro, 5 minutes per break and 15 minutes for a longer break every 4 pomodoros.</p></li>
+            <li><p><em>Doing!</em> reads the <em>ToDo list</em> of the Mobile device to show it in the software interface. You can choose an activity to set as <em>current activity</em> and start the pomodoro timer.</p></li>
+            <li><p>When a Pomodoro or a Break ends, the mobile will vibrate and reproduce a tone. Next cycle will start automatically.</p></li>
+            <li><p>Task can be completed directly in the interface.</p></li>
+            <li><p>Current version: alpha 0.0.6</p></li>
+            </ol>
+            
+            
+            <h2>Getting started with <em>Doing!</em></h2>
+            
+            <ol>
+            <li>Download the software from the following link, from the mobile device, or download from a PC and copy to device.</li>
+            <li><a href="https://sourceforge.net/projects/doing/files/current/Doing.jad/download" target="_blank">Doing.jad</a></li>
+            <li><p><a href="https://sourceforge.net/projects/doing/files/current/Doing.jar/download" target="_blank">Doing.jar</a></p></li>
+            <li><p>Install the Doing.jar</p></li>
+            <li><p>When <em>Doing!</em> is installed the executable is called <strong>Doing</strong>.</p></li>
+            <li><p>Execute the Doing. When you start the application it will request permissions to access the phone data (the To Do list), you must agree in order to <em>Doing!</em> reads the activity list</p></li>
+            <li><p>If <em>Doing!</em> can get the activity list, you will see a screen as the following:
+            <center> <img src="/assets/doing/screen1.png" alt="Initial screenshot" /></center>
+            If is not possible to get the ToDo list, you can use <em>Doing!</em> like a Pomodoro timer.</p></li>
+            <li><p>Select an activity and set it as <em>current</em>
+            <center><img src="/assets/doing/setCurrent.jpg" alt="Set current activity" /></center></p></li>
+            <li><p>Start the timer by pressing the "Play" command</p></li>
+            <li><p>The Title bar will show the current status of the application (in Pomodoro or in Break)
+            <center><img src="/assets/doing/pomodoro.jpg" alt="Pomodoro" /> <img src="/assets/doing/break.jpg" alt="Break" /> </center></p></li>
+            <li><p>If you change the current activity when the timer is running, Doing will restart the timer.</p></li>
+            <li><p>A <strong>new</strong> configured panel has been added. There you can enable/disable vibration, tone and backlight alerts.
+            <center><img src="/assets/doing/screen2.png" alt="Configuration panel" /></center></p></li>
+            <li><p><strong>New</strong> configurable pomodoro tab, here you can customize the duration of the pomodoros, breaks and extended breaks
+            <center><img src="/assets/doing/screenTabPom.png" alt="Pomodoro configuration" /></center></p></li>
+            </ol>
+            
+            
+            <hr />
+            
+            <p><sub>1. http://www.pomodorotechnique.com/
+            </sub></p>
+            
+            <div id="disqus_thread"></div>
+            
+            
+            <script type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/embed.js"></script>
+            
+            
+            <p><noscript><a href="http://disqus.com/forums/emiguelwebpage/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a></p>
+            
+            <script type="text/javascript">
+            //<![CDATA[
+            (function() {
+                var links = document.getElementsByTagName('a');
+                var query = '?';
+                for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                    query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+                }
+                document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+            //]]>
+            </script>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Introducción a Android</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', android, mobile, google' name='keywords' />
+    <meta content='Introduciendo Android, el SO para móviles de Google' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+              <h1>
+                Introducción a Android
+              </h1>
+              <div class='meta'>
+                <ul class='tags'>
+                  <li>Apr 24, 2011</li>
+                  <li>
+                    &middot;
+                  </li>
+                  <li>
+                    <a href='/2011/04/24/intro_android.html#disqus_thread'></a>
+                  </li>
+                  <li>&middot;</li>
+                  <li>
+                    <a class='tag' href='/tags/android/'>
+                      android
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/google/'>
+                      google
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/mobile/'>
+                      mobile
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='body'>
+                <p>Este post tiene por objetivo dar un vistazo general de <strong>Android</strong>. Dar definiciones básicas sobre la plataforma y pasos iniciales para el desarrollo de aplicaciones para esta plataforma.</p>
+                
+                <h2>Que es Android? <img src="/assets/images/android.png" alt="android" /></h2>
+                
+                <p><a href='http://developer.android.com' target='_blank'>Android</a> es un sistema operativo para dispositivos móviles (celulares, PDAs, tablets, etc.) desarrollado principalmente por Google. Android sigue la filosofia de codigo abierto, por lo tanto, cualquier persona puede bajar el código, modificarlo dependiendo sus necesidades, y compartir esas modificaciones con la comunidad.</p>
+                
+                <h2>Arquitectura de Android</h2>
+                
+                <center>
+                <table border='1'>
+                 <tr><td>Custom & built-in apps (Java)</td></tr>
+                 <tr><td>Dalvik virtual machine</td></tr>
+                 <tr><td>Linux Kernel</td></tr>
+                 <tr><td>Hardware</td></tr>
+                </table>
+                </center>
+                
+                
+                <p>Android está estructurado básicamente como un sistema en capas:</p>
+                
+                <ol>
+                <li>Hardware: son los componentes físicos del sistema (GPS, memoria, acelerometro, etc).</li>
+                <li>Linux kernel: Abstracción del hardware. Contiene los drivers de acceso al hardware, bibliotecas nativas, etc.</li>
+                <li>Dalvik vitual machine (DVM): Maquina virtual donde son ejecutadas las aplicaciones de Android. Las aplicaciones son programadas utilizando Java (en su mayoría). Tanto las apps del sistema como las apps del usuario son ejecutadas en maquina virtual. También es posible desarrollar aplicaciones nativas (en C o C++) usando NDK (Native development kit)</li>
+                <li>Custom &amp; built-in apps: Son las aplicaciones instaladas en el sistema.</li>
+                </ol>
+                
+                
+                <h2>Desarrollo de aplicaciones</h2>
+                
+                <h3>Conceptos básicos:</h3>
+                
+                <ul>
+                <li><strong>Intent</strong>: (Declaration of need) Especifica el requerimiento de alguna funcionalidad al sistema. (<em>Necesito XYZ</em>)</li>
+                <li><strong>Intent filters</strong>: (Declaration of capability): Definición de funcionalidad ante el sistema. (<em>Ofrezco ABC</em>)</li>
+                <li><strong>Activity</strong>: Componente de una aplicación que presenta una interfaz gráfica al usuario. (<em>Toda GUI tiene una activity</em>)</li>
+                <li><strong>Service</strong>: Componente para ejecución en background. <em>ejecución de tareas de larga duración</em></li>
+                <li><strong>Broadcast receiver</strong>: Componente para ejecución de tareas pequeñas en background. (<em>Ejecución de tareas de corta duración</em>)</li>
+                <li><strong>Content provider</strong>: Provee datos a otras aplicaciones. (<em>proveedor de base de datos (SQLite)</em>)</li>
+                <li><strong>Manifiest.xml</strong>: Archivo descriptor de la aplicación. Define los componentes de la aplicación (activities, services, receivers and providers). Describe las funcionalidades (capabilities) requeridas para ejecutar la aplicación (ejemplo: GPS, red, SMS)</li>
+                </ul>
+              </div>
+            </div>
+        <div id='other-articles'>
+              <div class='older'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
+                        &laquo; Desarrollo de aplicaciones móviles
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2010/02/25/captura_audio_javame.html' title='Este es un ejemplo para la captura de audio con J2ME'>
+                        &laquo; Captura de audio para Java ME
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2010/01/04/vpn_con_ssh.html' title='Creando una VPN para accesar artículos de las bases de datos de la Universidad.'>
+                        &laquo; Creando una VPN atrav&eacute;s de SSH
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+              <div class='newer'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
+                        Flyway, migración de bases de datos &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/27/ejemplo_c5_db.html' title='Ejemplo de migración de bases de datos para Java'>
+                        c5-db-migration, migración de bases de datos &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/tips/siteadmin.html' title='Comandos utiles para la administración de mi página web estática'>
+                        Administración de sitio web estático &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        <div class='clear'></div>
+        <div class='comments'>
+              <div id='disqus_thread'></div>
+              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+              <noscript>
+                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                  View the discussion thread
+                </a>
+              </noscript>
+            </div>
+            <!-- / disqus adds too much visual crap -->
+            <style type='text/css'>
+              .dsq-dc-logo {
+                display: none !important; }
+            </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

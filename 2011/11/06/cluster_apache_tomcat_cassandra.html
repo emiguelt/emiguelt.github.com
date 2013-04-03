@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Cluster Apache, Tomcat, Cassandra</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', nosql, cassandra, cluster, apache, tomcat' name='keywords' />
+    <meta content='Criação de um cluster completo Apache/Tomcat, Cassandra básico.' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div class='article'>
+            <h1>
+              Cluster Apache, Tomcat, Cassandra
+            </h1>
+            <div class='meta'>
+              <ul class='tags'>
+                <li>Nov 06, 2011</li>
+                <li>
+                  &middot;
+                </li>
+                <li>
+                  <a href='/2011/11/06/cluster_apache_tomcat_cassandra.html#disqus_thread'></a>
+                </li>
+                <li>&middot;</li>
+                <li>
+                  <a class='tag' href='/tags/apache/'>
+                    apache
+                  </a>
+                </li>
+                <li>
+                  <a class='tag' href='/tags/cassandra/'>
+                    cassandra
+                  </a>
+                </li>
+                <li>
+                  <a class='tag' href='/tags/cluster/'>
+                    cluster
+                  </a>
+                </li>
+                <li>
+                  <a class='tag' href='/tags/nosql/'>
+                    nosql
+                  </a>
+                </li>
+                <li>
+                  <a class='tag' href='/tags/tomcat/'>
+                    tomcat
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class='body'>
+              <h2>Apache</h2>
+              
+              <h3>Clonar imagen</h3>
+              
+              <ul>
+              <li>editar hostname, hosts, mac
+              
+              <h3>instalar apache:</h3>
+              
+              <p> sudo apt-get install apache2
+               sudo apt-get install libapache2-mod-jk</p></li>
+              <li>testar no browser: http://192.168.1.105 -> It works!
+              
+              <h2>Tomcat 1</h2>
+              
+              <h3>Clonar imagen</h3></li>
+              <li>Igual que Apache
+              
+              <h3>Instalar tomcat6</h3>
+              
+              <p> sudo apt-get install tomcat6</p></li>
+              <li>testar no browser: http://192.168.1.107:8080 -> It Works!
+              
+              <h4>configurar tomcat6</h4></li>
+              <li>editar o arquivo /etc/tomcat6/server.xml</li>
+              <li><p>descomentar
+              <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+              <Engine name="Catalina" defaultHost="localhost" jvmRoute="tomcat1"></p>
+              
+              <p>  &lt;!--For clustering, please take a look at documentation at:</p>
+              
+              <pre><code>  /docs/cluster-howto.html  (simple how to)&#x000A;  /docs/config/cluster.html (reference documentation) --&gt;&#x000A;</code></pre>
+              
+              <p>  <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/></p></li>
+              </ul>
+              
+              
+              <h2>Tomcat 2</h2>
+              
+              <ol>
+              <li>Clonar imagen de Tomcat 1</li>
+              <li>Editar hostname, hosts, rules /apagar e iniciar de nuevo</li>
+              <li>Editar /etc/tomcat6/server.xml (trocar o nome do jvmRoute para tomcat2)</li>
+              <li>Incluir la nueva ip en apache workers.properties</li>
+              </ol>
+              
+              
+              <h2>Configurar Apache</h2>
+              
+              <h3>workers.properties</h3>
+              
+              <h3>jk.load</h3>
+              
+              <h3>JkMountCopy em sites-enabled</h3>
+              
+              <h2>Testing jk_status</h2>
+              
+              <p>poner imagen de jk_status</p>
+              
+              <h2>Cassandra (2 hosts)</h2>
+              
+              <ul>
+              <li>ver tutorial xxx</li>
+              <li>update seeds</li>
+              </ul>
+              
+              
+              <h2>Servlet para testes</h2>
+            </div>
+          </div>
+      <div id='other-articles'>
+            <div class='older'>
+              <ul>
+                <li>
+                  <h3>
+                    <a href='/2011/10/21/cassandra_cli.html' title='Comandos básicos para el cliente (consola) de Cassandra'>
+                      &laquo; Usando Cassandra_CLI (Básico)
+                    </a>
+                  </h3>
+                </li>
+                <li>
+                  <h3>
+                    <a href='/tips/mvn_cmds.html' title='Commands reference for Maven'>
+                      &laquo; Maven commands summary
+                    </a>
+                  </h3>
+                </li>
+                <li>
+                  <h3>
+                    <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
+                      &laquo; Cassandra y Hector
+                    </a>
+                  </h3>
+                </li>
+              </ul>
+            </div>
+            <div class='newer'>
+              <ul>
+              </ul>
+            </div>
+          </div>
+      <div class='clear'></div>
+      <div class='comments'>
+            <div id='disqus_thread'></div>
+            <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+            <noscript>
+              <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                View the discussion thread
+              </a>
+            </noscript>
+          </div>
+          <!-- / disqus adds too much visual crap -->
+          <style type='text/css'>
+            .dsq-dc-logo {
+              display: none !important; }
+          </style>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+  </body>
+</html>

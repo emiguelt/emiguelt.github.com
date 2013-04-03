@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Speech Recognition on Mobile devices - Work notes</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', mobile, speech_recognition, pocketsphinx, cmusphinx' name='keywords' />
+    <meta content='' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <h2>Work notes</h2>
+            
+            <ul>
+            <li><a href="#setting">Setting up CMUSphinx</a></li>
+            <li><a href="#training">Training - Acoustic and Language model creation</a></li>
+            </ul>
+            
+            
+            <h3><a name="setting"></a>Setting up CMUSphinx (SphinxTrain, Pocketsphinx, Sphinx3)</h3>
+            
+            <p>In my case, I created a folder for all the projects</p>
+            
+            <pre><code>mkdir speech/sphinx&#x000A;cd speech/sphinx&#x000A;</code></pre>
+            
+            <p><em>Note:</em> Since I'm working in a external computer I have no root access, so, any installation will be done on <code>$HOME</code></p>
+            
+            <h4>Installing SphinxTrain</h4>
+            
+            <pre><code>svn co https://cmusphinx.svn.sourceforge.net:/svnroot/cmusphinx/trunk/sphinxbase&#x000A;cd sphinxbase/&#x000A;./autogen.sh&#x000A;./configure --prefix=$HOME&#x000A;make&#x000A;make install #(optional)&#x000A;cd ..&#x000A;svn co https://cmusphinx.svn.sourceforge.net:/svnroot/cmusphinx/trunk/SphinxTrain&#x000A;cd SphinxTrain/&#x000A;./configure&#x000A;make&#x000A;cd .. #comming back to sphinx folder&#x000A;</code></pre>
+            
+            <h4>Installing Pocketsphinx</h4>
+            
+            <pre><code>svn co https://cmusphinx.svn.sourceforge.net/svnroot/cmusphinx/trunk/pocketsphinx&#x000A;cd ../pocketsphinx/&#x000A;./autogen.sh&#x000A;./configure --prefix=$HOME&#x000A;make&#x000A;make install&#x000A;cd .. #comming back to sphinx folder&#x000A;</code></pre>
+            
+            <h4>Installing Sphinx3</h4>
+            
+            <pre><code>svn co https://cmusphinx.svn.sourceforge.net/svnroot/cmusphinx/trunk/sphinx3&#x000A;cd ../sphinx3/&#x000A;./autogen.sh&#x000A;./configure --prefix=$HOME&#x000A;make&#x000A;make install&#x000A;cd .. #comming back to sphinx folder&#x000A;</code></pre>
+            
+            <h3><a name="training"></a>Training - Acoustic and Language model creation</h3>
+            
+            <p>The following are related links for training process:
+            - <a href="http://www.bakuzen.com/?p=16" target="_blank">Acoustic Model Creation using <em>SphinxTrain</em></a>
+            - <a href="http://cmusphinx.sourceforge.net/wiki/tutorialam" target="_blank">Training Acoustic Model For <em>CMUSphinx</em></a>
+            - <a href="http://ronaldramdhan.wordpress.com/2010/03/11/sphinxtrain/" target="_blank">How to use <em>SphinxTrain</em></a></p>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Resumen de Stripes</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', stripes, wdt, web, java, maven' name='keywords' />
+    <meta content='Resumen de Desarrollo Web (Stripes)' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+              <h1>
+                Resumen de Stripes
+              </h1>
+              <div class='meta'>
+                <ul class='tags'>
+                  <li>Apr 25, 2011</li>
+                  <li>
+                    &middot;
+                  </li>
+                  <li>
+                    <a href='/2012/03/18/wdt_p01.html#disqus_thread'></a>
+                  </li>
+                  <li>&middot;</li>
+                  <li>
+                    <a class='tag' href='/tags/java/'>
+                      java
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/maven/'>
+                      maven
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/stripes/'>
+                      stripes
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/wdt/'>
+                      wdt
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/web/'>
+                      web
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='body'>
+                <p>Este es un resumen del material para desarrollo de aplicaciones web usando Stripes.
+                Durante el resumen, va a ser implementado un administrador de tareas (ToDo list).</p>
+                
+                <p>Son utilizadas las siguientes herramientas:</p>
+                
+                <ul>
+                <li>Maven 2: Sistema de construcción y administrador de dependencias</li>
+                <li>Stripes: Framework para desarrollo de aplicaciones Web usando MVC (Model-View-Controller)</li>
+                <li>Eclipse: IDE</li>
+                <li>JDK: Entorno de Desarrollo de Java</li>
+                <li>GitHub: Repositorio de código para Git</li>
+                </ul>
+                
+                
+                <h4>Se asume que el lector ya ha instalado maven, eclipse, java y git.</h4>
+                
+                <h2>Stripes</h2>
+                
+                <p>Stripes es un framework MVC para el desarrollo de aplicaciones Web para Java.</p>
+                
+                <h3>Configuración de Stripes</h3>
+                
+                <p><strong><em>Tag en Git: WDT-P01</em></strong></p>
+                
+                <p>Para integrar Stripes en una aplicación web, es necesario modificar el archivo <em>web.xml</em> con la siguiente información:</p>
+                
+                <ul>
+                <li>Declaración del filtro de Stripes: <code>net.sourceforge.stripes.controller.StripesFilter</code>.</li>
+                <li>Establecer en que paquete se encuentran los <em>ActionBeans</em> (<code>ActionResolver.Packages</code>).</li>
+                <li>Declaracion de <code>net.sourceforge.stripes.controller.DispatcherServlet</code>.</li>
+                <li>Configuración del filtro para interceptar todos los requests que van a travez del dispatcher.</li>
+                <li>Mapeamento del patron de las URLs para ser capturadas por Stripes (Ej: .action)</li>
+                </ul>
+                
+                
+                <h3>ActionBeans</h3>
+                
+                <p>Un <em>ActionBean</em> es una clase que implementa la interfaz <em>ActionBean</em>, esta clase define los metodos (eventos, <em>event handler</em>) disponibles para procesamiento de los requerimientos (requests) de los usuarios.</p>
+                
+                <pre><code>public interface ActionBean {&#x000A;  public void setContext(ActionBeanContext context);&#x000A;  public ActionBeanContext getContext();&#x000A;}&#x000A;</code></pre>
+                
+                <h2>Stripes - Validación</h2>
+                
+                <p><strong>Tag en Git: WDT-P02</strong></p>
+                
+                <p>Para realizar validaciones de formularios se hace uso de <em>Anotaciones</em> en los <em>ActionBeans</em>. Sintaxis básica:</p>
+                
+                <ul>
+                <li><em>@Validate(required=true, OTRAS RESTRICCIONES)</em>: esta anotación se coloca en el atributo o método que se quiere validar</li>
+                <li><em>@ValidateNestedProperties({@Validate(field=xxx, Restricción),...)</em>: Anotación para realizar validaciones en atributos de objetos en el <em>ActionBean</em>, por ejemplo <em>Persona.edad</em></li>
+                <li><em>@Validate(expression=${REGEX})</em>: Permite validación con expresiones regulares</li>
+                <li><em>@DontValidate</em>: Anotación para evitar la validación en un evento (Event handler)</li>
+                <li><em>@Validate(on="handler")</em>: Restringe la validación al método referenciado en el parametro <em>on</em>.</li>
+                <li><em>@ValidationMethod(on={handlers})</em>: Anota un método como validador para uno o mas <em>handlers</em>. El método debe ser publico y debe recibir <em>ValidationErrors</em> o ningún parametro.</li>
+                <li>Interceptar Errores de Validación. Si el <em>ActionBean</em> implementa la <em>Interface ValidationErrorHandler</em> es posible interceptar la validación de errores, para eliminar, adicionar o modificar errores</li>
+                </ul>
+              </div>
+            </div>
+        <div id='other-articles'>
+              <div class='older'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2012/03/18/stripes_summary.html' title='Tutorial de desarrollo de aplicaciones web, Parte 1 - Introducción a Stripes'>
+                        &laquo; WDT01 - Introducción a Stripes
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
+                        &laquo; Flyway, migración de bases de datos
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/27/ejemplo_c5_db.html' title='Ejemplo de migración de bases de datos para Java'>
+                        &laquo; c5-db-migration, migración de bases de datos
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+              <div class='newer'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/tips/siteadmin.html' title='Comandos utiles para la administración de mi página web estática'>
+                        Administración de sitio web estático &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
+                        Cassandra y Hector &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
+                        Commands summary &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        <div class='clear'></div>
+        <div class='comments'>
+              <div id='disqus_thread'></div>
+              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+              <noscript>
+                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                  View the discussion thread
+                </a>
+              </noscript>
+            </div>
+            <!-- / disqus adds too much visual crap -->
+            <style type='text/css'>
+              .dsq-dc-logo {
+                display: none !important; }
+            </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+  </body>
+</html>

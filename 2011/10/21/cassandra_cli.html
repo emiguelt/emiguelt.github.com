@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Usando Cassandra_CLI (Básico)</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', cassandra, nosql, database' name='keywords' />
+    <meta content='Comandos básicos para el cliente (consola) de Cassandra' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+              <h1>
+                Usando Cassandra_CLI (Básico)
+              </h1>
+              <div class='meta'>
+                <ul class='tags'>
+                  <li>Oct 21, 2011</li>
+                  <li>
+                    &middot;
+                  </li>
+                  <li>
+                    <a href='/2011/10/21/cassandra_cli.html#disqus_thread'></a>
+                  </li>
+                  <li>&middot;</li>
+                  <li>
+                    <a class='tag' href='/tags/cassandra/'>
+                      cassandra
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/database/'>
+                      database
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/nosql/'>
+                      nosql
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='body'>
+                <p>Cassandra es un gestor de bases de datos distribuidas altamente escalable basado en NoSQL (mas info en: http://wiki.apache.org/cassandra).
+                Este post presenta el uso básico de la consola de definición y manipulación de datos <em>cassandra_cli</em>. Se asume conocimientos básicos de Cassandra y de su modelo de datos.</p>
+                
+                <h2>Iniciando <strong>cassandra_cli</strong></h2>
+                
+                <p>Desde el directorio de cassandra ejecutar el comando:</p>
+                
+                <pre><code>./bin/cassandra_cli --host localhost --port 9160&#x000A;</code></pre>
+                
+                <ul>
+                <li>host: localhost o la dirección del cluster.</li>
+                <li>port: Puerto definido en conf/cassandra.yaml</li>
+                </ul>
+                
+                
+                <h2>Creando un Keyspace</h2>
+                
+                <p>Un Keyspace es como un Schema en una base de datos relacional.</p>
+                
+                <pre><code>create keyspace MiBase;&#x000A;</code></pre>
+                
+                <p>La salida de consola será algo como:</p>
+                
+                <pre><code>448a4920-fbe9-11e0-0000-242d50cf1ffd&#x000A;Waiting for schema agreement...&#x000A;... schemas agree across the cluster&#x000A;</code></pre>
+                
+                <p>Ahora usamos el keyspace recien creado:</p>
+                
+                <pre><code>use MiBase;&#x000A;</code></pre>
+                
+                <p>Salida:</p>
+                
+                <pre><code>Authenticated to keyspace: MiBase&#x000A;</code></pre>
+                
+                <h2>Creando una Column Family (CF)</h2>
+                
+                <p>Una CF seria como una tabla...</p>
+                
+                <pre><code>create column family Usuario with comparator = UTF8Type;        &#x000A;5c064a30-fbea-11e0-0000-242d50cf1ffd&#x000A;Waiting for schema agreement...&#x000A;... schemas agree across the cluster&#x000A;</code></pre>
+                
+                <p>Creamos una CF llamada Usuario, la cual asume que las llaves están en UTF8 para realizar comparaciones.</p>
+                
+                <h2>Añadiendo datos en la CF</h2>
+                
+                <pre><code>set Usuario['mtriana']['apellido'] = 'miguel'; &#x000A;org.apache.cassandra.db.marshal.MarshalException: cannot parse 'mtriana' as hex bytes&#x000A;</code></pre>
+                
+                <p>Intentamos adicionar un usuario, sin embargo obtenemos un error porque las columnas aceptan datos en formato en hexadecimal, entonces ejecutamos el siguiente comando para que sean aceptadas cadenas de caracteres en ASCII:</p>
+                
+                <pre><code>assume UsUARIO keys as ascii;&#x000A;Assumption for column family 'Usuario' added successfully&#x000A;</code></pre>
+                
+                <p>De nuevo vamos a añadir el usuario:</p>
+                
+                <pre><code>set Usuario['mtriana']['nombre'] = 'miguel';            &#x000A;Value inserted.&#x000A;set Usuario['mtriana']['apellido'] = 'triana';          &#x000A;Value inserted.&#x000A;set Usuario['mtriana']['edad'] = '10';        &#x000A;Value inserted.&#x000A;</code></pre>
+                
+                <p>En este caso <em>mtriana</em> es la llave de accesso a la super columna (es como una fila)  y <em>nombre</em>, <em>apellido</em> y <em>edad</em> son las columnas da la CF.</p>
+                
+                <h2>Consultando la CF</h2>
+                
+                <pre><code>get Usuario['mtriana'];&#x000A;=&gt; (column=apellido, value=747269616e61, timestamp=1319205144832000)&#x000A;=&gt; (column=edad, value=3130, timestamp=1319205156161000)&#x000A;=&gt; (column=nombre, value=6d696775656c, timestamp=1319205140859000)&#x000A;</code></pre>
+                
+                <p>Obtenemos los datos de super columna con llave <em>mtriana</em>, sin embargo, los datos son presentados en hexadecimal (ByteType). Para presentarlos en un formato legible se actualizan los metadatos de las columnas.
+                <code class="bash"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt>9<tt>&#x000A;</tt><strong>10</strong><tt>&#x000A;</tt>11<tt>&#x000A;</tt>12<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">update column family Usuario                                    <tt>&#x000A;</tt>...        with<tt>&#x000A;</tt>...        column_metadata =                                               <tt>&#x000A;</tt>...        [<tt>&#x000A;</tt>...        {column_name: nombre, validation_class: UTF8Type},              <tt>&#x000A;</tt>...        {column_name: apellido, validation_class: UTF8Type},<tt>&#x000A;</tt>...        {column_name: edad, validation_class: UTF8Type, index_type: KEYS}<tt>&#x000A;</tt>...        ];<tt>&#x000A;</tt><tt>&#x000A;</tt>c373ec10-fbed-11e0-0000-242d50cf1ffd<tt>&#x000A;</tt>Waiting for schema agreement...<tt>&#x000A;</tt>... schemas agree across the cluster<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
+                
+                <p>De nuevo se consulta la base de datos:</p>
+                
+                <pre><code>get Usuario['mtriana'];&#x000A;=&gt; (column=apellido, value=triana, timestamp=1319205144832000)&#x000A;=&gt; (column=edad, value=10, timestamp=1319205156161000)&#x000A;=&gt; (column=nombre, value=miguel, timestamp=1319205140859000)&#x000A;Returned 3 results.&#x000A;</code></pre>
+                
+                <h3>Consultando la base por otro indice</h3>
+                
+                <p>Cuando modificamos los metadatos de las columnas, también se incluyó un índice para la edad para realizar búsquedas por este parámetro, ahora vamos a consultar la base usando este índice.</p>
+                
+                <pre><code>get Usuario where 'edad' = '10';&#x000A;-------------------&#x000A;RowKey: mtriana&#x000A;=&gt; (column=apellido, value=triana, timestamp=1319205144832000)&#x000A;=&gt; (column=edad, value=10, timestamp=1319205156161000)&#x000A;=&gt; (column=nombre, value=miguel, timestamp=1319205140859000)&#x000A;1 Row Returned.&#x000A;</code></pre>
+                
+                <h3>Listando todos los datos de la CF</h3>
+                
+                <p>Añadimos un usuario y después usamos el comando <em>list</em> para obtener todos los datos de la super columna:
+                <code class="bash"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt>9<tt>&#x000A;</tt><strong>10</strong><tt>&#x000A;</tt>11<tt>&#x000A;</tt>12<tt>&#x000A;</tt>13<tt>&#x000A;</tt>14<tt>&#x000A;</tt>15<tt>&#x000A;</tt>16<tt>&#x000A;</tt>17<tt>&#x000A;</tt>18<tt>&#x000A;</tt>19<tt>&#x000A;</tt><strong>20</strong><tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">[default@MiBase] set Usuario['egomez']['apellido'] = 'gomez';                     <tt>&#x000A;</tt>Value inserted.<tt>&#x000A;</tt>[default@MiBase] set Usuario['egomez']['nombre'] = 'edwin';  <tt>&#x000A;</tt>Value inserted.<tt>&#x000A;</tt>[default@MiBase] set Usuario['egomez']['edad'] = '15';     <tt>&#x000A;</tt>Value inserted.<tt>&#x000A;</tt>[default@MiBase] list Usuario;                        <tt>&#x000A;</tt>Using default limit of 100<tt>&#x000A;</tt>-------------------<tt>&#x000A;</tt>RowKey: egomez<tt>&#x000A;</tt>=&gt; (column=apellido, value=gomez, timestamp=1319206905155000)<tt>&#x000A;</tt>=&gt; (column=edad, value=15, timestamp=1319206929439000)<tt>&#x000A;</tt>=&gt; (column=nombre, value=edwin, timestamp=1319206919988000)<tt>&#x000A;</tt>-------------------<tt>&#x000A;</tt>RowKey: mtriana<tt>&#x000A;</tt>=&gt; (column=apellido, value=triana, timestamp=1319205144832000)<tt>&#x000A;</tt>=&gt; (column=edad, value=10, timestamp=1319205156161000)<tt>&#x000A;</tt>=&gt; (column=nombre, value=miguel, timestamp=1319205140859000)<tt>&#x000A;</tt><tt>&#x000A;</tt>2 Rows Returned.<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
+                
+                <h2>Borrando Columnas y Super Columnas</h2>
+                
+                <p>Podemos borrar una columna completa de una fila usando el comando <code>del NombreCF['llaveDeFila']['columna'];</code>
+                <code class="bash"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">[default@MiBase] del Usuario['mtriana']['nombre']; <tt>&#x000A;</tt>column removed.<tt>&#x000A;</tt>[default@MiBase] get Usuario['mtriana'];<tt>&#x000A;</tt>=&gt; (column=apellido, value=triana, timestamp=1319205144832000)<tt>&#x000A;</tt>=&gt; (column=edad, value=10, timestamp=1319205156161000)<tt>&#x000A;</tt>Returned 2 results.<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
+                
+                <p>O se puede borrar una fila completa (super columna) con `del NombreCF['nombreDeFila'];</p>
+                
+                <pre><code>del Usuario['mtriana'];          &#x000A;row removed.&#x000A;</code></pre>
+                
+                <h2>Eliminando una CF y un Keyspace (KS)</h2>
+                
+                <ul>
+                <li>Para eliminar una CF: <code>drop column family NombreCF;</code></li>
+                <li>Para eliminar una Base (KS): <code>drop keyspace NombreKS;</code></li>
+                </ul>
+                
+                
+                <p><code class="bash"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">[default@MiBase] drop column family Usuario;<tt>&#x000A;</tt>cbfa22a0-fbf2-11e0-0000-242d50cf1ffd<tt>&#x000A;</tt>Waiting for schema agreement...<tt>&#x000A;</tt>... schemas agree across the cluster<tt>&#x000A;</tt>[default@MiBase] drop keyspace MiBase;<tt>&#x000A;</tt>d5b6a890-fbf2-11e0-0000-242d50cf1ffd<tt>&#x000A;</tt>Waiting for schema agreement...<tt>&#x000A;</tt>... schemas agree across the cluster<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
+                
+                <h2>Salir de <strong>cassandra_cli</strong></h2>
+                
+                <pre><code>quit;&#x000A;</code></pre>
+                
+                <hr>
+                
+                
+                <h3>Referéncias</h3>
+                
+                <ul>
+                <li>http://wiki.apache.org/cassandra/CassandraCli</li>
+                <li>http://www.datastax.com/docs/0.8/dml/using_cli</li>
+                </ul>
+              </div>
+            </div>
+        <div id='other-articles'>
+              <div class='older'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/tips/siteadmin.html' title='Comandos utiles para la administración de mi página web estática'>
+                        &laquo; Administración de sitio web estático
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/27/ejemplo_c5_db.html' title='Ejemplo de migración de bases de datos para Java'>
+                        &laquo; c5-db-migration, migración de bases de datos
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
+                        &laquo; Flyway, migración de bases de datos
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+              <div class='newer'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
+                        Cassandra y Hector &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
+                        Commands summary &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2012/03/18/stripes_summary.html' title='Resumen de Desarrollo Web (Stripes)'>
+                        Resumen de Stripes &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        <div class='clear'></div>
+        <div class='comments'>
+              <div id='disqus_thread'></div>
+              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+              <noscript>
+                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                  View the discussion thread
+                </a>
+              </noscript>
+            </div>
+            <!-- / disqus adds too much visual crap -->
+            <style type='text/css'>
+              .dsq-dc-logo {
+                display: none !important; }
+            </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

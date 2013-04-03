@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Resumen Spring</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', spring, wdt, web, java' name='keywords' />
+    <meta content='Resumen del Framework Spring' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+              <h1>
+                Resumen Spring
+              </h1>
+              <div class='meta'>
+                <ul class='tags'>
+                  <li>Apr 08, 2012</li>
+                  <li>
+                    &middot;
+                  </li>
+                  <li>
+                    <a href='/2012/04/08/spring_summary.html#disqus_thread'></a>
+                  </li>
+                  <li>&middot;</li>
+                  <li>
+                    <a class='tag' href='/tags/java/'>
+                      java
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/spring/'>
+                      spring
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/wdt/'>
+                      wdt
+                    </a>
+                  </li>
+                  <li>
+                    <a class='tag' href='/tags/web/'>
+                      web
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class='body'>
+                <p>Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro <a href="http://www.manning.com/walls4/" target="_blank">Spring in Action, Third Edition</a></p>
+                
+                <h1>Spring</h1>
+                
+                <p>Framework de desarrollo Java que ofrece <em>Dependency Injection</em>, <em>Aspect Oriented Programming</em> y <em>Templates</em>.</p>
+                
+                <ul>
+                <li>Inyección de Dependencias (DI): Configuración automático de dependencias de una clase.</li>
+                <li>Programación Orientada a Aspectos: Adición de funcionalidades comunes a lo largo de un sistema (ej. Sistema de Logging).</li>
+                <li>Plantillas: Permiten reutilizar código y reducir escribir funciones repetitivas.</li>
+                </ul>
+                
+                
+                <p>Spring administra clases en un sistema por medio de un <em>Container</em>, en este contenedor se encuentran todas las referencias de los objetos administrados por Spring. Hay dos tipos de contenedores, los <em>BeanFactories</em>, para inyección de dependencia, y <em>ApplicationContexts</em>, que incluyen DI ademas de otros servicios Event Listeners, interceptors, etc.</p>
+                
+                <p><em>ApplicationContexts</em> relevantes en Spring:</p>
+                
+                <ul>
+                <li>ClassPathApplicationContext: en classpath</li>
+                <li>FileSystemApplicationContext: en el sistema de archivos</li>
+                <li>XmlWebApplicationContext: para aplicaciones web</li>
+                </ul>
+                
+                
+                <h2>Ciclo de vida de un Bean</h2>
+                
+                <p>Un Bean es una clase POJO administrada por Spring.</p>
+                
+                <p>Ciclo de vida:</p>
+                
+                <ul>
+                <li>Instantiate</li>
+                <li>PopulateProperties</li>
+                <li>BeanNameAware's setBeanName</li>
+                <li>BeanFactoryAware's setBeanFactory</li>
+                <li>ApplicationContextAware's setApplicationContext</li>
+                <li>Pre-initialization BeanPostProcessors</li>
+                <li>InitializatingBean's afterPropertiesSet</li>
+                <li>Call custom init method</li>
+                <li>Post-initialization BeanPostProcessors</li>
+                <li><strong>BEAN READY TO USE</strong></li>
+                <li>Container is shutdown</li>
+                <li>DisposableBean's destroy</li>
+                <li>Call custom destroy method</li>
+                </ul>
+                
+                
+                <h2>Configuración de Beans</h2>
+                
+                <h3>Constructor injection</h3>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&gt;&#x000A;  &lt;constructor-arg value="10"/&gt;&#x000A;  &lt;constructor-arg ref="beanId2"/&gt;&#x000A;&lt;/bean&gt;&#x000A;...&#x000A;&lt;bean id="beanId2" class="package.Class2"/&gt;&#x000A;</code></pre>
+                
+                <h3>Factory Method injection</h3>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class" factory-method="getInstance"/&gt;&#x000A;</code></pre>
+                
+                <p><strong>Nota</strong>: Bean son Singleton por default, el atributo <em>prototype</em> se utiliza para sobrescribir este patrón. Opciones posibles: singleton, prototypee, request, session, global-session.</p>
+                
+                <h3>Init/Destroy beans</h3>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&#x000A;init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&gt;&#x000A;</code></pre>
+                
+                <ul>
+                <li>Otro método para inicializar o finalizar un bean es implementando las interfaces <em>InitializingBean y DisposableBean</em>.</li>
+                <li>También se puede configurar un método default para inicializar y finalizar de forma global configurando <em>default-init-method</em> y <em>default_destroy_method</em> como atributos del tag <em>beans</em>.</li>
+                </ul>
+                
+                
+                <h3>Properties injection</h3>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&gt;&#x000A;  &lt;property name="property1" value="10"/&gt;&#x000A;  &lt;property name="property2" ref="beanId2"/&gt;&#x000A;&lt;/bean&gt;&#x000A;...&#x000A;&lt;bean id="beanId2" class="package.Class2"/&gt;&#x000A;</code></pre>
+                
+                <h3>Inner beans</h3>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&gt;&#x000A;  &lt;property name="property2"&gt;&#x000A;    &lt;bean class="package.Class2"/&gt;&#x000A;  &lt;/property&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre>
+                
+                <p>Funciona igual para <code>contructor-arg</code></p>
+                
+                <h3>Wiring Collections</h3>
+                
+                <h4>List, sets, arrays</h4>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&gt;&#x000A;  &lt;property name="mycollection"&gt;&#x000A;    &lt;list&gt;&#x000A;      &lt;ref bean="beanId2"/&gt;&#x000A;      &lt;ref bean="beanId3"/&gt;&#x000A;      &lt;ref bean="beanId4"/&gt;&#x000A;    &lt;/list&gt;&#x000A;  &lt;/property&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre>
+                
+                <h4>Maps, Props</h4>
+                
+                <pre><code>&lt;bean id="beanId1" class="package.Class"&gt;&#x000A;  &lt;property name="mycollection"&gt;&#x000A;    &lt;map&gt;&#x000A;      &lt;entry key="aKey" value="aValue"/&gt;&#x000A;      &lt;entry key-ref="keyBean" value-ref="beanId3"/&gt;&#x000A;      &lt;entry key="aKey" value-ref="beanId2"/&gt;&#x000A;    &lt;/list&gt;&#x000A;  &lt;/property&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre>
+                
+                <h3>Wiring to NULL</h3>
+                
+                <pre><code>&lt;property name="thisPropNull"&gt;&lt;null/&gt;&lt;/property&gt;&#x000A;</code></pre>
+                
+                <h2>Autowiring</h2>
+                
+                <p>Básicamente, hay dos tipos de resolución automática de beans: "autowire" en el XML o usando "annotations".</p>
+                
+                <h3>Autowiring in XML</h3>
+                
+                <p>Durante la configuración de un bean en el <em>ApplicationContext</em> se define el tipo de "autowire", es de decir, como son conectadas las propiedades de un bean.</p>
+                
+                <pre><code>&lt;bean ... autowire='TIPO_DE_AUTOWIRE' /&gt;&#x000A;</code></pre>
+                
+                <h4>Tipos de <em>Autowire</em></h4>
+                
+                <ul>
+                <li>byName: busca un bean con el mismo NOMBRE de la propiedad (atributo)</li>
+                <li>byType: busca un bean con el mismo TIPO de la propiedad, si hay varios beans que puedan ser seleccionados, se genera una excepción, a menos que hay solo un bean marcado como "<em>primary</em>", por default, todos los beans son <em>primary=true</em>, se debe marcar <em>primary=false</em> para evitar la excepción.</li>
+                <li>constructor: igual que <em>byType</em> pero para los parametros del constructor</li>
+                <li>autodetect: realiza <em>constructor</em> y si no es posible, realiza <em>byType</em></li>
+                </ul>
+                
+                
+                <p>Para definir <em>autowire</em> para todos los beans se usa: <code>&lt;beans ... default-autowire='TIPO_DE_AUTOWIRE' /&gt;</code>, en este caso también esta la opción <em>none</em>.</p>
+                
+                <h3>Autowiring with Annotations</h3>
+                
+                <p>Para habilitar las <em>anotaciones</em> se coloca el elemento <code>&lt;context:annotation-config/&gt;</code> en el tag <code>&lt;beans&gt;</code>.</p>
+                
+                <h4>@Autowired</h4>
+                
+                <ul>
+                <li>La anotacion<em>@Autowired</em> colocada en atributos o métodos informa a Spring que esa propiedad debe ser configurada por el <em>Framework</em>.</li>
+                <li><em>@Autowired</em> es equivalente a <em>@Inject</em> en la especificación JSR-330.</li>
+                <li><em>@Autowired</em> es equivalente a <em>Autowire byType</em></li>
+                <li>(required=false): parametro opcional para evitar la generación de excepciones en el caso que no sea posible suplir la dependencia.</li>
+                <li><em>@Qualifier("name")</em>: Usado para eliminar la ambigüedad en la resolución de dependencias (Similar a <em>byName</em>). Equivalente a _@Named("name") en la especificación Java.</li>
+                <li><em>Qualifiers</em> pueden ser extendidos en Spring o en Java</li>
+                <li><em>@Value("xyz")</em>: Usado para pasar valores a la propiedad. Usado principalmente con <em>Spring Expression Language</em> (SpEL).</li>
+                </ul>
+                
+                
+                <p>Hasta aquí, los beans (anotados o no) debían estar listados en el <em>applicationContext</em>, para evitar esto se usa el <em>descubrimiento automático de beans</em>.</p>
+                
+                <h3>Descubrimiento automático de Beans</h3>
+                
+                <p>Se usa <code>&lt;context:component-scan/&gt;</code> en vez de <code>&lt;context:annotation-config/&gt;</code>. se debe configurar el atributo <code>base-package="xyz.abc"</code> para indicar donde deben ser buscados los beans. Los Beans pueden ser de 4 tipos:</p>
+                
+                <ul>
+                <li><em>@Component("nombre_opcional")</em>:  Bean común de Spring.</li>
+                <li><em>@Controller("nombre_opcional")</em>: Controlador de Spring MVC</li>
+                <li><em>@Service("nombre_opcional")</em>: Servicio de Spring</li>
+                <li><em>@Repository("nombre_opcional")</em>: Repositorio de accesso a datos (similar a DAOs)</li>
+                </ul>
+                
+                
+                <p>Es posible usar <em>filtros</em> para incluir o excluir <em>beans</em> sin anotaciones, usando  el tag <code>&lt;context:include-filter/&gt;</code> o <code>&lt;context:exclude-filter/&gt;</code>.</p>
+                
+                <h2>Configuración de Spring usando Java</h2>
+                
+                <p>Se usa una clase Java para obtener la configuración de los beans. La clase debe estar anotada con <em>@Configuration</em> y cada método que genera un bean debe ser anotada con <em>@Bean</em>. También se utiliza <code>&lt;context:component-scan/&gt;</code>.</p>
+                
+                <h2>Spring AOP Framework</h2>
+                
+                <p>AOP: Aspect Oriented Programming, ayuda a modularizar funcionalidades transversales de un sistema, como <em>logging</em> o seguridad, donde varios puntos de un sistema pueden ser afectados.</p>
+                
+                <h3>Vocabulario:</h3>
+                
+                <ul>
+                <li>Advice: Método a ser ejecutado y cuando.
+                
+                <ul>
+                <li>Before,</li>
+                <li>After,</li>
+                <li>After-returning: con exito,</li>
+                <li>After-throwing: con error (<em>throws an exception</em>)</li>
+                <li>Around: Envuelve un método (antes, despues)</li>
+                </ul>
+                </li>
+                <li>Join Point: Lugar donde podria ser llamado un <em>Advice</em></li>
+                <li>Pointcuts: Donde DEBE ser llamado un Aspecto</li>
+                <li>Ascpect: Advice + Pointcut</li>
+                <li>Introductions: Adición de nuevos métodos o atributos a una clase</li>
+                <li>Weaving: Proxy an object, puede ser en:
+                
+                <ul>
+                <li>Compilation time</li>
+                <li>Class load time</li>
+                <li>Runtime: asi lo hace Spring AOP</li>
+                </ul>
+                </li>
+                </ul>
+                
+                
+                <h3>Abordajes de Spring AOP:</h3>
+                
+                <ul>
+                <li>Classic: Proxy-based (1)</li>
+                <li>Anotaciones <em>@AspectJ</em> (1)</li>
+                <li>Pure POJO aspects (1)</li>
+                <li>Injected AspectJ aspects</li>
+                </ul>
+                
+                
+                <p> (1): Solo para métodos</p>
+                
+                <p>Spring solo soporta <em>Proxied-objects</em> en tiempo de ejecución, por lo tanto solo puede interceptar métodos.</p>
+                
+                <h3>Pointcuts</h3>
+                
+                <p>Spring soporta un subconjunto de pointcuts de AspectJ debido a la restricción de intercepción solo en metodos.</p>
+                
+                <h4>Pointcut expression language para Spring:</h4>
+                
+                <ul>
+                <li>args(): Los argumentos deben ser instancias de los tipos definidos</li>
+                <li>@args(): Los argumentos deben estar anotados con los tipos definidos</li>
+                <li>this(): Bean reference of a AOP proxy is of a given type</li>
+                <li>target(): El objeto debe ser del tipo especificado</li>
+                <li>@target: El objeto debe tener la anotación especificada</li>
+                <li>within: El objeto debe ser de alguno de los tipos dados</li>
+                <li>@within: El objeto debe tener una de las anotaciones especificadas</li>
+                <li>@annotation: El método tiene la anotación especificada</li>
+                <li>execution: El joint point es un <em>method execution</em>. Es el mas importante, porque es el único que realiza matching.</li>
+                <li>bean: Especifíca en que Bean debe ser creado el Pointcut (Solo en Spring)</li>
+                </ul>
+                
+                
+                <p>Ejemplo:</p>
+                
+                <pre><code> execution(* net.co.Class.play(..))&#x000A;</code></pre>
+                
+                <p>Explicación:
+                 * execution: interceptar en la ejecución del método
+                 * <em>*</em>: Retorna cualquier tipo
+                 * net.co.Class: Clase a la que el método pertenece
+                 * play: Método
+                 * (..): Cualquier argumento</p>
+                
+                <p> En la creación de Pointcuts puede usarse operadores logicos &amp;&amp; (and), || (or), ! (not)</p>
+                
+                <h3>Declaración de Aspects en Spring</h3>
+                
+                <ul>
+                <li>Namespace: aop</li>
+                </ul>
+                
+                
+                <p>Elementos:</p>
+                
+                <ul>
+                <li><code>&lt;aop:advisor&gt;</code></li>
+                <li><code>&lt;aop:after&gt;</code></li>
+                <li><code>&lt;aop:after-returning&gt;</code></li>
+                <li><code>&lt;aop:after-throwing&gt;</code></li>
+                <li><code>&lt;aop:around&gt;</code></li>
+                <li><code>&lt;aop:aspect&gt;</code></li>
+                <li><code>&lt;aop:aspectj-autoproxy&gt;</code>: Permite anotaciones @AspectJ</li>
+                <li><code>&lt;aop:before&gt;</code></li>
+                <li><code>&lt;aop:config&gt;</code>: Top level AOP elements</li>
+                <li><code>&lt;aop:declare-parents&gt;</code></li>
+                <li><code>&lt;aop:pointcut&gt;</code></li>
+                </ul>
+                
+                
+                <p>Ejemplo:</p>
+                
+                <pre><code>&lt;aop:config&gt;&#x000A;  &lt;aop:aspect ref='BeanConFuncionalidad'&gt;&#x000A;     &lt;aop:pointcut id='pointId'&#x000A;         expression='execution(....)'/&gt;&#x000A;     &lt;aop:before pointcut-ref='pointId'&#x000A;         method='MetodoAEjectuarEnBeanConFuncionalidad'/&gt;&#x000A;  &lt;/aop:aspect&gt;&#x000A;&lt;/aop:config&gt;&#x000A;</code></pre>
+                
+                <p>La definición de un Pointcut puede ser por fuera del aspecto, asi, esta definición estará disponible para otros aspectos.</p>
+                
+                <h3>Around advice</h3>
+                
+                <p>Intercepción de un método Antes y Despues (<code>&lt;aop:around</code>>).</p>
+                
+                <pre><code>public void aroundMethod(ProceedingJoinPoint point){&#x000A;  //instrucciones antes de llamar el método&#x000A;  point.proceed(); //ejecución del método&#x000A;  //instrucciónes despues del método&#x000A;}&#x000A;</code></pre>
+                
+                <p>Configuración en XML igual que los otros aspectos</p>
+                
+                <h3>Pasar parámetros a un advice</h3>
+                
+                <pre><code>&lt;aop:config&gt;&#x000A;  &lt;aop:aspect ref='BeanConFuncionalidad'&gt;&#x000A;     &lt;aop:pointcut id='pointId'&#x000A;         expression='execution(* net.co.Class.play(String) and args(argname)'/&gt;&#x000A;     &lt;aop:before pointcut-ref='pointId'&#x000A;         method='MetodoAEjectuarEnBeanConFuncionalidad'&#x000A;         arg-names='argName'/&gt;&#x000A;  &lt;/aop:aspect&gt;&#x000A;&lt;/aop:config&gt;&#x000A;</code></pre>
+                
+                <p>El método <em>MetodoAEjecutarEnBeanConFuncionalidad</em> debe recibir un String</p>
+                
+                <h3>Anotando aspects en Spring</h3>
+                
+                <p>Spring usa anotaciones <em>@AspectJ</em>, sin embargo, se encuentra limitado a la intercepción de métodos (con AspectJ tabmién es posible interceptar atributos y constructores).</p>
+                
+                <pre><code>@Aspect //define un aspecto&#x000A;  public class MyAspect{&#x000A;  @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod(..))")&#x000A;  public void pointcutName(){}//Este método solo define el pointcut, debe permanecer vacio&#x000A;&#x000A;  @Before("pointcutName()")&#x000A;  public void method1(){ ... do stuff ...}&#x000A;&#x000A;  @AfterReturning("pointcutName()")&#x000A;  public void method2(){ ... do stuff ...}&#x000A;&#x000A;  @AfterThrowing("pointcutName()")&#x000A;  public void metho3(){ ... do stuff ...}&#x000A;&#x000A;  @Aroun("pointcutName()")&#x000A;  public void method4(ProcedingJoinPoint joinpoint){&#x000A;    try{&#x000A;      ... do stuff befoe ...&#x000A;      joinpoint.proceed(); // ejecutá el método&#x000A;      ... do stuff after ...&#x000A;    }catch(SomeException ex){&#x000A;      ... do stuff for throwing ...&#x000A;    }&#x000A;&#x000A;  /** Pasando Parametros **/&#x000A;  @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod2(String))" +&#x000A;  " &amp;&amp; args(someArgumentName)")&#x000A;  public void pointcutOther(String someArgumentName){}//Este método solo define el pointcut, debe permanecer vacio&#x000A;&#x000A;  @Before("pointcutOther(someArgumentName)")&#x000A;  public void method5(String someArgumentName){&#x000A;    ... do stuff with arguments ...&#x000A;  }&#x000A;}&#x000A;</code></pre>
+                
+                <ul>
+                <li>Anotaciones requieren tener el código fuente. XML no necesita (Con XML se pueden interceptar objetos de bibliotecas externas)</li>
+                <li>La clase definida como aspecto sigue siendo un POJO, por lo tanto puede ser usada como un Bean en Spring</li>
+                <li>Se deve incluir <code>&lt;aop:aspectj-autoproxy/&gt;</code> al xml para dar soporte a anotaciones</li>
+                </ul>
+              </div>
+            </div>
+        <div id='other-articles'>
+              <div class='older'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2012/03/18/stripes_summary.html' title='Resumen de Desarrollo Web (Stripes)'>
+                        &laquo; Resumen de Stripes
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
+                        &laquo; Commands summary
+                      </a>
+                    </h3>
+                  </li>
+                  <li>
+                    <h3>
+                      <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
+                        &laquo; Cassandra y Hector
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+              <div class='newer'>
+                <ul>
+                  <li>
+                    <h3>
+                      <a href='/2012/05/20_Spring_summary_p2.html' title='Resumen del Framework Spring - Segunda parte'>
+                        Resumen Spring - Parte 2 &raquo;
+                      </a>
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        <div class='clear'></div>
+        <div class='comments'>
+              <div id='disqus_thread'></div>
+              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+              <noscript>
+                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+                  View the discussion thread
+                </a>
+              </noscript>
+            </div>
+            <!-- / disqus adds too much visual crap -->
+            <style type='text/css'>
+              .dsq-dc-logo {
+                display: none !important; }
+            </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            (function() {
+              var links = document.getElementsByTagName('a');
+              var query = '?';
+              for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+              }
+              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+          //]]>
+        </script>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>

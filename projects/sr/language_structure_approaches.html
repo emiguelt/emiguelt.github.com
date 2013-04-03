@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Language Recognition Structure</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content=', mobile, speech_recognition' name='keywords' />
+    <meta content='' name='description' />
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <h2>Language Recognition Structure</h2>
+            
+            <h5>26/Jun/2010</h5>
+            
+            <p>This document describes the 4 different approaches to achieve the speech recognition for commands.</p>
+            
+            <h3>1. Definitions</h3>
+            
+            <ul>
+            <li>Dictionary (dicX): This file contains the supported commands with their transcriptions. For example:</li>
+            </ul>
+            
+            
+            <p> <code>&#x000A;word1 mod1 mod2 mod3 <br/>&#x000A;word2 mod1 mod3 mod5 <br/>&#x000A;word3 mod3 mod5&#x000A; </code></p>
+            
+            <p> <em>wordX</em>: is the supported word or command in the system
+             <em>modX</em>: represents a model of a word of subword (phoneme)</p>
+            
+            <ul>
+            <li>Acoustic model (phoneX): supported word models</li>
+            </ul>
+            
+            
+            <p> <code>&#x000A; mod1 <br/>&#x000A; mod2 <br/>&#x000A; ...  <br/>&#x000A; mod5 <br/>&#x000A; </code></p>
+            
+            <ul>
+            <li>Language Model - LM (jsgf): Defines the structure of the language, that is, define how the commands must be formatted to be accepted by the system. For the command speech recognition system a finite grammar structure (FSG) language will be used. The following is an example of language model:</li>
+            </ul>
+            
+            
+            <p> <code>&#x000A; &nbsp;&nbsp;&nbsp;&nbsp;--> word1 --<br/>&#x000A;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;br/>&#x000A; -->o--> word2 --o--><br/>&#x000A;&nbsp;&nbsp;&nbsp;&amp;nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /<br/>&#x000A;&nbsp;&nbsp;&nbsp; --> word3 --</code></p>
+            
+            <p> In this case <em>word1</em>, <em>word2</em> or <em>word3</em> are accepted</p>
+            
+            <h3>2. Approaches</h3>
+            
+            <ol>
+            <li>Whole_word / Composed command: Whole word in dictionary and phone files, language model with composed commands.</li>
+            </ol>
+            
+            
+            <p>  <center><table border='1'>
+              <tr><th>Dictionary (dict1)</th></p>
+            
+            <pre><code>  &lt;th&gt;Phone (phone1)&lt;/th&gt;&#x000A;  &lt;th&gt;LM (jsgf1)&lt;/th&gt;&#x000A;</code></pre>
+            
+            <p>  <tr>
+              <tr><td>
+            <code>&#x000A;word1 word1 <br/>&#x000A;word2 word2 <br/>&#x000A;word3 word3&#x000A; </code>
+            </td>
+            <td>
+            <code>&#x000A;word1 <br/>&#x000A;word2 <br/>&#x000A;word3</code>
+            </td>
+            <td>
+            <code>&#x000A;(word1) | (word2) | (word3)&#x000A; </code>
+            </td></tr>
+              </table><br/></center></p>
+            
+            <ol>
+            <li>Phoneme / Composed command: Whole word in dictionary, but words are composed by phonemes, phone files contains all supported phonemes (included silence).</li>
+            </ol>
+            
+            
+            <p>  <center><table border='1'>
+              <tr><th>Dictionary (dict2)</th></p>
+            
+            <pre><code>  &lt;th&gt;Phone (phone2)&lt;/th&gt;&#x000A;  &lt;th&gt;LM (jsgf1)&lt;/th&gt;&#x000A;</code></pre>
+            
+            <p>  <tr>
+              <tr><td>
+            <code>&#x000A;word1 mod1 mod2 mod3 <br/>&#x000A;word2 mod1 mod4 <br/>&#x000A;word3 mod3 mod4 mod5&#x000A; </code>
+            </td>
+            <td>
+            <code>&#x000A;mod1 <br/>&#x000A;mod2 <br/>&#x000A;... <br/>&#x000A;mod5</code>
+            </td>
+            <td>Same that approach 1</td></tr>
+              </table><br/></center></p>
+            
+            <ol>
+            <li>Whole command / whole word: The dictionary contains the commands as a unique word, composed of the supported words. The language model contains the whole commands.</li>
+            </ol>
+            
+            
+            <p>  <center><table border='1'>
+              <tr><th>Dictionary (dict3)</th></p>
+            
+            <pre><code>  &lt;th&gt;Phone (phone1)&lt;/th&gt;&#x000A;  &lt;th&gt;LM (jsgf2)&lt;/th&gt;&#x000A;</code></pre>
+            
+            <p>  <tr>
+              <tr><td>
+            <code>&#x000A;word1_word2 word1 word2<br/>&#x000A;word3_word4 word3 word3&#x000A; </code>
+            </td>
+            <td>Same that approach 1</td>
+            <td>
+            <code>&#x000A; (word1_word2) | (word3_word4)&#x000A; </code>
+            </td></tr>
+              </table><br/></center></p>
+            
+            <ol>
+            <li>Whole command / Phonemes: The dictionary contains the commands as a unique word, composed of the supported phonemes.</li>
+            </ol>
+            
+            
+            <p>  <center><table border='1'>
+              <tr><th>Dictionary (dict4)</th></p>
+            
+            <pre><code>  &lt;th&gt;Phone (phone2)&lt;/th&gt;&#x000A;  &lt;th&gt;LM (jsgf2)&lt;/th&gt;&#x000A;</code></pre>
+            
+            <p>  <tr>
+              <tr><td>
+            <code>&#x000A;word1_word2 mod1 mod2 mod3 mod1 mod4<br/>&#x000A;word3_word4 mod3 mod4 mod5 mod5 mod1 mod2&#x000A; </code>
+            </td>
+            <td>Same that approach 2</td>
+            <td>Same that approach 3</td>
+            </tr>
+            </table><br/></center></p>
+            
+            <p>There will be generate 4 dict files, 2 phone files and 2 language models to test the 4 approaches</p>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script type='text/javascript'>
+          //<![CDATA[
+            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+          //]]>
+        </script>
+        <script type='text/javascript'>
+          //<![CDATA[
+            try {
+              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+              piwikTracker.trackPageView();
+              piwikTracker.enableLinkTracking();
+            } catch( err ) {}
+          //]]>
+        </script>
+        <noscript>
+          <p>
+            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
+          </p>
+        </noscript>
+  </body>
+</html>
