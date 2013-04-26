@@ -3,8 +3,8 @@
   <id>http://www.emtg.net78.net/</id>
   <title>emtg.net78.net Syndication</title>
   <updated>2012-05-20T03:00:00Z</updated>
-  <link href="http://www.emtg.net78.net/" rel="alternate"/>
-  <link href="http://www.emtg.net78.net/atom.xml" rel="self"/>
+  <link rel="alternate" href="http://www.emtg.net78.net/"/>
+  <link rel="self" href="http://www.emtg.net78.net/atom.xml"/>
   <author>
     <name>Miguel Triana</name>
     <uri>http://www.emtg.net78.net</uri>
@@ -14,13 +14,13 @@
     <title type="html">Resumen Spring - Parte 2</title>
     <published>2012-05-20T03:00:00Z</published>
     <updated>2012-06-09T19:21:21Z</updated>
-    <link href="http://www.emtg.net78.net/2012/05/20_Spring_summary_p2.html" rel="alternate"/>
+    <link rel="alternate" href="http://www.emtg.net78.net/2012/05/20_Spring_summary_p2.html"/>
     <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1&gt;Database&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;DAO (Data Access Object): define el acceso a datos por medio de una interface usada por el resto de la aplicaci&#243;n para consultar/guardar informaci&#243;n&lt;/li&gt;
+&lt;li&gt;DAO (Data Access Object): define el acceso a datos por medio de una interface usada por el resto de la aplicación para consultar/guardar información&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -37,15 +37,15 @@
 &lt;h2&gt;Data Access Templates&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Spring sigue el patr&#243;n &lt;em&gt;TemplateMethod&lt;/em&gt; para definir reducir la escritura de c&#243;digo repetitivo, como inicializaci&#243;n de recursos, transacciones, commits, etc. De esta forma, solo es necesario implementar un m&#233;todo que prepara los datos para la consulta, la ejecuta y procesa los resultados.&lt;/li&gt;
+&lt;li&gt;Spring sigue el patrón &lt;em&gt;TemplateMethod&lt;/em&gt; para definir reducir la escritura de código repetitivo, como inicialización de recursos, transacciones, commits, etc. De esta forma, solo es necesario implementar un método que prepara los datos para la consulta, la ejecuta y procesa los resultados.&lt;/li&gt;
 &lt;li&gt;Spring ofrece diferentes template dependiendo la plataforma, pueden ser JdbcTemplate, HibernateTemplate o JpaTemplate, entre otros.&lt;/li&gt;
-&lt;li&gt;Para la implementaci&#243;n de DAOs, Spring tambi&#233;n ofrece varios tipos de DAO  para ser extendidas y reaprovechar c&#243;digo (SimpleJdbcDaoSupport, HibernateDaoSupport, JpaDaoSupport, entre otros).&lt;/li&gt;
+&lt;li&gt;Para la implementación de DAOs, Spring también ofrece varios tipos de DAO  para ser extendidas y reaprovechar código (SimpleJdbcDaoSupport, HibernateDaoSupport, JpaDaoSupport, entre otros).&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Configuraci&#243;n del DataSource&lt;/h2&gt;
+&lt;h2&gt;Configuración del DataSource&lt;/h2&gt;
 
-&lt;p&gt;Un DataSource mantiene la configuraci&#243;n de accesso a la base de datos, puede ser JDBC driver, JNDI o Pool connections (&#250;ltimo es recomendado)&lt;/p&gt;
+&lt;p&gt;Un DataSource mantiene la configuración de accesso a la base de datos, puede ser JDBC driver, JNDI o Pool connections (último es recomendado)&lt;/p&gt;
 
 &lt;h3&gt;JNDI&lt;/h3&gt;
 
@@ -75,8 +75,8 @@ jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
 &lt;h3&gt;JDBC driver-based&lt;/h3&gt;
 
 &lt;p&gt;Ejemplo usa la misma estructura que Pooled data, pero cambia la clase del bean:
-* org.springframework.jdbc.datasource.DriverManagerDataSource: Retorna una conexi&#243;n nueva siempre.
-* org.springframework.jdbc.datasource.SingleConnectionDataSource: retorna siempre la misma conexi&#243;n.&lt;/p&gt;
+* org.springframework.jdbc.datasource.DriverManagerDataSource: Retorna una conexión nueva siempre.
+* org.springframework.jdbc.datasource.SingleConnectionDataSource: retorna siempre la misma conexión.&lt;/p&gt;
 
 &lt;h2&gt;JDBC template en Spring&lt;/h2&gt;
 
@@ -89,32 +89,24 @@ jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Configurar el template incluyendo el &lt;code&gt;datasource&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;   &amp;lt;bean id="myJdbcTemplate"&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"&amp;gt;
- &amp;lt;constructor-arg ref="dataSource" /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;   &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;   &lt;bean id="myJdbcTemplate"
+     class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"&gt;
+     &amp;lt;constructor-arg ref="dataSource" /&gt;
+   &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Configurar los DAO para usar el template&lt;/p&gt;
 
 &lt;p&gt;   public class MyObjectJdbcDAO implements MyObjectDAO {
-   ...&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; private SimpleJdbcTemplate jdbcTemplate;
- public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-   this.jdbcTemplate = jdbcTemplate;
- }
-&lt;/code&gt;&lt;/pre&gt;
-
+   ...
+     private SimpleJdbcTemplate jdbcTemplate;
+     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
+       this.jdbcTemplate = jdbcTemplate;
+     }
    }
    //En el XML
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="myObjectDao"
- class="net.emtg.spring.persistence.SimpleJdbcTemplateSpitterDao"&amp;gt;
- &amp;lt;property name="jdbcTemplate" ref="jdbcTemplate" /&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+    &lt;bean id="myObjectDao"
+     class="net.emtg.spring.persistence.SimpleJdbcTemplateSpitterDao"&gt;
+     &lt;property name="jdbcTemplate" ref="jdbcTemplate" /&gt;
+    &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Usar el template: para usar el template pueden ser usados &lt;em&gt;named parameters&lt;/em&gt; para definir sentencias SQL:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;public class MyObjectJdbcDAO implements MyObjectDAO {
@@ -133,12 +125,11 @@ jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Consultar la base de datos:&lt;/p&gt;
 
-&lt;p&gt;  public class MyObjectJdbcDAO implements MyObjectDAO{&lt;/p&gt;
+&lt;p&gt;  public class MyObjectJdbcDAO implements MyObjectDAO{
+    private static final String SELECT_OBJECT="select * from "+
+      mytable where id=?";&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;private static final String SELECT_OBJECT="select * from "+
-  mytable where id=?";
-
-public MyObject getObject(String id){
+&lt;pre&gt;&lt;code&gt;public MyObject getObject(String id){
   return jdbTemplate.queryForObject(
     SELECT_OBJECT, new ParametrizedRowMapper&amp;lt;MyObject&amp;gt;(){
       public MyObject mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -157,7 +148,7 @@ public MyObject getObject(String id){
 
 &lt;h4&gt;DAO Support&lt;/h4&gt;
 
-&lt;p&gt;Spring viene con e clases que pueden ser extendidas por los DAOs e evitar c&#243;digo repetitivo (SimpleJdbcDAOSupport).&lt;/p&gt;
+&lt;p&gt;Spring viene con e clases que pueden ser extendidas por los DAOs e evitar código repetitivo (SimpleJdbcDAOSupport).&lt;/p&gt;
 
 &lt;h2&gt;Integracion Spring / Hibernate&lt;/h2&gt;
 
@@ -174,38 +165,33 @@ public MyObject getObject(String id){
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;LocalSessionFactoryBean: Configura Hibernate usando XML que mapean las tablas, ejemplo:&lt;/p&gt;
 
-&lt;p&gt;  &amp;lt;bean id="sessionFactory"&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&amp;gt;
-  &amp;lt;property name="dataSource" ref="dataSource" /&amp;gt;
-  &amp;lt;property name="mappingResources"&amp;gt;
-    &amp;lt;list&amp;gt;
-      &amp;lt;value&amp;gt;MyObject.hbm.xml &amp;lt;/value&amp;gt;
-    &amp;lt;/list&amp;gt;
-  &amp;lt;/property&amp;gt;
-  &amp;lt;property name="hibernateProperties"&amp;gt;
-    &amp;lt;props&amp;gt;
-    &amp;lt;prop key="dialect"&amp;gt;org.hibernate.dialect.HSQLDialect&amp;lt;/prop&amp;gt;
-    &amp;lt;/props&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;p&gt;  &lt;bean id="sessionFactory"
+    class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&gt;
+      &lt;property name="dataSource" ref="dataSource" /&gt;
+      &lt;property name="mappingResources"&gt;
+        &lt;list&gt;
+          &lt;value&gt;MyObject.hbm.xml &lt;/value&gt;
+        &lt;/list&gt;
+      &lt;/property&gt;
+      &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+        &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
+        &lt;/props&gt;
+      &lt;/property&gt;
+    &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;AnnotationSessionFactoryBean: las clases deben estar anotadas con @Entity (JPA), @MappedSuperclass o @Entity (Hibernate)&lt;/p&gt;
 
-&lt;p&gt;   &amp;lt;bean id="sessionFactory"&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&amp;gt;
-  &amp;lt;property name="dataSource" ref="dataSource" /&amp;gt;
-  &amp;lt;property name="packagesToScan"
-  value="com.habuma.spitter.domain" /&amp;gt;
-  &amp;lt;property name="hibernateProperties"&amp;gt;
-    &amp;lt;props&amp;gt;
-     &amp;lt;prop key="dialect"&amp;gt;org.hibernate.dialect.HSQLDialect&amp;lt;/prop&amp;gt;
-   &amp;lt;/props&amp;gt;
-  &amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;   &lt;bean id="sessionFactory"
+    class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;
+      &lt;property name="dataSource" ref="dataSource" /&gt;
+      &lt;property name="packagesToScan"
+      value="com.habuma.spitter.domain" /&gt;
+      &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+         &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
+       &lt;/props&gt;
+      &lt;/property&gt;
+  &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -245,7 +231,7 @@ public class MyObjectHbDao extends MyObjectDAO{
     <title type="html">Resumen Spring</title>
     <published>2012-04-08T03:00:00Z</published>
     <updated>2012-05-20T22:26:21Z</updated>
-    <link href="http://www.emtg.net78.net/2012/04/08/spring_summary.html" rel="alternate"/>
+    <link rel="alternate" href="http://www.emtg.net78.net/2012/04/08/spring_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1&gt;Spring&lt;/h1&gt;
@@ -253,13 +239,13 @@ public class MyObjectHbDao extends MyObjectDAO{
 &lt;p&gt;Framework de desarrollo Java que ofrece &lt;em&gt;Dependency Injection&lt;/em&gt;, &lt;em&gt;Aspect Oriented Programming&lt;/em&gt; y &lt;em&gt;Templates&lt;/em&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Inyecci&#243;n de Dependencias (DI): Configuraci&#243;n autom&#225;tico de dependencias de una clase.&lt;/li&gt;
-&lt;li&gt;Programaci&#243;n Orientada a Aspectos: Adici&#243;n de funcionalidades comunes a lo largo de un sistema (ej. Sistema de Logging).&lt;/li&gt;
-&lt;li&gt;Plantillas: Permiten reutilizar c&#243;digo y reducir escribir funciones repetitivas.&lt;/li&gt;
+&lt;li&gt;Inyección de Dependencias (DI): Configuración automático de dependencias de una clase.&lt;/li&gt;
+&lt;li&gt;Programación Orientada a Aspectos: Adición de funcionalidades comunes a lo largo de un sistema (ej. Sistema de Logging).&lt;/li&gt;
+&lt;li&gt;Plantillas: Permiten reutilizar código y reducir escribir funciones repetitivas.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Spring administra clases en un sistema por medio de un &lt;em&gt;Container&lt;/em&gt;, en este contenedor se encuentran todas las referencias de los objetos administrados por Spring. Hay dos tipos de contenedores, los &lt;em&gt;BeanFactories&lt;/em&gt;, para inyecci&#243;n de dependencia, y &lt;em&gt;ApplicationContexts&lt;/em&gt;, que incluyen DI ademas de otros servicios Event Listeners, interceptors, etc.&lt;/p&gt;
+&lt;p&gt;Spring administra clases en un sistema por medio de un &lt;em&gt;Container&lt;/em&gt;, en este contenedor se encuentran todas las referencias de los objetos administrados por Spring. Hay dos tipos de contenedores, los &lt;em&gt;BeanFactories&lt;/em&gt;, para inyección de dependencia, y &lt;em&gt;ApplicationContexts&lt;/em&gt;, que incluyen DI ademas de otros servicios Event Listeners, interceptors, etc.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;ApplicationContexts&lt;/em&gt; relevantes en Spring:&lt;/p&gt;
 
@@ -293,7 +279,7 @@ public class MyObjectHbDao extends MyObjectDAO{
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Configuraci&#243;n de Beans&lt;/h2&gt;
+&lt;h2&gt;Configuración de Beans&lt;/h2&gt;
 
 &lt;h3&gt;Constructor injection&lt;/h3&gt;
 
@@ -310,7 +296,7 @@ public class MyObjectHbDao extends MyObjectDAO{
 &lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class" factory-method="getInstance"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;strong&gt;Nota&lt;/strong&gt;: Bean son Singleton por default, el atributo &lt;em&gt;prototype&lt;/em&gt; se utiliza para sobrescribir este patr&#243;n. Opciones posibles: singleton, prototypee, request, session, global-session.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nota&lt;/strong&gt;: Bean son Singleton por default, el atributo &lt;em&gt;prototype&lt;/em&gt; se utiliza para sobrescribir este patrón. Opciones posibles: singleton, prototypee, request, session, global-session.&lt;/p&gt;
 
 &lt;h3&gt;Init/Destroy beans&lt;/h3&gt;
 
@@ -319,8 +305,8 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Otro m&#233;todo para inicializar o finalizar un bean es implementando las interfaces &lt;em&gt;InitializingBean y DisposableBean&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Tambi&#233;n se puede configurar un m&#233;todo default para inicializar y finalizar de forma global configurando &lt;em&gt;default-init-method&lt;/em&gt; y &lt;em&gt;default_destroy_method&lt;/em&gt; como atributos del tag &lt;em&gt;beans&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Otro método para inicializar o finalizar un bean es implementando las interfaces &lt;em&gt;InitializingBean y DisposableBean&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;También se puede configurar un método default para inicializar y finalizar de forma global configurando &lt;em&gt;default-init-method&lt;/em&gt; y &lt;em&gt;default_destroy_method&lt;/em&gt; como atributos del tag &lt;em&gt;beans&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -380,11 +366,11 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;h2&gt;Autowiring&lt;/h2&gt;
 
-&lt;p&gt;B&#225;sicamente, hay dos tipos de resoluci&#243;n autom&#225;tica de beans: "autowire" en el XML o usando "annotations".&lt;/p&gt;
+&lt;p&gt;Básicamente, hay dos tipos de resolución automática de beans: "autowire" en el XML o usando "annotations".&lt;/p&gt;
 
 &lt;h3&gt;Autowiring in XML&lt;/h3&gt;
 
-&lt;p&gt;Durante la configuraci&#243;n de un bean en el &lt;em&gt;ApplicationContext&lt;/em&gt; se define el tipo de "autowire", es de decir, como son conectadas las propiedades de un bean.&lt;/p&gt;
+&lt;p&gt;Durante la configuración de un bean en el &lt;em&gt;ApplicationContext&lt;/em&gt; se define el tipo de "autowire", es de decir, como son conectadas las propiedades de un bean.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;bean ... autowire='TIPO_DE_AUTOWIRE' /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -393,13 +379,13 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;ul&gt;
 &lt;li&gt;byName: busca un bean con el mismo NOMBRE de la propiedad (atributo)&lt;/li&gt;
-&lt;li&gt;byType: busca un bean con el mismo TIPO de la propiedad, si hay varios beans que puedan ser seleccionados, se genera una excepci&#243;n, a menos que hay solo un bean marcado como "&lt;em&gt;primary&lt;/em&gt;", por default, todos los beans son &lt;em&gt;primary=true&lt;/em&gt;, se debe marcar &lt;em&gt;primary=false&lt;/em&gt; para evitar la excepci&#243;n.&lt;/li&gt;
+&lt;li&gt;byType: busca un bean con el mismo TIPO de la propiedad, si hay varios beans que puedan ser seleccionados, se genera una excepción, a menos que hay solo un bean marcado como "&lt;em&gt;primary&lt;/em&gt;", por default, todos los beans son &lt;em&gt;primary=true&lt;/em&gt;, se debe marcar &lt;em&gt;primary=false&lt;/em&gt; para evitar la excepción.&lt;/li&gt;
 &lt;li&gt;constructor: igual que &lt;em&gt;byType&lt;/em&gt; pero para los parametros del constructor&lt;/li&gt;
 &lt;li&gt;autodetect: realiza &lt;em&gt;constructor&lt;/em&gt; y si no es posible, realiza &lt;em&gt;byType&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Para definir &lt;em&gt;autowire&lt;/em&gt; para todos los beans se usa: &lt;code&gt;&amp;lt;beans ... default-autowire='TIPO_DE_AUTOWIRE' /&amp;gt;&lt;/code&gt;, en este caso tambi&#233;n esta la opci&#243;n &lt;em&gt;none&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Para definir &lt;em&gt;autowire&lt;/em&gt; para todos los beans se usa: &lt;code&gt;&amp;lt;beans ... default-autowire='TIPO_DE_AUTOWIRE' /&amp;gt;&lt;/code&gt;, en este caso también esta la opción &lt;em&gt;none&lt;/em&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Autowiring with Annotations&lt;/h3&gt;
 
@@ -408,24 +394,24 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;h4&gt;@Autowired&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;La anotacion&lt;em&gt;@Autowired&lt;/em&gt; colocada en atributos o m&#233;todos informa a Spring que esa propiedad debe ser configurada por el &lt;em&gt;Framework&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Autowired&lt;/em&gt; es equivalente a &lt;em&gt;@Inject&lt;/em&gt; en la especificaci&#243;n JSR-330.&lt;/li&gt;
+&lt;li&gt;La anotacion&lt;em&gt;@Autowired&lt;/em&gt; colocada en atributos o métodos informa a Spring que esa propiedad debe ser configurada por el &lt;em&gt;Framework&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Autowired&lt;/em&gt; es equivalente a &lt;em&gt;@Inject&lt;/em&gt; en la especificación JSR-330.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;@Autowired&lt;/em&gt; es equivalente a &lt;em&gt;Autowire byType&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;(required=false): parametro opcional para evitar la generaci&#243;n de excepciones en el caso que no sea posible suplir la dependencia.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Qualifier("name")&lt;/em&gt;: Usado para eliminar la ambig&#252;edad en la resoluci&#243;n de dependencias (Similar a &lt;em&gt;byName&lt;/em&gt;). Equivalente a _@Named("name") en la especificaci&#243;n Java.&lt;/li&gt;
+&lt;li&gt;(required=false): parametro opcional para evitar la generación de excepciones en el caso que no sea posible suplir la dependencia.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Qualifier("name")&lt;/em&gt;: Usado para eliminar la ambigüedad en la resolución de dependencias (Similar a &lt;em&gt;byName&lt;/em&gt;). Equivalente a _@Named("name") en la especificación Java.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Qualifiers&lt;/em&gt; pueden ser extendidos en Spring o en Java&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;@Value("xyz")&lt;/em&gt;: Usado para pasar valores a la propiedad. Usado principalmente con &lt;em&gt;Spring Expression Language&lt;/em&gt; (SpEL).&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Hasta aqu&#237;, los beans (anotados o no) deb&#237;an estar listados en el &lt;em&gt;applicationContext&lt;/em&gt;, para evitar esto se usa el &lt;em&gt;descubrimiento autom&#225;tico de beans&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hasta aquí, los beans (anotados o no) debían estar listados en el &lt;em&gt;applicationContext&lt;/em&gt;, para evitar esto se usa el &lt;em&gt;descubrimiento automático de beans&lt;/em&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Descubrimiento autom&#225;tico de Beans&lt;/h3&gt;
+&lt;h3&gt;Descubrimiento automático de Beans&lt;/h3&gt;
 
 &lt;p&gt;Se usa &lt;code&gt;&amp;lt;context:component-scan/&amp;gt;&lt;/code&gt; en vez de &lt;code&gt;&amp;lt;context:annotation-config/&amp;gt;&lt;/code&gt;. se debe configurar el atributo &lt;code&gt;base-package="xyz.abc"&lt;/code&gt; para indicar donde deben ser buscados los beans. Los Beans pueden ser de 4 tipos:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;@Component("nombre_opcional")&lt;/em&gt;:  Bean com&#250;n de Spring.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Component("nombre_opcional")&lt;/em&gt;:  Bean común de Spring.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;@Controller("nombre_opcional")&lt;/em&gt;: Controlador de Spring MVC&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;@Service("nombre_opcional")&lt;/em&gt;: Servicio de Spring&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;@Repository("nombre_opcional")&lt;/em&gt;: Repositorio de accesso a datos (similar a DAOs)&lt;/li&gt;
@@ -434,9 +420,9 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;p&gt;Es posible usar &lt;em&gt;filtros&lt;/em&gt; para incluir o excluir &lt;em&gt;beans&lt;/em&gt; sin anotaciones, usando  el tag &lt;code&gt;&amp;lt;context:include-filter/&amp;gt;&lt;/code&gt; o &lt;code&gt;&amp;lt;context:exclude-filter/&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2&gt;Configuraci&#243;n de Spring usando Java&lt;/h2&gt;
+&lt;h2&gt;Configuración de Spring usando Java&lt;/h2&gt;
 
-&lt;p&gt;Se usa una clase Java para obtener la configuraci&#243;n de los beans. La clase debe estar anotada con &lt;em&gt;@Configuration&lt;/em&gt; y cada m&#233;todo que genera un bean debe ser anotada con &lt;em&gt;@Bean&lt;/em&gt;. Tambi&#233;n se utiliza &lt;code&gt;&amp;lt;context:component-scan/&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Se usa una clase Java para obtener la configuración de los beans. La clase debe estar anotada con &lt;em&gt;@Configuration&lt;/em&gt; y cada método que genera un bean debe ser anotada con &lt;em&gt;@Bean&lt;/em&gt;. También se utiliza &lt;code&gt;&amp;lt;context:component-scan/&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Spring AOP Framework&lt;/h2&gt;
 
@@ -445,20 +431,20 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;h3&gt;Vocabulario:&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Advice: M&#233;todo a ser ejecutado y cuando.
+&lt;li&gt;Advice: Método a ser ejecutado y cuando.
 
 &lt;ul&gt;
 &lt;li&gt;Before,&lt;/li&gt;
 &lt;li&gt;After,&lt;/li&gt;
 &lt;li&gt;After-returning: con exito,&lt;/li&gt;
 &lt;li&gt;After-throwing: con error (&lt;em&gt;throws an exception&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;Around: Envuelve un m&#233;todo (antes, despues)&lt;/li&gt;
+&lt;li&gt;Around: Envuelve un método (antes, despues)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Join Point: Lugar donde podria ser llamado un &lt;em&gt;Advice&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Pointcuts: Donde DEBE ser llamado un Aspecto&lt;/li&gt;
 &lt;li&gt;Ascpect: Advice + Pointcut&lt;/li&gt;
-&lt;li&gt;Introductions: Adici&#243;n de nuevos m&#233;todos o atributos a una clase&lt;/li&gt;
+&lt;li&gt;Introductions: Adición de nuevos métodos o atributos a una clase&lt;/li&gt;
 &lt;li&gt;Weaving: Proxy an object, puede ser en:
 
 &lt;ul&gt;
@@ -480,13 +466,13 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt; (1): Solo para m&#233;todos&lt;/p&gt;
+&lt;p&gt; (1): Solo para métodos&lt;/p&gt;
 
-&lt;p&gt;Spring solo soporta &lt;em&gt;Proxied-objects&lt;/em&gt; en tiempo de ejecuci&#243;n, por lo tanto solo puede interceptar m&#233;todos.&lt;/p&gt;
+&lt;p&gt;Spring solo soporta &lt;em&gt;Proxied-objects&lt;/em&gt; en tiempo de ejecución, por lo tanto solo puede interceptar métodos.&lt;/p&gt;
 
 &lt;h3&gt;Pointcuts&lt;/h3&gt;
 
-&lt;p&gt;Spring soporta un subconjunto de pointcuts de AspectJ debido a la restricci&#243;n de intercepci&#243;n solo en metodos.&lt;/p&gt;
+&lt;p&gt;Spring soporta un subconjunto de pointcuts de AspectJ debido a la restricción de intercepción solo en metodos.&lt;/p&gt;
 
 &lt;h4&gt;Pointcut expression language para Spring:&lt;/h4&gt;
 
@@ -495,12 +481,12 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;li&gt;@args(): Los argumentos deben estar anotados con los tipos definidos&lt;/li&gt;
 &lt;li&gt;this(): Bean reference of a AOP proxy is of a given type&lt;/li&gt;
 &lt;li&gt;target(): El objeto debe ser del tipo especificado&lt;/li&gt;
-&lt;li&gt;@target: El objeto debe tener la anotaci&#243;n especificada&lt;/li&gt;
+&lt;li&gt;@target: El objeto debe tener la anotación especificada&lt;/li&gt;
 &lt;li&gt;within: El objeto debe ser de alguno de los tipos dados&lt;/li&gt;
 &lt;li&gt;@within: El objeto debe tener una de las anotaciones especificadas&lt;/li&gt;
-&lt;li&gt;@annotation: El m&#233;todo tiene la anotaci&#243;n especificada&lt;/li&gt;
-&lt;li&gt;execution: El joint point es un &lt;em&gt;method execution&lt;/em&gt;. Es el mas importante, porque es el &#250;nico que realiza matching.&lt;/li&gt;
-&lt;li&gt;bean: Especif&#237;ca en que Bean debe ser creado el Pointcut (Solo en Spring)&lt;/li&gt;
+&lt;li&gt;@annotation: El método tiene la anotación especificada&lt;/li&gt;
+&lt;li&gt;execution: El joint point es un &lt;em&gt;method execution&lt;/em&gt;. Es el mas importante, porque es el único que realiza matching.&lt;/li&gt;
+&lt;li&gt;bean: Especifíca en que Bean debe ser creado el Pointcut (Solo en Spring)&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -509,16 +495,16 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;pre&gt;&lt;code&gt; execution(* net.co.Class.play(..))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Explicaci&#243;n:
- * execution: interceptar en la ejecuci&#243;n del m&#233;todo
+&lt;p&gt;Explicación:
+ * execution: interceptar en la ejecución del método
  * &lt;em&gt;*&lt;/em&gt;: Retorna cualquier tipo
- * net.co.Class: Clase a la que el m&#233;todo pertenece
- * play: M&#233;todo
+ * net.co.Class: Clase a la que el método pertenece
+ * play: Método
  * (..): Cualquier argumento&lt;/p&gt;
 
-&lt;p&gt; En la creaci&#243;n de Pointcuts puede usarse operadores logicos &amp;amp;&amp;amp; (and), || (or), ! (not)&lt;/p&gt;
+&lt;p&gt; En la creación de Pointcuts puede usarse operadores logicos &amp;amp;&amp;amp; (and), || (or), ! (not)&lt;/p&gt;
 
-&lt;h3&gt;Declaraci&#243;n de Aspects en Spring&lt;/h3&gt;
+&lt;h3&gt;Declaración de Aspects en Spring&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Namespace: aop&lt;/li&gt;
@@ -554,22 +540,22 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &amp;lt;/aop:config&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;La definici&#243;n de un Pointcut puede ser por fuera del aspecto, asi, esta definici&#243;n estar&#225; disponible para otros aspectos.&lt;/p&gt;
+&lt;p&gt;La definición de un Pointcut puede ser por fuera del aspecto, asi, esta definición estará disponible para otros aspectos.&lt;/p&gt;
 
 &lt;h3&gt;Around advice&lt;/h3&gt;
 
-&lt;p&gt;Intercepci&#243;n de un m&#233;todo Antes y Despues (&lt;code&gt;&amp;lt;aop:around&lt;/code&gt;&gt;).&lt;/p&gt;
+&lt;p&gt;Intercepción de un método Antes y Despues (&lt;code&gt;&amp;lt;aop:around&lt;/code&gt;&gt;).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;public void aroundMethod(ProceedingJoinPoint point){
-  //instrucciones antes de llamar el m&#233;todo
-  point.proceed(); //ejecuci&#243;n del m&#233;todo
-  //instrucci&#243;nes despues del m&#233;todo
+  //instrucciones antes de llamar el método
+  point.proceed(); //ejecución del método
+  //instrucciónes despues del método
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Configuraci&#243;n en XML igual que los otros aspectos&lt;/p&gt;
+&lt;p&gt;Configuración en XML igual que los otros aspectos&lt;/p&gt;
 
-&lt;h3&gt;Pasar par&#225;metros a un advice&lt;/h3&gt;
+&lt;h3&gt;Pasar parámetros a un advice&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;aop:config&amp;gt;
   &amp;lt;aop:aspect ref='BeanConFuncionalidad'&amp;gt;
@@ -582,16 +568,16 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &amp;lt;/aop:config&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;El m&#233;todo &lt;em&gt;MetodoAEjecutarEnBeanConFuncionalidad&lt;/em&gt; debe recibir un String&lt;/p&gt;
+&lt;p&gt;El método &lt;em&gt;MetodoAEjecutarEnBeanConFuncionalidad&lt;/em&gt; debe recibir un String&lt;/p&gt;
 
 &lt;h3&gt;Anotando aspects en Spring&lt;/h3&gt;
 
-&lt;p&gt;Spring usa anotaciones &lt;em&gt;@AspectJ&lt;/em&gt;, sin embargo, se encuentra limitado a la intercepci&#243;n de m&#233;todos (con AspectJ tabmi&#233;n es posible interceptar atributos y constructores).&lt;/p&gt;
+&lt;p&gt;Spring usa anotaciones &lt;em&gt;@AspectJ&lt;/em&gt;, sin embargo, se encuentra limitado a la intercepción de métodos (con AspectJ tabmién es posible interceptar atributos y constructores).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;@Aspect //define un aspecto
   public class MyAspect{
   @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod(..))")
-  public void pointcutName(){}//Este m&#233;todo solo define el pointcut, debe permanecer vacio
+  public void pointcutName(){}//Este método solo define el pointcut, debe permanecer vacio
 
   @Before("pointcutName()")
   public void method1(){ ... do stuff ...}
@@ -606,7 +592,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
   public void method4(ProcedingJoinPoint joinpoint){
     try{
       ... do stuff befoe ...
-      joinpoint.proceed(); // ejecut&#225; el m&#233;todo
+      joinpoint.proceed(); // ejecutá el método
       ... do stuff after ...
     }catch(SomeException ex){
       ... do stuff for throwing ...
@@ -615,7 +601,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
   /** Pasando Parametros **/
   @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod2(String))" +
   " &amp;amp;&amp;amp; args(someArgumentName)")
-  public void pointcutOther(String someArgumentName){}//Este m&#233;todo solo define el pointcut, debe permanecer vacio
+  public void pointcutOther(String someArgumentName){}//Este método solo define el pointcut, debe permanecer vacio
 
   @Before("pointcutOther(someArgumentName)")
   public void method5(String someArgumentName){
@@ -625,7 +611,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Anotaciones requieren tener el c&#243;digo fuente. XML no necesita (Con XML se pueden interceptar objetos de bibliotecas externas)&lt;/li&gt;
+&lt;li&gt;Anotaciones requieren tener el código fuente. XML no necesita (Con XML se pueden interceptar objetos de bibliotecas externas)&lt;/li&gt;
 &lt;li&gt;La clase definida como aspecto sigue siendo un POJO, por lo tanto puede ser usada como un Bean en Spring&lt;/li&gt;
 &lt;li&gt;Se deve incluir &lt;code&gt;&amp;lt;aop:aspectj-autoproxy/&amp;gt;&lt;/code&gt; al xml para dar soporte a anotaciones&lt;/li&gt;
 &lt;/ul&gt;
@@ -638,7 +624,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
     <title type="html">Resumen de Stripes</title>
     <published>2012-03-18T03:00:00Z</published>
     <updated>2012-04-08T16:12:00Z</updated>
-    <link href="http://www.emtg.net78.net/2012/03/18/stripes_summary.html" rel="alternate"/>
+    <link rel="alternate" href="http://www.emtg.net78.net/2012/03/18/stripes_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del material para desarrollo de aplicaciones web usando Stripes. Este resumen esta basado en el libro &lt;a href="http://pragprog.com/book/fdstr/stripes" target="_blank"&gt;&lt;em&gt;Stripes ...and Java Web Development Is Fun Again&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Durante el resumen, va a ser implementado un administrador de tareas (ToDo list).&lt;/p&gt;
@@ -646,7 +632,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;p&gt;Son utilizadas las siguientes herramientas:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Maven 2: Sistema de construcci&#243;n y administrador de dependencias&lt;/li&gt;
+&lt;li&gt;Maven 2: Sistema de construcción y administrador de dependencias&lt;/li&gt;
 &lt;li&gt;Stripes: Framework para desarrollo de aplicaciones Web usando MVC (Model-View-Controller)&lt;/li&gt;
 &lt;li&gt;Eclipse: IDE&lt;/li&gt;
 &lt;li&gt;JDK: Entorno de Desarrollo de Java&lt;/li&gt;
@@ -656,30 +642,30 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Se asume que el lector ya ha instalado maven, eclipse, java y git.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Sources&lt;/strong&gt;: Todo el c&#243;digo esta disponible en &lt;a href="https://github.com/emiguelt/ToDo-s" target="_blank"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources&lt;/strong&gt;: Todo el código esta disponible en &lt;a href="https://github.com/emiguelt/ToDo-s" target="_blank"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1&gt;Stripes&lt;/h1&gt;
 
 &lt;p&gt;Stripes es un framework MVC para el desarrollo de aplicaciones Web para Java.&lt;/p&gt;
 
-&lt;h3&gt;Configuraci&#243;n de Stripes&lt;/h3&gt;
+&lt;h3&gt;Configuración de Stripes&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Tag en Git: WDT-P01&lt;/em&gt;&lt;/strong&gt;:  Implementa un CRUD b&#225;sico para el administrador de tareas de ejemplo&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Tag en Git: WDT-P01&lt;/em&gt;&lt;/strong&gt;:  Implementa un CRUD básico para el administrador de tareas de ejemplo&lt;/p&gt;
 
-&lt;p&gt;Para integrar Stripes en una aplicaci&#243;n web es necesario modificar el archivo &lt;em&gt;web.xml&lt;/em&gt; con la siguiente informaci&#243;n:&lt;/p&gt;
+&lt;p&gt;Para integrar Stripes en una aplicación web es necesario modificar el archivo &lt;em&gt;web.xml&lt;/em&gt; con la siguiente información:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Declaraci&#243;n del filtro de Stripes: &lt;code&gt;net.sourceforge.stripes.controller.StripesFilter&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Declaración del filtro de Stripes: &lt;code&gt;net.sourceforge.stripes.controller.StripesFilter&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Establecer en que paquete se encuentran los &lt;em&gt;ActionBeans&lt;/em&gt; (&lt;code&gt;ActionResolver.Packages&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;Declaraci&#243;n de &lt;code&gt;net.sourceforge.stripes.controller.DispatcherServlet&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Configuraci&#243;n del filtro para interceptar todos los requests que van atraves del dispatcher.&lt;/li&gt;
-&lt;li&gt;Mapeamento del patr&#243;n de las URLs para ser capturadas por Stripes (Ej: .action)&lt;/li&gt;
+&lt;li&gt;Declaración de &lt;code&gt;net.sourceforge.stripes.controller.DispatcherServlet&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Configuración del filtro para interceptar todos los requests que van atraves del dispatcher.&lt;/li&gt;
+&lt;li&gt;Mapeamento del patrón de las URLs para ser capturadas por Stripes (Ej: .action)&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;h3&gt;ActionBeans&lt;/h3&gt;
 
-&lt;p&gt;Un &lt;em&gt;ActionBean&lt;/em&gt; es una clase que implementa la interfaz &lt;em&gt;ActionBean&lt;/em&gt;, esta clase define los m&#233;todos (eventos, &lt;em&gt;event handler&lt;/em&gt;) disponibles para procesamiento de los requerimientos (requests) de los usuarios.&lt;/p&gt;
+&lt;p&gt;Un &lt;em&gt;ActionBean&lt;/em&gt; es una clase que implementa la interfaz &lt;em&gt;ActionBean&lt;/em&gt;, esta clase define los métodos (eventos, &lt;em&gt;event handler&lt;/em&gt;) disponibles para procesamiento de los requerimientos (requests) de los usuarios.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;public interface ActionBean {
   public void setContext(ActionBeanContext context);
@@ -689,8 +675,8 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;h3&gt;Event Handlers&lt;/h3&gt;
 
-&lt;p&gt;Un &lt;em&gt;Event Handler&lt;/em&gt; es un m&#233;todo que captura un request de un usuario. Dentro del &lt;em&gt;Action Bean&lt;/em&gt;, es un m&#233;todo p&#250;blico, sin par&#225;metros y que retorna un objeto &lt;em&gt;Resolution&lt;/em&gt;.
-Por ejemplo, en la clase TaskAction est&#225; el m&#233;todo &lt;em&gt;delete&lt;/em&gt;, que es invocado para borrar un registro en la lista de tareas&lt;/p&gt;
+&lt;p&gt;Un &lt;em&gt;Event Handler&lt;/em&gt; es un método que captura un request de un usuario. Dentro del &lt;em&gt;Action Bean&lt;/em&gt;, es un método público, sin parámetros y que retorna un objeto &lt;em&gt;Resolution&lt;/em&gt;.
+Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;, que es invocado para borrar un registro en la lista de tareas&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;public class TaskAction extends BaseAction {
 ...
@@ -702,9 +688,9 @@ Por ejemplo, en la clase TaskAction est&#225; el m&#233;todo &lt;em&gt;delete&lt
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;El cual podr&#237;a ser llamado desde el browser asi: &lt;code&gt;http://localhost:8080/todos/Task.action?event=delete&amp;amp;taskId=10&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;El cual podría ser llamado desde el browser asi: &lt;code&gt;http://localhost:8080/todos/Task.action?event=delete&amp;amp;taskId=10&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Todos los &lt;em&gt;ActionBeans&lt;/em&gt; deben tener un m&#233;todo predeterminado que debe ser marcado con &lt;code&gt;@DefaultHandler&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Todos los &lt;em&gt;ActionBeans&lt;/em&gt; deben tener un método predeterminado que debe ser marcado con &lt;code&gt;@DefaultHandler&lt;/code&gt;&lt;/p&gt;
 
 &lt;h3&gt;Resolutions&lt;/h3&gt;
 
@@ -718,54 +704,54 @@ Por ejemplo, en la clase TaskAction est&#225; el m&#233;todo &lt;em&gt;delete&lt
 
 &lt;h3&gt;Referenciando un ActionBean desde JSP&lt;/h3&gt;
 
-&lt;p&gt;Un m&#233;todo o atributo de un ActionBean puede ser invocado desde una p&#225;gina JSP usando &lt;em&gt;Expression Language&lt;/em&gt; con la palabra clave &lt;em&gt;actionBean&lt;/em&gt;, por ejemplo, la expresi&#243;n &lt;code&gt;${actionBean.task.id}&lt;/code&gt; obtiene el ID de una tarea a partir del ActionBean activo.&lt;/p&gt;
+&lt;p&gt;Un método o atributo de un ActionBean puede ser invocado desde una página JSP usando &lt;em&gt;Expression Language&lt;/em&gt; con la palabra clave &lt;em&gt;actionBean&lt;/em&gt;, por ejemplo, la expresión &lt;code&gt;${actionBean.task.id}&lt;/code&gt; obtiene el ID de una tarea a partir del ActionBean activo.&lt;/p&gt;
 
 &lt;h3&gt;Preaction Pattern&lt;/h3&gt;
 
-&lt;p&gt;Este patr&#243;n recomienda que todos los request en una aplicaci&#243;n web sean hechos a los &lt;em&gt;ActionBeans&lt;/em&gt;  y NO directamente a las JSPs, de esta forma se garantiza que todos los JSPs van a tener un &lt;em&gt;actionBean&lt;/em&gt;, es posible interceptar el ciclo de vida request-response de Stripes y se puede tener un mejor control de acceso. Para evitar el acceso directo a los JSPs, estos deben colocarse en la carpeta &lt;em&gt;WEB-INF&lt;/em&gt; de la aplicaci&#243;n.&lt;/p&gt;
+&lt;p&gt;Este patrón recomienda que todos los request en una aplicación web sean hechos a los &lt;em&gt;ActionBeans&lt;/em&gt;  y NO directamente a las JSPs, de esta forma se garantiza que todos los JSPs van a tener un &lt;em&gt;actionBean&lt;/em&gt;, es posible interceptar el ciclo de vida request-response de Stripes y se puede tener un mejor control de acceso. Para evitar el acceso directo a los JSPs, estos deben colocarse en la carpeta &lt;em&gt;WEB-INF&lt;/em&gt; de la aplicación.&lt;/p&gt;
 
-&lt;h2&gt;Validaci&#243;n&lt;/h2&gt;
+&lt;h2&gt;Validación&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Tag en Git: WDT-P02&lt;/strong&gt;: Fueron adicionadas validaciones b&#225;sicas en la edici&#243;n de tareas.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tag en Git: WDT-P02&lt;/strong&gt;: Fueron adicionadas validaciones básicas en la edición de tareas.&lt;/p&gt;
 
-&lt;p&gt;Para realizar validaciones de formularios se hace uso de &lt;em&gt;Anotaciones&lt;/em&gt; en los &lt;em&gt;ActionBeans&lt;/em&gt;. Sintaxis b&#225;sica:&lt;/p&gt;
+&lt;p&gt;Para realizar validaciones de formularios se hace uso de &lt;em&gt;Anotaciones&lt;/em&gt; en los &lt;em&gt;ActionBeans&lt;/em&gt;. Sintaxis básica:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;@Validate(required=true, OTRAS RESTRICCIONES)&lt;/em&gt;: esta anotaci&#243;n se coloca en el atributo o m&#233;todo que se quiere validar&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@ValidateNestedProperties({@Validate(field=xxx, Restricci&#243;n),...)&lt;/em&gt;: Anotaci&#243;n para realizar validaciones en atributos de objetos en el &lt;em&gt;ActionBean&lt;/em&gt;, por ejemplo &lt;em&gt;Persona.edad&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Validate(expression=${REGEX})&lt;/em&gt;: Permite validaci&#243;n con expresiones regulares&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@DontValidate&lt;/em&gt;: Anotaci&#243;n para evitar la validaci&#243;n en un evento (Event handler)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Validate(on="handler")&lt;/em&gt;: Restringe la validaci&#243;n al m&#233;todo referenciado en el par&#225;metro &lt;em&gt;on&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@ValidationMethod(on={handlers})&lt;/em&gt;: Anota un m&#233;todo como validador para uno o mas &lt;em&gt;handlers&lt;/em&gt;. El m&#233;todo debe ser publico y debe recibir &lt;em&gt;ValidationErrors&lt;/em&gt; o ning&#250;n parametro.&lt;/li&gt;
-&lt;li&gt;Interceptar Errores de Validaci&#243;n. Si el &lt;em&gt;ActionBean&lt;/em&gt; implementa la &lt;em&gt;Interface ValidationErrorHandler&lt;/em&gt; es posible interceptar la validaci&#243;n de errores, para eliminar, adicionar o modificar errores&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Validate(required=true, OTRAS RESTRICCIONES)&lt;/em&gt;: esta anotación se coloca en el atributo o método que se quiere validar&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@ValidateNestedProperties({@Validate(field=xxx, Restricción),...)&lt;/em&gt;: Anotación para realizar validaciones en atributos de objetos en el &lt;em&gt;ActionBean&lt;/em&gt;, por ejemplo &lt;em&gt;Persona.edad&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Validate(expression=${REGEX})&lt;/em&gt;: Permite validación con expresiones regulares&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@DontValidate&lt;/em&gt;: Anotación para evitar la validación en un evento (Event handler)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@Validate(on="handler")&lt;/em&gt;: Restringe la validación al método referenciado en el parámetro &lt;em&gt;on&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;@ValidationMethod(on={handlers})&lt;/em&gt;: Anota un método como validador para uno o mas &lt;em&gt;handlers&lt;/em&gt;. El método debe ser publico y debe recibir &lt;em&gt;ValidationErrors&lt;/em&gt; o ningún parametro.&lt;/li&gt;
+&lt;li&gt;Interceptar Errores de Validación. Si el &lt;em&gt;ActionBean&lt;/em&gt; implementa la &lt;em&gt;Interface ValidationErrorHandler&lt;/em&gt; es posible interceptar la validación de errores, para eliminar, adicionar o modificar errores&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;h2&gt;Data types&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;De String a &lt;T&gt; : &lt;strong&gt;Conversi&#243;n&lt;/strong&gt; de una cadena de caracteres a objeto T.&lt;/li&gt;
+&lt;li&gt;De String a &lt;T&gt; : &lt;strong&gt;Conversión&lt;/strong&gt; de una cadena de caracteres a objeto T.&lt;/li&gt;
 &lt;li&gt;De &lt;T&gt; a String: &lt;strong&gt;Formato&lt;/strong&gt; de un objeto T a cadena de caracteres.&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Conversi&#243;n&lt;/h3&gt;
+&lt;h3&gt;Conversión&lt;/h3&gt;
 
 &lt;p&gt;Un &lt;em&gt;Conversor&lt;/em&gt; en Stripes implementa la interfaz &lt;em&gt;TypeConverter&lt;T&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4&gt;Conversores propios de Stripes:&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Conversi&#243;n de tipos primitivos y &lt;em&gt;wrappers&lt;/em&gt;. Ej. String -&gt; Integer : "1" -&gt; Integer(1)&lt;/li&gt;
-&lt;li&gt;java.util.Date: Stripes usa DateFormat de Java para realizar conversi&#243;n de fechas, realizando primero un preprocesamiento donde los separadores, como &lt;code&gt;/&lt;/code&gt; o &lt;code&gt;-&lt;/code&gt;, son reemplazados por espacios en blanco, entre otros procedimientos, para obtener un String dentro de los formatos de Java. Tambi&#233;n es posible configurar un o mas patron propio colocandolo en el archivo StripesResources.properties, usando la clave &lt;code&gt;stripes.dateTypeCoverter.formatString=yyyy MM d, otros...&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Tipos &lt;em&gt;Enumerated&lt;/em&gt;: Stripes soporta conversi&#243;n autom&#225;tica de tipos &lt;em&gt;Enumerated&lt;/em&gt;. Es case-sensitive&lt;/li&gt;
+&lt;li&gt;Conversión de tipos primitivos y &lt;em&gt;wrappers&lt;/em&gt;. Ej. String -&gt; Integer : "1" -&gt; Integer(1)&lt;/li&gt;
+&lt;li&gt;java.util.Date: Stripes usa DateFormat de Java para realizar conversión de fechas, realizando primero un preprocesamiento donde los separadores, como &lt;code&gt;/&lt;/code&gt; o &lt;code&gt;-&lt;/code&gt;, son reemplazados por espacios en blanco, entre otros procedimientos, para obtener un String dentro de los formatos de Java. También es posible configurar un o mas patron propio colocandolo en el archivo StripesResources.properties, usando la clave &lt;code&gt;stripes.dateTypeCoverter.formatString=yyyy MM d, otros...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Tipos &lt;em&gt;Enumerated&lt;/em&gt;: Stripes soporta conversión automática de tipos &lt;em&gt;Enumerated&lt;/em&gt;. Es case-sensitive&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Booleans&lt;/em&gt;: Stripes acepta como verdadero las siguientes cadenas: &lt;em&gt;true, t, yes, y, on, 1&lt;/em&gt;, el resto es considerado como falso.&lt;/li&gt;
 &lt;li&gt;Single Caracteres: "Hello" -&gt; "H"&lt;/li&gt;
 &lt;li&gt;Otros: &lt;em&gt;EmailTypeConverter, CreditCardConverter, PercentageTypeConverter, OneToManyTypeConverter&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Para usar un conversor espec&#237;fico,  el atributo debe ser anotado con &lt;code&gt;@Validate(converter=ElConversorEspecifico.class)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para usar un conversor específico,  el atributo debe ser anotado con &lt;code&gt;@Validate(converter=ElConversorEspecifico.class)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Formato&lt;/h3&gt;
 
@@ -775,7 +761,7 @@ Por ejemplo, en la clase TaskAction est&#225; el m&#233;todo &lt;em&gt;delete&lt
 
 &lt;ul&gt;
 &lt;li&gt;Dates: SimpleDateFormta + Locale&lt;/li&gt;
-&lt;li&gt;N&#250;mero: DecimalFormt + Locale&lt;/li&gt;
+&lt;li&gt;Número: DecimalFormt + Locale&lt;/li&gt;
 &lt;li&gt;Enumerated: Enum.name()&lt;/li&gt;
 &lt;li&gt;Objects: obj.toString()&lt;/li&gt;
 &lt;/ul&gt;
@@ -783,109 +769,285 @@ Por ejemplo, en la clase TaskAction est&#225; el m&#233;todo &lt;em&gt;delete&lt
 
 &lt;p&gt;&lt;em&gt;Formatters&lt;/em&gt; son usados en tags que aceptan atributos &lt;em&gt;formatType&lt;/em&gt; y &lt;em&gt;formatPattern&lt;/em&gt; como &lt;code&gt;&amp;lt;s:format&amp;gt; y &amp;lt;s:text&amp;gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Converters, formatters y componentes adicionales de Stripes pueden ser utilizados configurando en el web.xml, configurando el par&#225;metro &lt;em&gt;Extension.Packages&lt;/em&gt; en el &lt;em&gt;StripesFilter&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Converters, formatters y componentes adicionales de Stripes pueden ser utilizados configurando en el web.xml, configurando el parámetro &lt;em&gt;Extension.Packages&lt;/em&gt; en el &lt;em&gt;StripesFilter&lt;/em&gt;.&lt;/p&gt;
 </content>
     <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2011-10-21:/tips/cmds.html</id>
-    <title type="html">Commands summary</title>
+    <id>tag:www.emtg.net78.net,2011-10-21:/2011/10/21/cassandra_cli.html</id>
+    <title type="html">Usando Cassandra_CLI (Básico)</title>
     <published>2011-10-21T02:00:00Z</published>
-    <updated>2012-06-09T22:12:55Z</updated>
-    <link href="http://www.emtg.net78.net/tips/cmds.html" rel="alternate"/>
-    <content type="html">&lt;h1&gt;Commands reference for development&lt;/h1&gt;
+    <updated>2011-10-25T01:46:47Z</updated>
+    <link rel="alternate" href="http://www.emtg.net78.net/2011/10/21/cassandra_cli.html"/>
+    <content type="html">&lt;p&gt;Cassandra es un gestor de bases de datos distribuidas altamente escalable basado en NoSQL (mas info en: http://wiki.apache.org/cassandra).
+Este post presenta el uso básico de la consola de definición y manipulación de datos &lt;em&gt;cassandra_cli&lt;/em&gt;. Se asume conocimientos básicos de Cassandra y de su modelo de datos.&lt;/p&gt;
 
-&lt;h2&gt;Maven&lt;/h2&gt;
+&lt;h2&gt;Iniciando &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;New project:
+&lt;p&gt;Desde el directorio de cassandra ejecutar el comando:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;mvn archetype:generate \
--DarchetypeGroupId=org.apache.maven.archetypes \
--DgroupId=com.mycompany.app \
--DartifactId=my-app
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;mvn compile&lt;/li&gt;
-&lt;li&gt;mvn test&lt;/li&gt;
-&lt;li&gt;mvn install&lt;/li&gt;
-&lt;li&gt;MAVEN_HOME in Ubuntu: &lt;code&gt;/usr/share/maven2/&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Skip test in maven: add parameter &lt;code&gt;-DskipTests=true&lt;/code&gt; in the command&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Git&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Import from CVS (install git-cvs)
-
-&lt;pre&gt;&lt;code&gt;mkdir tempTest
-cd tempTest
-git cvsimport -v -d :pserver:username@cvs.sourceserver.com:/path/to/cvs module
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Edit a Tag and resend to the server
-
-&lt;pre&gt;&lt;code&gt;git tag TAGNAME -f
-git push --tags
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Add origin for RW in GitHub (must have the keyfile configured)
-
-&lt;pre&gt;&lt;code&gt;git remote add origin git@github.com:username/projectname.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Save local modifications in a temporal place to be able to push
-
-&lt;pre&gt;&lt;code&gt;git stash #creates a stash git the changes
-git stash pop #get the changes back and merge
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Delete a remote tag
-
-&lt;pre&gt;&lt;code&gt;git tag -d TAGNAME
-git push origin :refs/tags/TAGNAME
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Show current branch in the shell: Add
-
-&lt;pre&gt;&lt;code&gt;PS1="\u@\h:\w\$(git branch 2&amp;gt;/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/') \$ "
+&lt;pre&gt;&lt;code&gt;./bin/cassandra_cli --host localhost --port 9160
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;  to &lt;code&gt;~/.profile&lt;/code&gt; or &lt;code&gt;~/.bashrc&lt;/code&gt; &lt;br/&gt;
-  Ref: &lt;em&gt;http://gregk.me/2011/display-active-git-branch-in-bash-prompt/&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;host: localhost o la dirección del cluster.&lt;/li&gt;
+&lt;li&gt;port: Puerto definido en conf/cassandra.yaml&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Bash&lt;/h2&gt;
+&lt;h2&gt;Creando un Keyspace&lt;/h2&gt;
+
+&lt;p&gt;Un Keyspace es como un Schema en una base de datos relacional.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create keyspace MiBase;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;La salida de consola será algo como:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;448a4920-fbe9-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ahora usamos el keyspace recien creado:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;use MiBase;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Salida:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Authenticated to keyspace: MiBase
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Creando una Column Family (CF)&lt;/h2&gt;
+
+&lt;p&gt;Una CF seria como una tabla...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create column family Usuario with comparator = UTF8Type;        
+5c064a30-fbea-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Creamos una CF llamada Usuario, la cual asume que las llaves están en UTF8 para realizar comparaciones.&lt;/p&gt;
+
+&lt;h2&gt;Añadiendo datos en la CF&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['apellido'] = 'miguel'; 
+org.apache.cassandra.db.marshal.MarshalException: cannot parse 'mtriana' as hex bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Intentamos adicionar un usuario, sin embargo obtenemos un error porque las columnas aceptan datos en formato en hexadecimal, entonces ejecutamos el siguiente comando para que sean aceptadas cadenas de caracteres en ASCII:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assume UsUARIO keys as ascii;
+Assumption for column family 'Usuario' added successfully
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;De nuevo vamos a añadir el usuario:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['nombre'] = 'miguel';            
+Value inserted.
+set Usuario['mtriana']['apellido'] = 'triana';          
+Value inserted.
+set Usuario['mtriana']['edad'] = '10';        
+Value inserted.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;En este caso &lt;em&gt;mtriana&lt;/em&gt; es la llave de accesso a la super columna (es como una fila)  y &lt;em&gt;nombre&lt;/em&gt;, &lt;em&gt;apellido&lt;/em&gt; y &lt;em&gt;edad&lt;/em&gt; son las columnas da la CF.&lt;/p&gt;
+
+&lt;h2&gt;Consultando la CF&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
+=&amp;gt; (column=apellido, value=747269616e61, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=3130, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=6d696775656c, timestamp=1319205140859000)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Obtenemos los datos de super columna con llave &lt;em&gt;mtriana&lt;/em&gt;, sin embargo, los datos son presentados en hexadecimal (ByteType). Para presentarlos en un formato legible se actualizan los metadatos de las columnas.
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;update column family Usuario                                  &lt;br/&gt;
+...        with
+...        column_metadata =                                             &lt;br/&gt;
+...        [
+...        {column_name: nombre, validation_class: UTF8Type},            &lt;br/&gt;
+...        {column_name: apellido, validation_class: UTF8Type},
+...        {column_name: edad, validation_class: UTF8Type, index_type: KEYS}
+...        ];&lt;/p&gt;
+
+&lt;p&gt;c373ec10-fbed-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;De nuevo se consulta la base de datos:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
+Returned 3 results.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Consultando la base por otro indice&lt;/h3&gt;
+
+&lt;p&gt;Cuando modificamos los metadatos de las columnas, también se incluyó un índice para la edad para realizar búsquedas por este parámetro, ahora vamos a consultar la base usando este índice.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get Usuario where 'edad' = '10';
+-------------------
+RowKey: mtriana
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
+1 Row Returned.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Listando todos los datos de la CF&lt;/h3&gt;
+
+&lt;p&gt;Añadimos un usuario y después usamos el comando &lt;em&gt;list&lt;/em&gt; para obtener todos los datos de la super columna:
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] set Usuario['egomez']['apellido'] = 'gomez';                   &lt;br/&gt;
+Value inserted.
+[default@MiBase] set Usuario['egomez']['nombre'] = 'edwin';&lt;br/&gt;
+Value inserted.
+[default@MiBase] set Usuario['egomez']['edad'] = '15';   &lt;br/&gt;
+Value inserted.
+[default@MiBase] list Usuario;&lt;/p&gt;
+
+&lt;h2&gt;Using default limit of 100&lt;/h2&gt;
+
+&lt;p&gt;RowKey: egomez
+=&amp;gt; (column=apellido, value=gomez, timestamp=1319206905155000)
+=&amp;gt; (column=edad, value=15, timestamp=1319206929439000)&lt;/p&gt;
+
+&lt;h2&gt;=&amp;gt; (column=nombre, value=edwin, timestamp=1319206919988000)&lt;/h2&gt;
+
+&lt;p&gt;RowKey: mtriana
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)&lt;/p&gt;
+
+&lt;p&gt;2 Rows Returned.
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Borrando Columnas y Super Columnas&lt;/h2&gt;
+
+&lt;p&gt;Podemos borrar una columna completa de una fila usando el comando &lt;code&gt;del NombreCF['llaveDeFila']['columna'];&lt;/code&gt;
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] del Usuario['mtriana']['nombre'];
+column removed.
+[default@MiBase] get Usuario['mtriana'];
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+Returned 2 results.
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;O se puede borrar una fila completa (super columna) con `del NombreCF['nombreDeFila'];&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;del Usuario['mtriana'];          
+row removed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Eliminando una CF y un Keyspace (KS)&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Get an error in bash
-
-&lt;pre&gt;&lt;code&gt;if [ "$?" -ne 0 ]; then echo "command failed"; exit 1; fi
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Execute a script when Ubuntu starts or define a variable: add the script to &lt;code&gt;~/.profile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Send a task to background: &lt;code&gt;echo "executableToBackground" | at now&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Monitor file changes (like server logs): &lt;code&gt;tail -f logfilePath&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Para eliminar una CF: &lt;code&gt;drop column family NombreCF;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Para eliminar una Base (KS): &lt;code&gt;drop keyspace NombreKS;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h2&gt;VirtualBox&lt;/h2&gt;
+&lt;p&gt;&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] drop column family Usuario;
+cbfa22a0-fbf2-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+[default@MiBase] drop keyspace MiBase;
+d5b6a890-fbf2-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Salir de &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;quit;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+
+&lt;h3&gt;Referéncias&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Start a VM without GUI
-
-&lt;pre&gt;&lt;code&gt;VBoxManage startvm --type headless VMNAME
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Shutdow a VM from console
-
-&lt;pre&gt;&lt;code&gt;VBoxManage controlvm VMNAME poweroff
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;http://wiki.apache.org/cassandra/CassandraCli&lt;/li&gt;
+&lt;li&gt;http://www.datastax.com/docs/0.8/dml/using_cli&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
-    <summary type="html">Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.</summary>
+    <summary type="html">Comandos básicos para el cliente (consola) de Cassandra</summary>
   </entry>
   <entry>
     <id>tag:www.emtg.net78.net,2011-10-21:/2011/10/21/cassandra_hector.html</id>
     <title type="html">Cassandra y Hector</title>
     <published>2011-10-21T02:00:00Z</published>
     <updated>2011-10-25T01:46:47Z</updated>
-    <link href="http://www.emtg.net78.net/2011/10/21/cassandra_hector.html" rel="alternate"/>
+    <link rel="alternate" href="http://www.emtg.net78.net/2011/10/21/cassandra_hector.html"/>
     <content type="html">&lt;h2&gt;Crear el proyecto:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;mvn archetype:generate \
@@ -894,7 +1056,7 @@ git push origin :refs/tags/TAGNAME
 -DartifactId=HectorStarted
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;A&#241;adir la dependencia de Hector en el POM&lt;/h2&gt;
+&lt;h2&gt;Añadir la dependencia de Hector en el POM&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
   &amp;lt;groupId&amp;gt;me.prettyprint&amp;lt;/groupId&amp;gt;
@@ -906,233 +1068,247 @@ git push origin :refs/tags/TAGNAME
 &lt;h2&gt;Creando la clase ejemplo&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;9&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;11&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;HectorStarted&lt;/span&gt; &lt;tt&gt;
-&lt;/tt&gt;{&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; CLUSTER=&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Test-Cluster&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; KEYSPACE=&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;MiBase&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; USER_CF = &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Usuario&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Cluster myCluster;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyDefinition userCFDef;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; KeyspaceDefinition myTestKSDef;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Keyspace myKS;&lt;tt&gt;
-&lt;/tt&gt;  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyTemplate&amp;lt;&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt; userCFTemplate;&lt;tt&gt;
-&lt;/tt&gt;  &lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;HectorStarted&lt;/span&gt;
+{
+  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; CLUSTER=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Test-Cluster&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; KEYSPACE=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;MiBase&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; USER_CF = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Usuario&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Cluster myCluster;
+  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyDefinition userCFDef;
+  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; KeyspaceDefinition myTestKSDef;
+  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Keyspace myKS;
+  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyTemplate&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt; userCFTemplate;&lt;/p&gt;
+
+&lt;p&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;h2&gt;Inicializando classes&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;9&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;11&lt;tt&gt;
-&lt;/tt&gt;12&lt;tt&gt;
-&lt;/tt&gt;13&lt;tt&gt;
-&lt;/tt&gt;14&lt;tt&gt;
-&lt;/tt&gt;15&lt;tt&gt;
-&lt;/tt&gt;16&lt;tt&gt;
-&lt;/tt&gt;17&lt;tt&gt;
-&lt;/tt&gt;18&lt;tt&gt;
-&lt;/tt&gt;19&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;20&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;21&lt;tt&gt;
-&lt;/tt&gt;22&lt;tt&gt;
-&lt;/tt&gt;23&lt;tt&gt;
-&lt;/tt&gt;24&lt;tt&gt;
-&lt;/tt&gt;25&lt;tt&gt;
-&lt;/tt&gt;26&lt;tt&gt;
-&lt;/tt&gt;27&lt;tt&gt;
-&lt;/tt&gt;28&lt;tt&gt;
-&lt;/tt&gt;29&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;30&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;31&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; init(){&lt;tt&gt;
-&lt;/tt&gt;    myCluster = HFactory.getOrCreateCluster(CLUSTER, &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;localhost:9160&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Cluster instantiated&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;tt&gt;
-&lt;/tt&gt;    userCFDef = HFactory.createColumnFamilyDefinition(KEYSPACE, USER_CF, ComparatorType.UTF8TYPE);&lt;tt&gt;
-&lt;/tt&gt;    &lt;tt&gt;
-&lt;/tt&gt;    myTestKSDef = myCluster.describeKeyspace(KEYSPACE);&lt;span style="color:#888"&gt;//tries to instantiate an existing keyspace&lt;/span&gt;&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt;(myTestKSDef == &lt;span style="color:#038;font-weight:bold"&gt;null&lt;/span&gt;){&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#888"&gt;//if the keyspace doesn't exist, it creates one&lt;/span&gt;&lt;tt&gt;
-&lt;/tt&gt;      myTestKSDef = HFactory.createKeyspaceDefinition(KEYSPACE, &lt;tt&gt;
-&lt;/tt&gt;          ThriftKsDef.DEF_STRATEGY_CLASS,&lt;tt&gt;
-&lt;/tt&gt;          &lt;span style="color:#00D;font-weight:bold"&gt;1&lt;/span&gt;,&lt;tt&gt;
-&lt;/tt&gt;          &lt;span style="color:#074;font-weight:bold"&gt;Arrays&lt;/span&gt;.asList(userCFDef));&lt;tt&gt;
-&lt;/tt&gt;      myCluster.addKeyspace(myTestKSDef, &lt;span style="color:#038;font-weight:bold"&gt;true&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Keyspace &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; +  KEYSPACE + &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt; created&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    }&lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;{&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&lt;tt&gt;
-&lt;/tt&gt;        myCluster.addColumnFamily(userCFDef);&lt;tt&gt;
-&lt;/tt&gt;      } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (HectorException e) {&lt;tt&gt;
-&lt;/tt&gt;        &lt;tt&gt;
-&lt;/tt&gt;      }&lt;tt&gt;
-&lt;/tt&gt;      &lt;tt&gt;
-&lt;/tt&gt;    }&lt;tt&gt;
-&lt;/tt&gt;    myKS = HFactory.createKeyspace(KEYSPACE, myCluster);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Keyspace &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; +  KEYSPACE + &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt; instantiated&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;&lt;tt&gt;
-&lt;/tt&gt;    userCFTemplate = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; ThriftColumnFamilyTemplate&amp;lt;&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt;(myKS,&lt;tt&gt;
-&lt;/tt&gt;        USER_CF,&lt;tt&gt;
-&lt;/tt&gt;        StringSerializer.get(),&lt;tt&gt;
-&lt;/tt&gt;        StringSerializer.get());&lt;tt&gt;
-&lt;/tt&gt;  }&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; init(){&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;myCluster = HFactory.getOrCreateCluster(CLUSTER, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;localhost:9160&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Cluster instantiated&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+
+userCFDef = HFactory.createColumnFamilyDefinition(KEYSPACE, USER_CF, ComparatorType.UTF8TYPE);
+
+myTestKSDef = myCluster.describeKeyspace(KEYSPACE);&amp;lt;span style="color:#777"&amp;gt;//tries to instantiate an existing keyspace&amp;lt;/span&amp;gt;
+&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;if&amp;lt;/span&amp;gt;(myTestKSDef == &amp;lt;span style="color:#069"&amp;gt;null&amp;lt;/span&amp;gt;){
+  &amp;lt;span style="color:#777"&amp;gt;//if the keyspace doesn't exist, it creates one&amp;lt;/span&amp;gt;
+  myTestKSDef = HFactory.createKeyspaceDefinition(KEYSPACE, 
+      ThriftKsDef.DEF_STRATEGY_CLASS,
+      &amp;lt;span style="color:#00D"&amp;gt;1&amp;lt;/span&amp;gt;,
+      &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;Arrays&amp;lt;/span&amp;gt;.asList(userCFDef));
+  myCluster.addKeyspace(myTestKSDef, &amp;lt;span style="color:#069"&amp;gt;true&amp;lt;/span&amp;gt;);
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Keyspace &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; +  KEYSPACE + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; created&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+}&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;else&amp;lt;/span&amp;gt;{
+  &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
+    myCluster.addColumnFamily(userCFDef);
+  } &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
+
+  }
+
+}
+myKS = HFactory.createKeyspace(KEYSPACE, myCluster);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Keyspace &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; +  KEYSPACE + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; instantiated&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+
+userCFTemplate = &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;new&amp;lt;/span&amp;gt; ThriftColumnFamilyTemplate&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt;(myKS,
+    USER_CF,
+    StringSerializer.get(),
+    StringSerializer.get());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;h2&gt;Creando/Actualizando datos&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;9&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;11&lt;tt&gt;
-&lt;/tt&gt;12&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; update(&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; key, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; name, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; last) {&lt;tt&gt;
-&lt;/tt&gt;    ColumnFamilyUpdater&amp;lt;&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt; updater = userCFTemplate.createUpdater(key);&lt;tt&gt;
-&lt;/tt&gt;    updater.setString(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;name&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, name);&lt;tt&gt;
-&lt;/tt&gt;    updater.setString(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;last&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, last);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&lt;tt&gt;
-&lt;/tt&gt;      userCFTemplate.update(updater);&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;value inserted&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (HectorException e) {&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Error during insertion&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(e.getMessage());&lt;tt&gt;
-&lt;/tt&gt;    }  &lt;tt&gt;
-&lt;/tt&gt;  }&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; update(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; name, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; last) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ColumnFamilyUpdater&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt; updater = userCFTemplate.createUpdater(key);
+updater.setString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;name&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, name);
+updater.setString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;last&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, last);
+&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
+  userCFTemplate.update(updater);
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;value inserted&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Error during insertion&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(e.getMessage());
+}  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;h2&gt;Consultando datos&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; read(&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&lt;tt&gt;
-&lt;/tt&gt;      ColumnFamilyResult&amp;lt;&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt; result = userCFTemplate.queryColumns(key);&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;User: &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + result.getString(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;name&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;) + &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt; &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + result.getString(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;last&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;));&lt;tt&gt;
-&lt;/tt&gt;    } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (HectorException e) {&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Not possible to read the column with key &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + key);&lt;tt&gt;
-&lt;/tt&gt;    }&lt;tt&gt;
-&lt;/tt&gt;  }&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; read(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
+  ColumnFamilyResult&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt; result = userCFTemplate.queryColumns(key);
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;User: &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + result.getString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;name&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;) + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + result.getString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;last&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;));
+} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Not possible to read the column with key &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + key);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;h2&gt;Borrando datos&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; delete(&lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&lt;tt&gt;
-&lt;/tt&gt;      userCFTemplate.deleteRow(key);&lt;tt&gt;
-&lt;/tt&gt;    } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (HectorException e) {&lt;tt&gt;
-&lt;/tt&gt;      &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Not possible to delete row with key &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + key);&lt;tt&gt;
-&lt;/tt&gt;    }&lt;tt&gt;
-&lt;/tt&gt;    &lt;tt&gt;
-&lt;/tt&gt;  }&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; delete(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
+  userCFTemplate.deleteRow(key);
+} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
+  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Not possible to delete row with key &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + key);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;h2&gt;Probando los m&#233;todos&lt;/h2&gt;
+&lt;h2&gt;Probando los métodos&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;1&lt;tt&gt;
-&lt;/tt&gt;2&lt;tt&gt;
-&lt;/tt&gt;3&lt;tt&gt;
-&lt;/tt&gt;4&lt;tt&gt;
-&lt;/tt&gt;5&lt;tt&gt;
-&lt;/tt&gt;6&lt;tt&gt;
-&lt;/tt&gt;7&lt;tt&gt;
-&lt;/tt&gt;8&lt;tt&gt;
-&lt;/tt&gt;9&lt;tt&gt;
-&lt;/tt&gt;&lt;strong&gt;10&lt;/strong&gt;&lt;tt&gt;
-&lt;/tt&gt;11&lt;tt&gt;
-&lt;/tt&gt;12&lt;tt&gt;
-&lt;/tt&gt;13&lt;tt&gt;
-&lt;/tt&gt;14&lt;tt&gt;
-&lt;/tt&gt;15&lt;tt&gt;
-&lt;/tt&gt;16&lt;tt&gt;
-&lt;/tt&gt;17&lt;tt&gt;
-&lt;/tt&gt;18&lt;tt&gt;
-&lt;/tt&gt;19&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; main( &lt;span style="color:#074;font-weight:bold"&gt;String&lt;/span&gt;&lt;span style="color:#339;font-weight:bold"&gt;[]&lt;/span&gt; args )&lt;tt&gt;
-&lt;/tt&gt;  {&lt;tt&gt;
-&lt;/tt&gt;    HectorStarted test = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; HectorStarted();&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;instantiates cluster, keyspace and column family&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    test.init();&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;//Insert a row in&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + USER_CF);&lt;tt&gt;
-&lt;/tt&gt;    test.update(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;miguel&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;triana&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;Reading data&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    test.read(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;//Updating a row in&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + USER_CF);&lt;tt&gt;
-&lt;/tt&gt;    test.update(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;miguel&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;gomez&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;//Reading data&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    test.read(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;//Deleteing data&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    test.delete(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    &lt;span style="color:#074;font-weight:bold"&gt;System&lt;/span&gt;.out.println(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;//Reading non existing data&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;    test.read(&lt;span style="background-color:#fff0f0;color:#D20"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style=""&gt;key1&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;tt&gt;
-&lt;/tt&gt;  }&lt;tt&gt;
-&lt;/tt&gt;}&lt;tt&gt;
-&lt;/tt&gt;&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; main( &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;&lt;span style="color:#339;font-weight:bold"&gt;[]&lt;/span&gt; args )
+  {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HectorStarted test = &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;new&amp;lt;/span&amp;gt; HectorStarted();
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;instantiates cluster, keyspace and column family&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+test.init();
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Insert a row in&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + USER_CF);
+test.update(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;miguel&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;triana&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Reading data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Updating a row in&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + USER_CF);
+test.update(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;miguel&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;gomez&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Reading data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Deleteing data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+test.delete(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Reading non existing data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+}
+&lt;/pre&gt;&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;hr&gt;
 
 
-&lt;h4&gt;Refer&#233;ncias&lt;/h4&gt;
+&lt;h4&gt;Referéncias&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;http://rantav.github.com/hector/build/html/index.html&lt;/li&gt;

@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Captura de audio para Java ME</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content=', java, javame, mobile, audio' name='keywords' />
-    <meta content='Este es un ejemplo para la captura de audio con J2ME' name='description' />
-    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', java, javame, mobile, audio' name='keywords'>
+    <meta content='Este es un ejemplo para la captura de audio con J2ME' name='description'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div id='main'>
@@ -30,155 +30,162 @@
       <div class='clear'></div>
       <div id='content'>
         <div class='article'>
-              <h1>
-                Captura de audio para Java ME
-              </h1>
-              <div class='meta'>
-                <ul class='tags'>
-                  <li>Feb 25, 2010</li>
-                  <li>
-                    &middot;
-                  </li>
-                  <li>
-                    <a href='/2010/02/25/captura_audio_javame.html#disqus_thread'></a>
-                  </li>
-                  <li>&middot;</li>
-                  <li>
-                    <a class='tag' href='/tags/audio/'>
-                      audio
-                    </a>
-                  </li>
-                  <li>
-                    <a class='tag' href='/tags/java/'>
-                      java
-                    </a>
-                  </li>
-                  <li>
-                    <a class='tag' href='/tags/javame/'>
-                      javame
-                    </a>
-                  </li>
-                  <li>
-                    <a class='tag' href='/tags/mobile/'>
-                      mobile
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class='body'>
-                <p>Este es un ejemplo para la captura de audio con J2ME. La aplicación está basada en <a href="http://j2mesamples.blogspot.com/2009/06/voice-recording-in-j2me.html">Voice Recording in J2ME</a>, un ejemplo que captura audio por 5 segundos y lo reproduce en la misma aplicación. He adicionado una pequeña modificación para que almacene la captura en la memoria del dispositivo.</p>
-                
-                <p>A continuación está el código modificado:</p>
-                
-                <p><code class="java"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt>9<tt>&#x000A;</tt><strong>10</strong><tt>&#x000A;</tt>11<tt>&#x000A;</tt>12<tt>&#x000A;</tt>13<tt>&#x000A;</tt>14<tt>&#x000A;</tt>15<tt>&#x000A;</tt>16<tt>&#x000A;</tt>17<tt>&#x000A;</tt>18<tt>&#x000A;</tt>19<tt>&#x000A;</tt><strong>20</strong><tt>&#x000A;</tt>21<tt>&#x000A;</tt>22<tt>&#x000A;</tt>23<tt>&#x000A;</tt>24<tt>&#x000A;</tt>25<tt>&#x000A;</tt>26<tt>&#x000A;</tt>27<tt>&#x000A;</tt>28<tt>&#x000A;</tt>29<tt>&#x000A;</tt><strong>30</strong><tt>&#x000A;</tt>31<tt>&#x000A;</tt>32<tt>&#x000A;</tt>33<tt>&#x000A;</tt>34<tt>&#x000A;</tt>35<tt>&#x000A;</tt>36<tt>&#x000A;</tt>37<tt>&#x000A;</tt>38<tt>&#x000A;</tt>39<tt>&#x000A;</tt><strong>40</strong><tt>&#x000A;</tt>41<tt>&#x000A;</tt>42<tt>&#x000A;</tt>43<tt>&#x000A;</tt>44<tt>&#x000A;</tt>45<tt>&#x000A;</tt>46<tt>&#x000A;</tt>47<tt>&#x000A;</tt>48<tt>&#x000A;</tt>49<tt>&#x000A;</tt><strong>50</strong><tt>&#x000A;</tt>51<tt>&#x000A;</tt>52<tt>&#x000A;</tt>53<tt>&#x000A;</tt>54<tt>&#x000A;</tt>55<tt>&#x000A;</tt>56<tt>&#x000A;</tt>57<tt>&#x000A;</tt>58<tt>&#x000A;</tt>59<tt>&#x000A;</tt><strong>60</strong><tt>&#x000A;</tt>61<tt>&#x000A;</tt>62<tt>&#x000A;</tt>63<tt>&#x000A;</tt>64<tt>&#x000A;</tt>65<tt>&#x000A;</tt>66<tt>&#x000A;</tt>67<tt>&#x000A;</tt>68<tt>&#x000A;</tt>69<tt>&#x000A;</tt><strong>70</strong><tt>&#x000A;</tt>71<tt>&#x000A;</tt>72<tt>&#x000A;</tt>73<tt>&#x000A;</tt>74<tt>&#x000A;</tt>75<tt>&#x000A;</tt>76<tt>&#x000A;</tt>77<tt>&#x000A;</tt>78<tt>&#x000A;</tt>79<tt>&#x000A;</tt><strong>80</strong><tt>&#x000A;</tt>81<tt>&#x000A;</tt>82<tt>&#x000A;</tt>83<tt>&#x000A;</tt>84<tt>&#x000A;</tt>85<tt>&#x000A;</tt>86<tt>&#x000A;</tt>87<tt>&#x000A;</tt>88<tt>&#x000A;</tt>89<tt>&#x000A;</tt><strong>90</strong><tt>&#x000A;</tt>91<tt>&#x000A;</tt>92<tt>&#x000A;</tt>93<tt>&#x000A;</tt>94<tt>&#x000A;</tt>95<tt>&#x000A;</tt>96<tt>&#x000A;</tt>97<tt>&#x000A;</tt>98<tt>&#x000A;</tt>99<tt>&#x000A;</tt><strong>100</strong><tt>&#x000A;</tt>101<tt>&#x000A;</tt>102<tt>&#x000A;</tt>103<tt>&#x000A;</tt>104<tt>&#x000A;</tt>105<tt>&#x000A;</tt>106<tt>&#x000A;</tt>107<tt>&#x000A;</tt>108<tt>&#x000A;</tt>109<tt>&#x000A;</tt><strong>110</strong><tt>&#x000A;</tt>111<tt>&#x000A;</tt>112<tt>&#x000A;</tt>113<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"><tt>&#x000A;</tt><span style="color:#080;font-weight:bold">package</span> recorder;<tt>&#x000A;</tt><tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">java.io</span>.<em>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.io.Connector</span>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.io.file.FileConnection</span>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.midlet</span>.</em>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.lcdui</span>.<em>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.media</span>.</em>;<tt>&#x000A;</tt><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.media.control</span>.*;<tt>&#x000A;</tt><tt>&#x000A;</tt><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">VoiceRecordMidlet</span> <span style="color:#088;font-weight:bold">extends</span> MIDlet {<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> Display display;<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> startApp() {<tt>&#x000A;</tt>        display = Display.getDisplay(<span style="color:#963">this</span>);<tt>&#x000A;</tt>        display.setCurrent(<span style="color:#080;font-weight:bold">new</span> VoiceRecordForm());<tt>&#x000A;</tt>    }<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> pauseApp() {<tt>&#x000A;</tt>    }<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> destroyApp(<span style="color:#339;font-weight:bold">boolean</span> unconditional) {<tt>&#x000A;</tt>        notifyDestroyed();<tt>&#x000A;</tt>    }<tt>&#x000A;</tt>}<tt>&#x000A;</tt><tt>&#x000A;</tt><span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">VoiceRecordForm</span> <span style="color:#088;font-weight:bold">extends</span> Form <span style="color:#088;font-weight:bold">implements</span> CommandListener {<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> StringItem message;<tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> StringItem errormessage;<tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> Command record, play;<tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> Player player;<tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">byte</span><span style="color:#339;font-weight:bold">[]</span> recordedAudioArray = <span style="color:#038;font-weight:bold">null</span>;<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">public</span> VoiceRecordForm() {<tt>&#x000A;</tt>        <span style="color:#963">super</span>(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Recording Audio</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>        message = <span style="color:#080;font-weight:bold">new</span> StringItem(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>, <span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Select Record to start recording.</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>        <span style="color:#963">this</span>.append(message);<tt>&#x000A;</tt>        errormessage = <span style="color:#080;font-weight:bold">new</span> StringItem(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>, <span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>        <span style="color:#963">this</span>.append(errormessage);<tt>&#x000A;</tt>        record = <span style="color:#080;font-weight:bold">new</span> Command(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Record</span><span style="color:#710">&quot;</span></span>, Command.OK, <span style="color:#00D;font-weight:bold">0</span>);<tt>&#x000A;</tt>        <span style="color:#963">this</span>.addCommand(record);<tt>&#x000A;</tt>        play = <span style="color:#080;font-weight:bold">new</span> Command(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Play</span><span style="color:#710">&quot;</span></span>, Command.BACK, <span style="color:#00D;font-weight:bold">0</span>);<tt>&#x000A;</tt>        <span style="color:#963">this</span>.addCommand(play);<tt>&#x000A;</tt>        <span style="color:#963">this</span>.setCommandListener(<span style="color:#963">this</span>);<tt>&#x000A;</tt>    }<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> commandAction(Command comm, Displayable disp) {<tt>&#x000A;</tt>        <span style="color:#080;font-weight:bold">if</span> (comm == record) {<tt>&#x000A;</tt>            <span style="color:#074;font-weight:bold">Thread</span> t = <span style="color:#080;font-weight:bold">new</span> <span style="color:#074;font-weight:bold">Thread</span>() {<tt>&#x000A;</tt><tt>&#x000A;</tt>                <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> run() {<tt>&#x000A;</tt>                    <span style="color:#080;font-weight:bold">try</span> {<tt>&#x000A;</tt>                        player = Manager.createPlayer(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">capture://audio?encoding=pcm</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                        player.realize();<tt>&#x000A;</tt>                        RecordControl rc = (RecordControl) player.getControl(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">RecordControl</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                        <span style="color:#074;font-weight:bold">ByteArrayOutputStream</span> output = <span style="color:#080;font-weight:bold">new</span> <span style="color:#074;font-weight:bold">ByteArrayOutputStream</span>();<tt>&#x000A;</tt>                        rc.setRecordStream(output);<tt>&#x000A;</tt>                        rc.startRecord();<tt>&#x000A;</tt>                        player.start();<tt>&#x000A;</tt>                        message.setText(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Recording...</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                        <span style="color:#074;font-weight:bold">Thread</span>.sleep(<span style="color:#00D;font-weight:bold">5000</span>);<tt>&#x000A;</tt>                        message.setText(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Recording Done!</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                        rc.commit();<tt>&#x000A;</tt>                        recordedAudioArray = output.toByteArray();<tt>&#x000A;</tt>                        player.close();<tt>&#x000A;</tt>                        saveAudio();<tt>&#x000A;</tt>                    } <span style="color:#080;font-weight:bold">catch</span> (<span style="color:#C00;font-weight:bold">Exception</span> e) {<tt>&#x000A;</tt>                        errormessage.setLabel(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Error</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                        errormessage.setText(e.toString());<tt>&#x000A;</tt>                    }<tt>&#x000A;</tt>                }<tt>&#x000A;</tt>            };<tt>&#x000A;</tt>            t.start();<tt>&#x000A;</tt><tt>&#x000A;</tt>        } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (comm == play) {<tt>&#x000A;</tt>            <span style="color:#080;font-weight:bold">try</span> {<tt>&#x000A;</tt>                <span style="color:#074;font-weight:bold">ByteArrayInputStream</span> recordedInputStream = <span style="color:#080;font-weight:bold">new</span> <span style="color:#074;font-weight:bold">ByteArrayInputStream</span>(recordedAudioArray);<tt>&#x000A;</tt>                Player p2 = Manager.createPlayer(recordedInputStream, <span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">audio/basic</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                p2.prefetch();<tt>&#x000A;</tt>                p2.start();<tt>&#x000A;</tt>            } <span style="color:#080;font-weight:bold">catch</span> (<span style="color:#C00;font-weight:bold">Exception</span> e) {<tt>&#x000A;</tt>                errormessage.setLabel(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Error</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>                errormessage.setText(e.toString());<tt>&#x000A;</tt>            }<tt>&#x000A;</tt>        }<tt>&#x000A;</tt>    }<tt>&#x000A;</tt><tt>&#x000A;</tt>    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">void</span> saveAudio() {<tt>&#x000A;</tt>        <span style="color:#080;font-weight:bold">try</span> {<tt>&#x000A;</tt>            <span style="color:#888">//Abre o directorio donde se va a guardar el archivo</span><tt>&#x000A;</tt>            FileConnection fc = (FileConnection) Connector.open(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">file:///E:/records</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>            <span style="color:#080;font-weight:bold">if</span> (!fc.exists()) {<tt>&#x000A;</tt>                fc.mkdir();<tt>&#x000A;</tt>            }<tt>&#x000A;</tt>            <span style="color:#888">//crea el archivo de audio</span><tt>&#x000A;</tt>            fc = (FileConnection) Connector.open(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">file:///E:/records/som1.pcm</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>            <span style="color:#080;font-weight:bold">if</span> (!fc.exists()) {<tt>&#x000A;</tt>                fc.create();<tt>&#x000A;</tt>            }<tt>&#x000A;</tt>            <span style="color:#074;font-weight:bold">DataOutputStream</span> dos = fc.openDataOutputStream();<tt>&#x000A;</tt>            <span style="color:#888">//Guarda el audio capturado en el archivo</span><tt>&#x000A;</tt>            dos.write(recordedAudioArray);<tt>&#x000A;</tt>            dos.close();<tt>&#x000A;</tt>            fc.close();<tt>&#x000A;</tt>        } <span style="color:#080;font-weight:bold">catch</span> (<span style="color:#C00;font-weight:bold">IOException</span> e) {<tt>&#x000A;</tt>            errormessage.setLabel(<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Error</span><span style="color:#710">&quot;</span></span>);<tt>&#x000A;</tt>            errormessage.setText(e.toString());<tt>&#x000A;</tt>        }<tt>&#x000A;</tt>    }<tt>&#x000A;</tt>}<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
-                
-                <p>La aplicación está guardando siempre en el mismo archivo, por lo tanto después de la primera vez se va sobre escribir el audio capturado.</p>
-                
-                <p>Pueden encontrar mas información sobre el manejo de multimedia y archivos para J2ME  en los siguientes enlaces:</p>
-                
-                <ul>
-                <li><a href="http://java.sun.com/javame/reference/apis/jsr135/index.html">Mobile Media API (JSR-135) </a></li>
-                <li><a href="http://www.java-tips.org/java-me-tips/midp/how-to-access-local-file-systems-from-j2me-devices-using-fileconnectio-2.html">Ejemplo de manejo de archivos</a></li>
-                <li><a href="http://wiki.forum.nokia.com/index.php/JSR_75_File_connection_API">JSR 75 File connection API</a></li>
-                </ul>
-              </div>
-            </div>
+          <h1>
+            Captura de audio para Java ME
+          </h1>
+          <div class='meta'>
+            <ul class='tags'>
+              <li>Feb 25, 2010</li>
+              <li>
+                &middot;
+              </li>
+              <li>
+                <a href='/2010/02/25/captura_audio_javame.html#disqus_thread'></a>
+              </li>
+              <li>&middot;</li>
+              <li>
+                <a class='tag' href='/tags/audio/'>
+                  audio
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/java/'>
+                  java
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/javame/'>
+                  javame
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/mobile/'>
+                  mobile
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class='body'>
+            <p>Este es un ejemplo para la captura de audio con J2ME. La aplicación está basada en <a href="http://j2mesamples.blogspot.com/2009/06/voice-recording-in-j2me.html">Voice Recording in J2ME</a>, un ejemplo que captura audio por 5 segundos y lo reproduce en la misma aplicación. He adicionado una pequeña modificación para que almacene la captura en la memoria del dispositivo.</p>
+            
+            <p>A continuación está el código modificado:</p>
+            
+            <p><code class="java"><table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="#n1" name="n1">1</a>&#x000A;<a href="#n2" name="n2">2</a>&#x000A;<a href="#n3" name="n3">3</a>&#x000A;<a href="#n4" name="n4">4</a>&#x000A;<a href="#n5" name="n5">5</a>&#x000A;<a href="#n6" name="n6">6</a>&#x000A;<a href="#n7" name="n7">7</a>&#x000A;<a href="#n8" name="n8">8</a>&#x000A;<a href="#n9" name="n9">9</a>&#x000A;<strong><a href="#n10" name="n10">10</a></strong>&#x000A;<a href="#n11" name="n11">11</a>&#x000A;<a href="#n12" name="n12">12</a>&#x000A;<a href="#n13" name="n13">13</a>&#x000A;<a href="#n14" name="n14">14</a>&#x000A;<a href="#n15" name="n15">15</a>&#x000A;<a href="#n16" name="n16">16</a>&#x000A;<a href="#n17" name="n17">17</a>&#x000A;<a href="#n18" name="n18">18</a>&#x000A;<a href="#n19" name="n19">19</a>&#x000A;<strong><a href="#n20" name="n20">20</a></strong>&#x000A;<a href="#n21" name="n21">21</a>&#x000A;<a href="#n22" name="n22">22</a>&#x000A;<a href="#n23" name="n23">23</a>&#x000A;<a href="#n24" name="n24">24</a>&#x000A;<a href="#n25" name="n25">25</a>&#x000A;<a href="#n26" name="n26">26</a>&#x000A;<a href="#n27" name="n27">27</a>&#x000A;<a href="#n28" name="n28">28</a>&#x000A;<a href="#n29" name="n29">29</a>&#x000A;<strong><a href="#n30" name="n30">30</a></strong>&#x000A;<a href="#n31" name="n31">31</a>&#x000A;<a href="#n32" name="n32">32</a>&#x000A;<a href="#n33" name="n33">33</a>&#x000A;<a href="#n34" name="n34">34</a>&#x000A;<a href="#n35" name="n35">35</a>&#x000A;<a href="#n36" name="n36">36</a>&#x000A;<a href="#n37" name="n37">37</a>&#x000A;<a href="#n38" name="n38">38</a>&#x000A;<a href="#n39" name="n39">39</a>&#x000A;<strong><a href="#n40" name="n40">40</a></strong>&#x000A;<a href="#n41" name="n41">41</a>&#x000A;<a href="#n42" name="n42">42</a>&#x000A;<a href="#n43" name="n43">43</a>&#x000A;<a href="#n44" name="n44">44</a>&#x000A;<a href="#n45" name="n45">45</a>&#x000A;<a href="#n46" name="n46">46</a>&#x000A;<a href="#n47" name="n47">47</a>&#x000A;<a href="#n48" name="n48">48</a>&#x000A;<a href="#n49" name="n49">49</a>&#x000A;<strong><a href="#n50" name="n50">50</a></strong>&#x000A;<a href="#n51" name="n51">51</a>&#x000A;<a href="#n52" name="n52">52</a>&#x000A;<a href="#n53" name="n53">53</a>&#x000A;<a href="#n54" name="n54">54</a>&#x000A;<a href="#n55" name="n55">55</a>&#x000A;<a href="#n56" name="n56">56</a>&#x000A;<a href="#n57" name="n57">57</a>&#x000A;<a href="#n58" name="n58">58</a>&#x000A;<a href="#n59" name="n59">59</a>&#x000A;<strong><a href="#n60" name="n60">60</a></strong>&#x000A;<a href="#n61" name="n61">61</a>&#x000A;<a href="#n62" name="n62">62</a>&#x000A;<a href="#n63" name="n63">63</a>&#x000A;<a href="#n64" name="n64">64</a>&#x000A;<a href="#n65" name="n65">65</a>&#x000A;<a href="#n66" name="n66">66</a>&#x000A;<a href="#n67" name="n67">67</a>&#x000A;<a href="#n68" name="n68">68</a>&#x000A;<a href="#n69" name="n69">69</a>&#x000A;<strong><a href="#n70" name="n70">70</a></strong>&#x000A;<a href="#n71" name="n71">71</a>&#x000A;<a href="#n72" name="n72">72</a>&#x000A;<a href="#n73" name="n73">73</a>&#x000A;<a href="#n74" name="n74">74</a>&#x000A;<a href="#n75" name="n75">75</a>&#x000A;<a href="#n76" name="n76">76</a>&#x000A;<a href="#n77" name="n77">77</a>&#x000A;<a href="#n78" name="n78">78</a>&#x000A;<a href="#n79" name="n79">79</a>&#x000A;<strong><a href="#n80" name="n80">80</a></strong>&#x000A;<a href="#n81" name="n81">81</a>&#x000A;<a href="#n82" name="n82">82</a>&#x000A;<a href="#n83" name="n83">83</a>&#x000A;<a href="#n84" name="n84">84</a>&#x000A;<a href="#n85" name="n85">85</a>&#x000A;<a href="#n86" name="n86">86</a>&#x000A;<a href="#n87" name="n87">87</a>&#x000A;<a href="#n88" name="n88">88</a>&#x000A;<a href="#n89" name="n89">89</a>&#x000A;<strong><a href="#n90" name="n90">90</a></strong>&#x000A;<a href="#n91" name="n91">91</a>&#x000A;<a href="#n92" name="n92">92</a>&#x000A;<a href="#n93" name="n93">93</a>&#x000A;<a href="#n94" name="n94">94</a>&#x000A;<a href="#n95" name="n95">95</a>&#x000A;<a href="#n96" name="n96">96</a>&#x000A;<a href="#n97" name="n97">97</a>&#x000A;<a href="#n98" name="n98">98</a>&#x000A;<a href="#n99" name="n99">99</a>&#x000A;<strong><a href="#n100" name="n100">100</a></strong>&#x000A;<a href="#n101" name="n101">101</a>&#x000A;<a href="#n102" name="n102">102</a>&#x000A;<a href="#n103" name="n103">103</a>&#x000A;<a href="#n104" name="n104">104</a>&#x000A;<a href="#n105" name="n105">105</a>&#x000A;<a href="#n106" name="n106">106</a>&#x000A;<a href="#n107" name="n107">107</a>&#x000A;<a href="#n108" name="n108">108</a>&#x000A;<a href="#n109" name="n109">109</a>&#x000A;<strong><a href="#n110" name="n110">110</a></strong>&#x000A;<a href="#n111" name="n111">111</a>&#x000A;<a href="#n112" name="n112">112</a>&#x000A;<a href="#n113" name="n113">113</a>&#x000A;</pre></td>&#x000A;  <td class="code"><pre>&#x000A;<span style="color:#080;font-weight:bold">package</span> <span style="color:#707;font-weight:bold">recorder</span>;</p>&#x000A;&#x000A;<p><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">java.io</span>.<em>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.io.Connector</span>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.io.file.FileConnection</span>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.midlet</span>.</em>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.lcdui</span>.<em>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.media</span>.</em>;&#x000A;<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">javax.microedition.media.control</span>.*;</p>&#x000A;&#x000A;<p><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">VoiceRecordMidlet</span> <span style="color:#088;font-weight:bold">extends</span> MIDlet {</p>&#x000A;&#x000A;<pre><code>&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Display display;&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; startApp() {&#x000A;    display = Display.getDisplay(&lt;span style="color:#963"&gt;this&lt;/span&gt;);&#x000A;    display.setCurrent(&lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; VoiceRecordForm());&#x000A;}&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; pauseApp() {&#x000A;}&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; destroyApp(&lt;span style="color:#339;font-weight:bold"&gt;boolean&lt;/span&gt; unconditional) {&#x000A;    notifyDestroyed();&#x000A;}</code></pre>
+            
+            <p>}</p>
+            
+            <p><span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">VoiceRecordForm</span> <span style="color:#088;font-weight:bold">extends</span> Form <span style="color:#088;font-weight:bold">implements</span> CommandListener {</p>
+            
+            <pre><code>&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; StringItem message;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; StringItem errormessage;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; Command record, play;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Player player;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;byte&lt;/span&gt;&lt;span style="color:#339;font-weight:bold"&gt;[]&lt;/span&gt; recordedAudioArray = &lt;span style="color:#069"&gt;null&lt;/span&gt;;&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; VoiceRecordForm() {&#x000A;    &lt;span style="color:#963"&gt;super&lt;/span&gt;(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Recording Audio&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;    message = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; StringItem(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Select Record to start recording.&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;    &lt;span style="color:#963"&gt;this&lt;/span&gt;.append(message);&#x000A;    errormessage = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; StringItem(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;    &lt;span style="color:#963"&gt;this&lt;/span&gt;.append(errormessage);&#x000A;    record = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; Command(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Record&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, Command.OK, &lt;span style="color:#00D"&gt;0&lt;/span&gt;);&#x000A;    &lt;span style="color:#963"&gt;this&lt;/span&gt;.addCommand(record);&#x000A;    play = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; Command(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Play&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, Command.BACK, &lt;span style="color:#00D"&gt;0&lt;/span&gt;);&#x000A;    &lt;span style="color:#963"&gt;this&lt;/span&gt;.addCommand(play);&#x000A;    &lt;span style="color:#963"&gt;this&lt;/span&gt;.setCommandListener(&lt;span style="color:#963"&gt;this&lt;/span&gt;);&#x000A;}&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; commandAction(Command comm, Displayable disp) {&#x000A;    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (comm == record) {&#x000A;        &lt;span style="color:#0a5;font-weight:bold"&gt;Thread&lt;/span&gt; t = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;Thread&lt;/span&gt;() {&#x000A;&#x000A;            &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; run() {&#x000A;                &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&#x000A;                    player = Manager.createPlayer(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;capture://audio?encoding=pcm&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;                    player.realize();&#x000A;                    RecordControl rc = (RecordControl) player.getControl(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;RecordControl&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;                    &lt;span style="color:#0a5;font-weight:bold"&gt;ByteArrayOutputStream&lt;/span&gt; output = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;ByteArrayOutputStream&lt;/span&gt;();&#x000A;                    rc.setRecordStream(output);&#x000A;                    rc.startRecord();&#x000A;                    player.start();&#x000A;                    message.setText(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Recording...&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;                    &lt;span style="color:#0a5;font-weight:bold"&gt;Thread&lt;/span&gt;.sleep(&lt;span style="color:#00D"&gt;5000&lt;/span&gt;);&#x000A;                    message.setText(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Recording Done!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;                    rc.commit();&#x000A;                    recordedAudioArray = output.toByteArray();&#x000A;                    player.close();&#x000A;                    saveAudio();&#x000A;                } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (&lt;span style="color:#C00;font-weight:bold"&gt;Exception&lt;/span&gt; e) {&#x000A;                    errormessage.setLabel(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Error&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;                    errormessage.setText(e.toString());&#x000A;                }&#x000A;            }&#x000A;        };&#x000A;        t.start();&#x000A;&#x000A;    } &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (comm == play) {&#x000A;        &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&#x000A;            &lt;span style="color:#0a5;font-weight:bold"&gt;ByteArrayInputStream&lt;/span&gt; recordedInputStream = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;ByteArrayInputStream&lt;/span&gt;(recordedAudioArray);&#x000A;            Player p2 = Manager.createPlayer(recordedInputStream, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;audio/basic&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;            p2.prefetch();&#x000A;            p2.start();&#x000A;        } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (&lt;span style="color:#C00;font-weight:bold"&gt;Exception&lt;/span&gt; e) {&#x000A;            errormessage.setLabel(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Error&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;            errormessage.setText(e.toString());&#x000A;        }&#x000A;    }&#x000A;}&#x000A;&#x000A;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; saveAudio() {&#x000A;    &lt;span style="color:#080;font-weight:bold"&gt;try&lt;/span&gt; {&#x000A;        &lt;span style="color:#777"&gt;//Abre o directorio donde se va a guardar el archivo&lt;/span&gt;&#x000A;        FileConnection fc = (FileConnection) Connector.open(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;file:///E:/records&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (!fc.exists()) {&#x000A;            fc.mkdir();&#x000A;        }&#x000A;        &lt;span style="color:#777"&gt;//crea el archivo de audio&lt;/span&gt;&#x000A;        fc = (FileConnection) Connector.open(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;file:///E:/records/som1.pcm&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (!fc.exists()) {&#x000A;            fc.create();&#x000A;        }&#x000A;        &lt;span style="color:#0a5;font-weight:bold"&gt;DataOutputStream&lt;/span&gt; dos = fc.openDataOutputStream();&#x000A;        &lt;span style="color:#777"&gt;//Guarda el audio capturado en el archivo&lt;/span&gt;&#x000A;        dos.write(recordedAudioArray);&#x000A;        dos.close();&#x000A;        fc.close();&#x000A;    } &lt;span style="color:#080;font-weight:bold"&gt;catch&lt;/span&gt; (&lt;span style="color:#C00;font-weight:bold"&gt;IOException&lt;/span&gt; e) {&#x000A;        errormessage.setLabel(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Error&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&#x000A;        errormessage.setText(e.toString());&#x000A;    }&#x000A;}&#x000A;</code></pre>
+            
+            <p>}
+            </pre></td>
+            </tr></table>
+            </code></p>
+            
+            <p>La aplicación está guardando siempre en el mismo archivo, por lo tanto después de la primera vez se va sobre escribir el audio capturado.</p>
+            
+            <p>Pueden encontrar mas información sobre el manejo de multimedia y archivos para J2ME  en los siguientes enlaces:</p>
+            
+            <ul>
+            <li><a href="http://java.sun.com/javame/reference/apis/jsr135/index.html">Mobile Media API (JSR-135) </a></li>
+            <li><a href="http://www.java-tips.org/java-me-tips/midp/how-to-access-local-file-systems-from-j2me-devices-using-fileconnectio-2.html">Ejemplo de manejo de archivos</a></li>
+            <li><a href="http://wiki.forum.nokia.com/index.php/JSR_75_File_connection_API">JSR 75 File connection API</a></li>
+            </ul>
+          </div>
+        </div>
         <div id='other-articles'>
-              <div class='older'>
-                <ul>
-                  <li>
-                    <h3>
-                      <a href='/2010/01/04/vpn_con_ssh.html' title='Creando una VPN para accesar artículos de las bases de datos de la Universidad.'>
-                        &laquo; Creando una VPN atrav&eacute;s de SSH
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2009/12/19/creando_sitio.html' title='Creación de sitio web usando Nanoc'>
-                        &laquo; Creando mi Sitio Web
-                      </a>
-                    </h3>
-                  </li>
-                </ul>
-              </div>
-              <div class='newer'>
-                <ul>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
-                        Desarrollo de aplicaciones móviles &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/24/intro_android.html' title='Introduciendo Android, el SO para móviles de Google'>
-                        Introducción a Android &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
-                        Flyway, migración de bases de datos &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div class='older'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2010/01/04/vpn_con_ssh.html' title='Creando una VPN para accesar artículos de las bases de datos de la Universidad.'>
+                    &laquo; Creando una VPN atrav&eacute;s de SSH
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2009/12/19/creando_sitio.html' title='Creación de sitio web usando Nanoc'>
+                    &laquo; Creando mi Sitio Web
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+          <div class='newer'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
+                    Desarrollo de aplicaciones móviles &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2011/04/24/intro_android.html' title='Introduciendo Android, el SO para móviles de Google'>
+                    Introducción a Android &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
+                    Flyway, migración de bases de datos &raquo;
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class='clear'></div>
         <div class='comments'>
-              <div id='disqus_thread'></div>
-              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
-              <noscript>
-                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
-                  View the discussion thread
-                </a>
-              </noscript>
-            </div>
-            <!-- / disqus adds too much visual crap -->
-            <style type='text/css'>
-              .dsq-dc-logo {
-                display: none !important; }
-            </style>
+          <div id='disqus_thread'></div>
+          <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+          <noscript>
+            <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+              View the discussion thread
+            </a>
+          </noscript>
+        </div>
+        <!-- / disqus adds too much visual crap -->
+        <style type='text/css'>
+          <style>
+            .dsq-dc-logo {
+              display: none !important; }
+          </style>
+        </style>
       </div>
       <div class='clear'></div>
     </div>
-    <script type='text/javascript'>
-          //<![CDATA[
-            (function() {
-              var links = document.getElementsByTagName('a');
-              var query = '?';
-              for(var i = 0; i < links.length; i++) {
-                if(links[i].href.indexOf('#disqus_thread') >= 0) {
-                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-                }
-              }
-              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
-            })();
-          //]]>
-        </script>
-    <script type='text/javascript'>
-          //<![CDATA[
-            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
-            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-          //]]>
-        </script>
-        <script type='text/javascript'>
-          //<![CDATA[
-            try {
-              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-              piwikTracker.trackPageView();
-              piwikTracker.enableLinkTracking();
-            } catch( err ) {}
-          //]]>
-        </script>
-        <noscript>
-          <p>
-            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
-          </p>
-        </noscript>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0'>
+      </p>
+    </noscript>
   </body>
 </html>

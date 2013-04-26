@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Creando una VPN atrav&eacute;s de SSH</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content=', vpn, ssh' name='keywords' />
-    <meta content='Creando una VPN para accesar artículos de las bases de datos de la Universidad.' name='description' />
-    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', vpn, ssh' name='keywords'>
+    <meta content='Creando una VPN para accesar artículos de las bases de datos de la Universidad.' name='description'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div id='main'>
@@ -30,155 +30,151 @@
       <div class='clear'></div>
       <div id='content'>
         <div class='article'>
-              <h1>
-                Creando una VPN atrav&eacute;s de SSH
-              </h1>
-              <div class='meta'>
-                <ul class='tags'>
-                  <li>Jan 04, 2010</li>
-                  <li>
-                    &middot;
-                  </li>
-                  <li>
-                    <a href='/2010/01/04/vpn_con_ssh.html#disqus_thread'></a>
-                  </li>
-                  <li>&middot;</li>
-                  <li>
-                    <a class='tag' href='/tags/ssh/'>
-                      ssh
-                    </a>
-                  </li>
-                  <li>
-                    <a class='tag' href='/tags/vpn/'>
-                      vpn
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class='body'>
-                <p>Hoy he estado revisando parte de la bibliografía relacionada con mi tema de investigaci&oacute;n para mi maestría en la USP.  Generalmente las universidades tienen convenios con bases de datos para descargar o revisar bibliografía desde adentro de la institución, sin embargo, cuando uno esta en su casa y quiere hacer ese tipo de tareas se encuentra en frente de un gran problema, para descargar el archivo el PDF (o cualquier otro archivo) es necesario autenticarse (o sea suscribirse...).</p>
-                
-                <p>Una solución sencilla es utilizar el protocolo VPN de Microsoft para "simular" que se está dentro de la universidad, sin embargo, dicho el uso de dicho protocolo es fácil desde Windows, pero un poco mas difícil desde Linux.  Buscando un poco en la página de la <a href="http://www.usp.br">USP</a> encontré un buen post en cual se hace uso de SSH para crear la red privada y realizar las descargas desde el equipo local (en linux) sin problemas.</p>
-                
-                <p>En enlace al que me refiero es <a href="http://stoa.usp.br/oda/weblog/8113.html">http://stoa.usp.br/oda/weblog/8113.html</a>, está en portugués y aunque es fácil de entender a continuación está el paso-a-paso del procedimiento:</p>
-                
-                <h2>Requerimientos</h2>
-                
-                <ol>
-                <li>Solo hay un requerimiento, tener una cuenta en algún equipo (*NIX) con acceso SSH desde el exterior de la red de la institución</li>
-                </ol>
-                
-                
-                <h2>Procedimiento</h2>
-                
-                <ol>
-                <li>En una consola, ejecutar el comando: <em>$ ssh user@host -ND 8888 sleep 99999</em>, donde <strong>user</strong> es el nombre de usuario en el <strong>host</strong> en la institución
-                
-                <ul>
-                <li>-N: Inhibe la ejecución de comandos remotos</li>
-                <li>-D: Indica el puerto del proxy, este número puede cambiarse por cualquier otro que no esté ocupado. (Se recomienda no usar uno menor de 1024)</li>
-                <li>sleep 99999: Mantiene la conexión abierta</li>
-                </ul>
-                </li>
-                <li>Abrir firefox e ir a <em>Edit->Preferences->Advanced->Network->Settings</em> y seleccionar la opcion de <em>Manual proxy configuration</em>. Deje todo en blanco, menos el SOCKS Host en el que se coloca <em>localhost</em> con puerto <em>8888</em>.</li>
-                <li>Listo, para verificar el funcionamiento entre a <a href="www.showip.com">www.showip.com</a> y revise que la IP pertenece al mismo esquema que el de la institución, o simplemente intente bajar el archivo que necesitaba.</li>
-                </ol>
-                
-                
-                <h2>Agradecimientos</h2>
-                
-                <p>Gracias a <em>Oda</em> y su post <a href="http://stoa.usp.br/oda/weblog/8113.html">http://stoa.usp.br/oda/weblog/8113.html</a>.</p>
-              </div>
-            </div>
+          <h1>
+            Creando una VPN atrav&eacute;s de SSH
+          </h1>
+          <div class='meta'>
+            <ul class='tags'>
+              <li>Jan 04, 2010</li>
+              <li>
+                &middot;
+              </li>
+              <li>
+                <a href='/2010/01/04/vpn_con_ssh.html#disqus_thread'></a>
+              </li>
+              <li>&middot;</li>
+              <li>
+                <a class='tag' href='/tags/ssh/'>
+                  ssh
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/vpn/'>
+                  vpn
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class='body'>
+            <p>Hoy he estado revisando parte de la bibliografía relacionada con mi tema de investigaci&oacute;n para mi maestría en la USP.  Generalmente las universidades tienen convenios con bases de datos para descargar o revisar bibliografía desde adentro de la institución, sin embargo, cuando uno esta en su casa y quiere hacer ese tipo de tareas se encuentra en frente de un gran problema, para descargar el archivo el PDF (o cualquier otro archivo) es necesario autenticarse (o sea suscribirse...).</p>
+            
+            <p>Una solución sencilla es utilizar el protocolo VPN de Microsoft para "simular" que se está dentro de la universidad, sin embargo, dicho el uso de dicho protocolo es fácil desde Windows, pero un poco mas difícil desde Linux.  Buscando un poco en la página de la <a href="http://www.usp.br">USP</a> encontré un buen post en cual se hace uso de SSH para crear la red privada y realizar las descargas desde el equipo local (en linux) sin problemas.</p>
+            
+            <p>En enlace al que me refiero es <a href="http://stoa.usp.br/oda/weblog/8113.html">http://stoa.usp.br/oda/weblog/8113.html</a>, está en portugués y aunque es fácil de entender a continuación está el paso-a-paso del procedimiento:</p>
+            
+            <h2>Requerimientos</h2>
+            
+            <ol>
+            <li>Solo hay un requerimiento, tener una cuenta en algún equipo (*NIX) con acceso SSH desde el exterior de la red de la institución</li>
+            </ol>
+            
+            
+            <h2>Procedimiento</h2>
+            
+            <ol>
+            <li>En una consola, ejecutar el comando: <em>$ ssh user@host -ND 8888 sleep 99999</em>, donde <strong>user</strong> es el nombre de usuario en el <strong>host</strong> en la institución
+            
+            <ul>
+            <li>-N: Inhibe la ejecución de comandos remotos</li>
+            <li>-D: Indica el puerto del proxy, este número puede cambiarse por cualquier otro que no esté ocupado. (Se recomienda no usar uno menor de 1024)</li>
+            <li>sleep 99999: Mantiene la conexión abierta</li>
+            </ul>
+            </li>
+            <li>Abrir firefox e ir a <em>Edit->Preferences->Advanced->Network->Settings</em> y seleccionar la opcion de <em>Manual proxy configuration</em>. Deje todo en blanco, menos el SOCKS Host en el que se coloca <em>localhost</em> con puerto <em>8888</em>.</li>
+            <li>Listo, para verificar el funcionamiento entre a <a href="www.showip.com">www.showip.com</a> y revise que la IP pertenece al mismo esquema que el de la institución, o simplemente intente bajar el archivo que necesitaba.</li>
+            </ol>
+            
+            
+            <h2>Agradecimientos</h2>
+            
+            <p>Gracias a <em>Oda</em> y su post <a href="http://stoa.usp.br/oda/weblog/8113.html">http://stoa.usp.br/oda/weblog/8113.html</a>.</p>
+          </div>
+        </div>
         <div id='other-articles'>
-              <div class='older'>
-                <ul>
-                  <li>
-                    <h3>
-                      <a href='/2009/12/19/creando_sitio.html' title='Creación de sitio web usando Nanoc'>
-                        &laquo; Creando mi Sitio Web
-                      </a>
-                    </h3>
-                  </li>
-                </ul>
-              </div>
-              <div class='newer'>
-                <ul>
-                  <li>
-                    <h3>
-                      <a href='/2010/02/25/captura_audio_javame.html' title='Este es un ejemplo para la captura de audio con J2ME'>
-                        Captura de audio para Java ME &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
-                        Desarrollo de aplicaciones móviles &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/24/intro_android.html' title='Introduciendo Android, el SO para móviles de Google'>
-                        Introducción a Android &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div class='older'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2009/12/19/creando_sitio.html' title='Creación de sitio web usando Nanoc'>
+                    &laquo; Creando mi Sitio Web
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+          <div class='newer'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2010/02/25/captura_audio_javame.html' title='Este es un ejemplo para la captura de audio con J2ME'>
+                    Captura de audio para Java ME &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
+                    Desarrollo de aplicaciones móviles &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2011/04/24/intro_android.html' title='Introduciendo Android, el SO para móviles de Google'>
+                    Introducción a Android &raquo;
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class='clear'></div>
         <div class='comments'>
-              <div id='disqus_thread'></div>
-              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
-              <noscript>
-                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
-                  View the discussion thread
-                </a>
-              </noscript>
-            </div>
-            <!-- / disqus adds too much visual crap -->
-            <style type='text/css'>
-              .dsq-dc-logo {
-                display: none !important; }
-            </style>
+          <div id='disqus_thread'></div>
+          <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+          <noscript>
+            <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+              View the discussion thread
+            </a>
+          </noscript>
+        </div>
+        <!-- / disqus adds too much visual crap -->
+        <style type='text/css'>
+          <style>
+            .dsq-dc-logo {
+              display: none !important; }
+          </style>
+        </style>
       </div>
       <div class='clear'></div>
     </div>
-    <script type='text/javascript'>
-          //<![CDATA[
-            (function() {
-              var links = document.getElementsByTagName('a');
-              var query = '?';
-              for(var i = 0; i < links.length; i++) {
-                if(links[i].href.indexOf('#disqus_thread') >= 0) {
-                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-                }
-              }
-              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
-            })();
-          //]]>
-        </script>
-    <script type='text/javascript'>
-          //<![CDATA[
-            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
-            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-          //]]>
-        </script>
-        <script type='text/javascript'>
-          //<![CDATA[
-            try {
-              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-              piwikTracker.trackPageView();
-              piwikTracker.enableLinkTracking();
-            } catch( err ) {}
-          //]]>
-        </script>
-        <noscript>
-          <p>
-            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
-          </p>
-        </noscript>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0'>
+      </p>
+    </noscript>
   </body>
 </html>

@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Creando mi Sitio Web</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content=', nanoc, web' name='keywords' />
-    <meta content='Creación de sitio web usando Nanoc' name='description' />
-    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css' />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', nanoc, web' name='keywords'>
+    <meta content='Creación de sitio web usando Nanoc' name='description'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div id='main'>
@@ -30,259 +30,264 @@
       <div class='clear'></div>
       <div id='content'>
         <div class='article'>
-              <h1>
-                Creando mi Sitio Web
-              </h1>
-              <div class='meta'>
-                <ul class='tags'>
-                  <li>Dec 19, 2009</li>
-                  <li>
-                    &middot;
-                  </li>
-                  <li>
-                    <a href='/2009/12/19/creando_sitio.html#disqus_thread'></a>
-                  </li>
-                  <li>&middot;</li>
-                  <li>
-                    <a class='tag' href='/tags/nanoc/'>
-                      nanoc
-                    </a>
-                  </li>
-                  <li>
-                    <a class='tag' href='/tags/web/'>
-                      web
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class='body'>
-                <p>Hola, por fin he decido iniciar formalmente mi sitio web. Ya habia hecho un par de intentos con servicios gratuitos de hosting, sin embargo, siempre exisitian limitaciones en este tipo de servicios, como restriccion de contenidos, estilos, derechos reservados, etc.  Despúes de una gran busqueda me he decidido por usar una página web estática, pero generada automáticamente por una herramienta que me permite manejar agilmente el diseño y recursos, y dedicarme a lo que mas me interesa, el contenido.</p>
-                
-                <p>He decido dedicar este primer post al todo el procedimiento que llevé a cabo para poner mi sitio web en el aire. En una vista rapida, lo que basicamente hice fue buscar un diseño (admito que soy malo con ccs), buscar y aprender a usar (todavia estoy aprendiendo) una herramienta para generación de sitios web estaticos, personalizar mi sitio y finalmente, ponerlo en la Web.</p>
-                
-                <p>Vale la pena aclarar antes de comenzar que este no es un tutorial paso a paso y no se busca aprofundar mucho en cada tema, simplemente es un recuento del trabajo realizado para alcanzar mi objetivo. En el caso que sea necesária alguna aclaración, por favor escribanme que con mucho gusto y en el menor tiempo posible responderé.</p>
-                
-                <h2>Buscando un diseño para mi página</h2>
-                
-                <p>Hay que confesar que esto ha sido lo mas fácil del proceso. Simplemente hice una exploración por varios portales que ofrecen plantillas para sitios web.  Los sitios que revisé son los siguientes:</p>
-                
-                <ul>
-                <li><a href="http://www.freecsstemplates.org/">Free CSS Templates</a></li>
-                <li><a href="http://www.oswd.org/">Open Source Web Desig</a></li>
-                <li><a href="http://opensourcetemplates.org/">Open Source Templates</a></li>
-                <li><a href="http://www.opendesigns.org/">OpenDesigns</a></li>
-                <li><a href="http://www.openwebdesign.org/">Open Web Designs</a></li>
-                </ul>
-                
-                
-                <p>Finalmente y después de probar muchos diseños decidí usar <a href="http://www.freecsstemplates.org/preview/terrafirma2">TerraFirma<sup>2</sup></a>, espero haya sido una buena elección.</p>
-                
-                <h2>Generación de sitios web estáticos con Nanoc</h2>
-                
-                <p>Principalmente he optado por usar una página estatica por el hecho que puedo tener el control sobre todo el contenido directamente en los archivos, sin depender de bases de datos, lenguajes de programación, etc. Existen varias opciones para diseñar y mantener un sitio web estático, por lo tanto, también hice una evaluación de algunos con el fin de usar el que mejor se ajustara a mis necesidades. Algunas de las opciones evaluadas fueron:</p>
-                
-                <ul>
-                <li>Editor simple de texto (ej, GEdit): tener una página completamente estatica, como se hacia a la "antigüita", usando archivos de texto, tags HTML, etc.</li>
-                <li>Editor de páginas HTML (ej, Bluefish): herramienta que permite desarrollar páginas web sin necesidad de tener conocimiento profundo sobre etiquetas HTML, simplemente escribiendo como en cualquier procesador de texto y la herramienta va traduciendo a HTML o lo que en este medio llaman de <em>WYSIWYG</em> (<em>W_hat </em>Y_ou <em>S_ee </em>I_s <em>W_hat </em>Y_ou _G_et).</li>
-                <li>Generador de páginas web estáticas: es una herramienta que permite administrar un sitio web estatico por medio de la generación de las páginas HTML a partir de archivos de texto (contenido) con pequeñas reglas de sintaxis, archivos de configuración (reglas de generación, aplicación de estilos) y si se quiere, plantillas y hojas de estilo para definir un diseño para la página. Generalmente estas herramientas utilizan un lenguage de programación sencillo para correr los scripts, como Python o Ruby. También es posible colocar código embebido en las paginas con el fin de generar contenido "semi-dinámico" durante la generación del sitio.</li>
-                </ul>
-                
-                
-                <p>En mi caso he seleccionado una herramienta que me permita tener control sobre el contenido de mi sitio, poder acceder directamente a cada archivo usando un editor de texto sencillo, que pueda configurar el diseño de la página en forma general y que pueda usar código embebido para generar contenido dinamico como indices, menús, entre otros. La herramienta elegida es <a href="http://nanoc.stoneship.org/">Nanoc</a>, un generador de sitios web estaticos que utiliza Ruby para compilar las páginas y con la cual puedo escribir en código Ruby, HTML, Markdown, Textile, Haml, entre otros. Otras opciones que revisé son:</p>
-                
-                <ul>
-                <li><a href="http://webby.rubyforge.org/">Webby</a></li>
-                <li><a href="http://webgen.rubyforge.org/">Webgen</a></li>
-                <li><a href="http://staticmatic.rubyforge.org/">StaticMatic</a></li>
-                </ul>
-                
-                
-                <p>En las siguientes secciones encontrarán un resumen las acciones realizadas para tener el sitio web listo para colocar en un servidor web.</p>
-                
-                <hr />
-                
-                <h2>Descripción de mi ambiente de trabajo y requerimientos</h2>
-                
-                <h3>Ambiente de trabajo</h3>
-                
-                <ul>
-                <li>Hardware (no muy importante): Amd Atlhon 64 3400, 1Gb Ram</li>
-                <li>Sistema Operativo: Ubuntu 9.0.4 X86</li>
-                <li>Editor de texto: Gedit</li>
-                </ul>
-                
-                
-                <h3>Requerimientos</h3>
-                
-                <ul>
-                <li>Ruby 1.8 o superior (Creo que ya viene instalado con Ubuntu</li>
-                <li>Rubygems: Administrador de paquetes para Ruby</li>
-                </ul>
-                
-                
-                <hr />
-                
-                <h2>Instalación de Nanoc</h2>
-                
-                <p>La instalación de <em>nanoc</em> es muy sencilla despues que ya se tiene Ruby, yo he siguido el <a href="http://nanoc.stoneship.org/tutorial/">tutorial</a> del sitio oficial de nanoc. En una consola correr el siguiente comando:</p>
-                
-                <pre><code>sudo gem install nanoc3</code></pre>
-                
-                
-                <p>Ahora, yo he decidido usar <em>Markdown</em> para poder escribir el contenido en forma simple dejando para el compilador la generación de la mayoria de etiquetas HTML. Corremos el siguiente comando en la consola para instalarlo:</p>
-                
-                <pre><code>sudo gem install BlueCloth</code></pre>
-                
-                
-                <h3>Error en Rubygems de Ubuntu</h3>
-                
-                <p>Normalmente cuando es instalado un paquete para Ruby usando Gems es posible acceder directamente a los nuevos comandos usando la consola, sin embargo, en Ubuntu 9.0.4 no es posible encontrar el comando <code>nanoc</code> en la consola. Para corregir este problema rapidamente simplemente se pega a la variable de entorno <em>PATH</em> la ruta de los binarios instalados com Gems. Para esto puede correrse el comando siguiente:</p>
-                
-                <pre><code>export PATH=$PATH:/var/lib/gems/1.8/bin</code></pre>
-                
-                
-                <p>Esta solución solo es temporal, cuando sea cerrada la consola o se abra una diferente de nuevo no sera posible acceder a estos comandos. Una solución definitiva podria ser colocar este comando en el archivo <em>.profile</em> en el home del usuario o en <em>/etc/profile</em> (con permisos de root)</p>
-                
-                <hr />
-                
-                <h2>Creación y configuración del Sitio Web</h2>
-                
-                <p>Creamos el sitio con:</p>
-                
-                <pre><code>nanoc3 create_site sitename&#x000A;</code></pre>
-                
-                <p>Este comando genera la siguiente salida:</p>
-                
-                <pre><code>create  config.yaml&#x000A;create  Rakefile&#x000A;create  Rules&#x000A;create  content/index.yaml&#x000A;create  content/index.html&#x000A;create  layouts/default.yaml&#x000A;create  layouts/default.html&#x000A;</code></pre>
-                
-                <h3>Configuración del estilo</h3>
-                
-                <p>El archivo <em>layouts/default.html</em> contiene el diseño básico de todas las páginas y la organización de su contenido</p>
-                
-                <p>Editamos el archivo <em>layouts/default.html</em> con el diseño del archivo HTML de <em>TerraFirma<sup>2</sup></em>, en otras palabras, se coloca todo el contenido del archivo HTML del estilo, se elimina el contenido no deseado, se coloca el título que va a tener todas las paginas, asi como el el lugar donde se va a desplegar el contenido de las páginas. A continuación un pequeño fragmento del archivo:</p>
-                
-                <p><code class="html"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt>9<tt>&#x000A;</tt><strong>10</strong><tt>&#x000A;</tt>11<tt>&#x000A;</tt>12<tt>&#x000A;</tt>13<tt>&#x000A;</tt>14<tt>&#x000A;</tt>15<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"><tt>&#x000A;</tt><span style="color:#34b">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;html</span> <span style="color:#007">xmlns</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">http://www.w3.org/1999/xhtml</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;head&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;meta</span> <span style="color:#007">http-equiv</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">Content-Type</span><span style="color:#710">&quot;</span></span> <span style="color:#007">content</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">text/html; charset=utf-8</span><span style="color:#710">&quot;</span></span> <span style="color:#070">/&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;title&gt;</span>Miguel Triana - Creando mi Sitio Web<span style="color:#070">&lt;/title&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;link</span> <span style="color:#007">rel</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">stylesheet</span><span style="color:#710">&quot;</span></span> <span style="color:#007">type</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">text/css</span><span style="color:#710">&quot;</span></span> <span style="color:#007">href</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">/style.css</span><span style="color:#710">&quot;</span></span> <span style="color:#007">media</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">screen</span><span style="color:#710">&quot;</span></span> <span style="color:#070">/&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;/head&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;body&gt;</span><tt>&#x000A;</tt><span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">wrapper</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>    <span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">header</span><span style="color:#710">&quot;</span></span> <span style="color:#007">class</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">container</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>        <span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">logo</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>            <span style="color:#070">&lt;h1&gt;</span><span style="color:#070">&lt;a</span> <span style="color:#007">href</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">#</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span>Edwin Miguel<span style="color:#070">&lt;/a&gt;</span><span style="color:#070">&lt;/h1&gt;</span><tt>&#x000A;</tt>            <span style="color:#070">&lt;p&gt;</span>Página personal<span style="color:#070">&lt;/p&gt;</span><tt>&#x000A;</tt>...<tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
-                
-                <p>El comando <strong>&lt;%= @item[:title] %&gt;</strong> nos permite cambiar el título de la página dependiendo del archivo que está siendo generada.</p>
-                
-                <p><code class="html"><table class="CodeRay"><tr>&#x000A;  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>&#x000A;</tt>2<tt>&#x000A;</tt>3<tt>&#x000A;</tt>4<tt>&#x000A;</tt>5<tt>&#x000A;</tt>6<tt>&#x000A;</tt>7<tt>&#x000A;</tt>8<tt>&#x000A;</tt>9<tt>&#x000A;</tt></pre></td>&#x000A;  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"><tt>&#x000A;</tt>        <span style="color:#070">&lt;/div&gt;</span><tt>&#x000A;</tt>    <span style="color:#070">&lt;/div&gt;</span><tt>&#x000A;</tt>    <span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">page</span><span style="color:#710">&quot;</span></span> <span style="color:#007">class</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">container</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>        <span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">content</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>         <span style="color:#F00;background-color:#FAA">&lt;</span> %= yield % <span style="color:#F00;background-color:#FAA">&gt;</span> //Without spaces between % and <span style="color:#F00;background-color:#FAA">&lt;</span> or <span style="color:#F00;background-color:#FAA">&gt;</span><tt>&#x000A;</tt>        <span style="color:#070">&lt;/div&gt;</span><tt>&#x000A;</tt>        <span style="color:#070">&lt;div</span> <span style="color:#007">id</span>=<span style="background-color:#fff0f0;color:#D20"><span style="color:#710">&quot;</span><span style="">sidebar</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span><tt>&#x000A;</tt>            <span style="color:#070">&lt;ul&gt;</span><tt>&#x000A;</tt></pre></td>&#x000A;</tr></table></code></p>
-                
-                <p>En este caso, <strong>&lt;%= yield %&gt;</strong> nos permite colocar el contenido del archivo procesado en esta parte de la página.</p>
-                
-                <p>El archivo <em>layouts/default.yaml</em> tiene parametros de configuración, si embargo, en este momento no tiene ninguna configuración.</p>
-                
-                <h4>Archivos de estilo</h4>
-                
-                <p>El directorio <em>images</em> y el archivo <em>style.css</em> se copia en el directorio <em>output/</em> y se reemplazan las imágenes de presentación y de perfil. El directorio <em>output/</em> es donde es colocado el resultado de la generación de la página web, es decir, este directorio va a contener nuestro sitio web listo para colocar en el servidor web.</p>
-                
-                <h3>Organización del Sitio</h3>
-                
-                <p>Inicialmente el sitio va a tener una página inicial con un mensaje de bienvenida, el parrafo inicial de los cinco últimos articulos, una página <em>posts</em> con todos los articulos y una páginca por cada artículo publicado.  En esta parta seguí completamente el tutorial de <em>Starr Horne</em>, que puede ser encontrado <a href="http://starrhorne.com/posts/howto_build_a_blog_with_nanoc/">aquí</a>, por lo tanto queda de tarea revisar este sito que contiene el paso a paso para configurar el sitio como blog.</p>
-                
-                <hr />
-                
-                <h2>Compilación y Despliegue del Sitio</h2>
-                
-                <p>Durante la edición de la página y en la creación de contenido se hace necesario realizar pruebas con el fin de evaluar el resultado final antes de colocarlo en Internet. Un modo sencillo es usando el comando <code>nanoc3 compile</code> o en versión abraviada <code>nanoc3 co</code>, el cual genera el sitio completa en el directorio <em>output/</em> el cual puede ser colocado en un servidor web local para ser visualizado.  Nanoc ofrece la facilidad de realizar la compilación y despliegue automático en un servidor local por medio del comando <code>nanoc3 aco</code>, este comando inicia un servidor web en el puerto 3000 (con -p XXXX se configura el puerto) y compila el sitio cada vez que se hace un request desde el navegador web. <br /></p>
-                
-                <p>Para visualizar el sitio, use un navegador web (ej, Firefox) y entre a la URL http://localhost:3000/sitename, lá pagina web principal deberia desplegarse.</p>
-                
-                <hr />
-                
-                <h2>Agradecimentos y enlaces importantes</h2>
-                
-                <p>Para llevar a cabo la creación de mi sitio web he seguido los tutoriales de <em>nanoc</em> y de <em>Starr Horne</em>, asi como he utilizado <em>Markdown</em> para crear contenido en archivos de texto plano. Agradezco a todas las personas involucradas en el desarrollo de estos proyectos, por poner a disponibilidad del público en general estas herramientas que facilitan el desarrollo de sitios web, asi como brindar parte de su conocimiento y compartilo con todos. Tambien gracias a <em>nodethirtythree</em> quien disponibilizó la plantilla TerraFirma<sup>2</sup>.</p>
-                
-                <p>Enlaces:
-                * <a href="http://nanoc.stoneship.org/">Nanoc</a>
-                * <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
-                * <a href="http://www.freecsstemplates.org/preview/terrafirma2">TerraFirma<sup>2</sup></a>
-                * <a href="http://starrhorne.com/posts/howto_build_a_blog_with_nanoc/">Starr Horne</a>
-                * <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
-              </div>
-            </div>
+          <h1>
+            Creando mi Sitio Web
+          </h1>
+          <div class='meta'>
+            <ul class='tags'>
+              <li>Dec 19, 2009</li>
+              <li>
+                &middot;
+              </li>
+              <li>
+                <a href='/2009/12/19/creando_sitio.html#disqus_thread'></a>
+              </li>
+              <li>&middot;</li>
+              <li>
+                <a class='tag' href='/tags/nanoc/'>
+                  nanoc
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/web/'>
+                  web
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class='body'>
+            <p>Hola, por fin he decido iniciar formalmente mi sitio web. Ya habia hecho un par de intentos con servicios gratuitos de hosting, sin embargo, siempre exisitian limitaciones en este tipo de servicios, como restriccion de contenidos, estilos, derechos reservados, etc.  Despúes de una gran busqueda me he decidido por usar una página web estática, pero generada automáticamente por una herramienta que me permite manejar agilmente el diseño y recursos, y dedicarme a lo que mas me interesa, el contenido.</p>
+            
+            <p>He decido dedicar este primer post al todo el procedimiento que llevé a cabo para poner mi sitio web en el aire. En una vista rapida, lo que basicamente hice fue buscar un diseño (admito que soy malo con ccs), buscar y aprender a usar (todavia estoy aprendiendo) una herramienta para generación de sitios web estaticos, personalizar mi sitio y finalmente, ponerlo en la Web.</p>
+            
+            <p>Vale la pena aclarar antes de comenzar que este no es un tutorial paso a paso y no se busca aprofundar mucho en cada tema, simplemente es un recuento del trabajo realizado para alcanzar mi objetivo. En el caso que sea necesária alguna aclaración, por favor escribanme que con mucho gusto y en el menor tiempo posible responderé.</p>
+            
+            <h2>Buscando un diseño para mi página</h2>
+            
+            <p>Hay que confesar que esto ha sido lo mas fácil del proceso. Simplemente hice una exploración por varios portales que ofrecen plantillas para sitios web.  Los sitios que revisé son los siguientes:</p>
+            
+            <ul>
+            <li><a href="http://www.freecsstemplates.org/">Free CSS Templates</a></li>
+            <li><a href="http://www.oswd.org/">Open Source Web Desig</a></li>
+            <li><a href="http://opensourcetemplates.org/">Open Source Templates</a></li>
+            <li><a href="http://www.opendesigns.org/">OpenDesigns</a></li>
+            <li><a href="http://www.openwebdesign.org/">Open Web Designs</a></li>
+            </ul>
+            
+            
+            <p>Finalmente y después de probar muchos diseños decidí usar <a href="http://www.freecsstemplates.org/preview/terrafirma2">TerraFirma<sup>2</sup></a>, espero haya sido una buena elección.</p>
+            
+            <h2>Generación de sitios web estáticos con Nanoc</h2>
+            
+            <p>Principalmente he optado por usar una página estatica por el hecho que puedo tener el control sobre todo el contenido directamente en los archivos, sin depender de bases de datos, lenguajes de programación, etc. Existen varias opciones para diseñar y mantener un sitio web estático, por lo tanto, también hice una evaluación de algunos con el fin de usar el que mejor se ajustara a mis necesidades. Algunas de las opciones evaluadas fueron:</p>
+            
+            <ul>
+            <li>Editor simple de texto (ej, GEdit): tener una página completamente estatica, como se hacia a la "antigüita", usando archivos de texto, tags HTML, etc.</li>
+            <li>Editor de páginas HTML (ej, Bluefish): herramienta que permite desarrollar páginas web sin necesidad de tener conocimiento profundo sobre etiquetas HTML, simplemente escribiendo como en cualquier procesador de texto y la herramienta va traduciendo a HTML o lo que en este medio llaman de <em>WYSIWYG</em> (<em>W_hat </em>Y_ou <em>S_ee </em>I_s <em>W_hat </em>Y_ou _G_et).</li>
+            <li>Generador de páginas web estáticas: es una herramienta que permite administrar un sitio web estatico por medio de la generación de las páginas HTML a partir de archivos de texto (contenido) con pequeñas reglas de sintaxis, archivos de configuración (reglas de generación, aplicación de estilos) y si se quiere, plantillas y hojas de estilo para definir un diseño para la página. Generalmente estas herramientas utilizan un lenguage de programación sencillo para correr los scripts, como Python o Ruby. También es posible colocar código embebido en las paginas con el fin de generar contenido "semi-dinámico" durante la generación del sitio.</li>
+            </ul>
+            
+            
+            <p>En mi caso he seleccionado una herramienta que me permita tener control sobre el contenido de mi sitio, poder acceder directamente a cada archivo usando un editor de texto sencillo, que pueda configurar el diseño de la página en forma general y que pueda usar código embebido para generar contenido dinamico como indices, menús, entre otros. La herramienta elegida es <a href="http://nanoc.stoneship.org/">Nanoc</a>, un generador de sitios web estaticos que utiliza Ruby para compilar las páginas y con la cual puedo escribir en código Ruby, HTML, Markdown, Textile, Haml, entre otros. Otras opciones que revisé son:</p>
+            
+            <ul>
+            <li><a href="http://webby.rubyforge.org/">Webby</a></li>
+            <li><a href="http://webgen.rubyforge.org/">Webgen</a></li>
+            <li><a href="http://staticmatic.rubyforge.org/">StaticMatic</a></li>
+            </ul>
+            
+            
+            <p>En las siguientes secciones encontrarán un resumen las acciones realizadas para tener el sitio web listo para colocar en un servidor web.</p>
+            
+            <hr />
+            
+            <h2>Descripción de mi ambiente de trabajo y requerimientos</h2>
+            
+            <h3>Ambiente de trabajo</h3>
+            
+            <ul>
+            <li>Hardware (no muy importante): Amd Atlhon 64 3400, 1Gb Ram</li>
+            <li>Sistema Operativo: Ubuntu 9.0.4 X86</li>
+            <li>Editor de texto: Gedit</li>
+            </ul>
+            
+            
+            <h3>Requerimientos</h3>
+            
+            <ul>
+            <li>Ruby 1.8 o superior (Creo que ya viene instalado con Ubuntu</li>
+            <li>Rubygems: Administrador de paquetes para Ruby</li>
+            </ul>
+            
+            
+            <hr />
+            
+            <h2>Instalación de Nanoc</h2>
+            
+            <p>La instalación de <em>nanoc</em> es muy sencilla despues que ya se tiene Ruby, yo he siguido el <a href="http://nanoc.stoneship.org/tutorial/">tutorial</a> del sitio oficial de nanoc. En una consola correr el siguiente comando:</p>
+            
+            <pre><code>sudo gem install nanoc3</code></pre>
+            
+            
+            <p>Ahora, yo he decidido usar <em>Markdown</em> para poder escribir el contenido en forma simple dejando para el compilador la generación de la mayoria de etiquetas HTML. Corremos el siguiente comando en la consola para instalarlo:</p>
+            
+            <pre><code>sudo gem install BlueCloth</code></pre>
+            
+            
+            <h3>Error en Rubygems de Ubuntu</h3>
+            
+            <p>Normalmente cuando es instalado un paquete para Ruby usando Gems es posible acceder directamente a los nuevos comandos usando la consola, sin embargo, en Ubuntu 9.0.4 no es posible encontrar el comando <code>nanoc</code> en la consola. Para corregir este problema rapidamente simplemente se pega a la variable de entorno <em>PATH</em> la ruta de los binarios instalados com Gems. Para esto puede correrse el comando siguiente:</p>
+            
+            <pre><code>export PATH=$PATH:/var/lib/gems/1.8/bin</code></pre>
+            
+            
+            <p>Esta solución solo es temporal, cuando sea cerrada la consola o se abra una diferente de nuevo no sera posible acceder a estos comandos. Una solución definitiva podria ser colocar este comando en el archivo <em>.profile</em> en el home del usuario o en <em>/etc/profile</em> (con permisos de root)</p>
+            
+            <hr />
+            
+            <h2>Creación y configuración del Sitio Web</h2>
+            
+            <p>Creamos el sitio con:</p>
+            
+            <pre><code>nanoc3 create_site sitename&#x000A;</code></pre>
+            
+            <p>Este comando genera la siguiente salida:</p>
+            
+            <pre><code>create  config.yaml&#x000A;create  Rakefile&#x000A;create  Rules&#x000A;create  content/index.yaml&#x000A;create  content/index.html&#x000A;create  layouts/default.yaml&#x000A;create  layouts/default.html&#x000A;</code></pre>
+            
+            <h3>Configuración del estilo</h3>
+            
+            <p>El archivo <em>layouts/default.html</em> contiene el diseño básico de todas las páginas y la organización de su contenido</p>
+            
+            <p>Editamos el archivo <em>layouts/default.html</em> con el diseño del archivo HTML de <em>TerraFirma<sup>2</sup></em>, en otras palabras, se coloca todo el contenido del archivo HTML del estilo, se elimina el contenido no deseado, se coloca el título que va a tener todas las paginas, asi como el el lugar donde se va a desplegar el contenido de las páginas. A continuación un pequeño fragmento del archivo:</p>
+            
+            <p><code class="html"><table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="#n1" name="n1">1</a>&#x000A;<a href="#n2" name="n2">2</a>&#x000A;<a href="#n3" name="n3">3</a>&#x000A;<a href="#n4" name="n4">4</a>&#x000A;<a href="#n5" name="n5">5</a>&#x000A;<a href="#n6" name="n6">6</a>&#x000A;<a href="#n7" name="n7">7</a>&#x000A;<a href="#n8" name="n8">8</a>&#x000A;<a href="#n9" name="n9">9</a>&#x000A;<strong><a href="#n10" name="n10">10</a></strong>&#x000A;<a href="#n11" name="n11">11</a>&#x000A;<a href="#n12" name="n12">12</a>&#x000A;<a href="#n13" name="n13">13</a>&#x000A;<a href="#n14" name="n14">14</a>&#x000A;<a href="#n15" name="n15">15</a>&#x000A;</pre></td>&#x000A;  <td class="code"><pre>&#x000A;<span style="color:#34b">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span>&#x000A;<span style="color:#070">&lt;html</span> <span style="color:#b48">xmlns</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">http://www.w3.org/1999/xhtml</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span>&#x000A;<span style="color:#070">&lt;head&gt;</span>&#x000A;<span style="color:#070">&lt;meta</span> <span style="color:#b48">http-equiv</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Content-Type</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">content</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">text/html; charset=utf-8</span><span style="color:#710">&quot;</span></span> <span style="color:#070">/&gt;</span>&#x000A;<span style="color:#070">&lt;title&gt;</span>Miguel Triana - Creando mi Sitio Web<span style="color:#070">&lt;/title&gt;</span>&#x000A;<span style="color:#070">&lt;link</span> <span style="color:#b48">rel</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">stylesheet</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">text/css</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">href</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/style.css</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">media</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">screen</span><span style="color:#710">&quot;</span></span> <span style="color:#070">/&gt;</span>&#x000A;<span style="color:#070">&lt;/head&gt;</span>&#x000A;<span style="color:#070">&lt;body&gt;</span>&#x000A;<span style="color:#070">&lt;div</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">wrapper</span><span style="color:#710">&quot;</span></span><span style="color:#070">&gt;</span></p>&#x000A;&#x000A;<pre><code>&lt;span style="color:#070"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#b48"&gt;id&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;header&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; &lt;span style="color:#b48"&gt;class&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;container&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;&#x000A;    &lt;span style="color:#070"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#b48"&gt;id&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;logo&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;&#x000A;        &lt;span style="color:#070"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;lt;a&lt;/span&gt; &lt;span style="color:#b48"&gt;href&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;#&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;Edwin Miguel&lt;span style="color:#070"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;&#x000A;        &lt;span style="color:#070"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Página personal&lt;span style="color:#070"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;</code></pre>
+            
+            <p>...
+            </pre></td>
+            </tr></table>
+            </code></p>
+            
+            <p>El comando <strong>&lt;%= @item[:title] %&gt;</strong> nos permite cambiar el título de la página dependiendo del archivo que está siendo generada.</p>
+            
+            <p><code class="html"><table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="#n1" name="n1">1</a>&#x000A;<a href="#n2" name="n2">2</a>&#x000A;<a href="#n3" name="n3">3</a>&#x000A;<a href="#n4" name="n4">4</a>&#x000A;<a href="#n5" name="n5">5</a>&#x000A;<a href="#n6" name="n6">6</a>&#x000A;<a href="#n7" name="n7">7</a>&#x000A;<a href="#n8" name="n8">8</a>&#x000A;<a href="#n9" name="n9">9</a>&#x000A;</pre></td>&#x000A;  <td class="code"><pre></p>&#x000A;&#x000A;<pre><code>    &lt;span style="color:#070"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&#x000A;&lt;span style="color:#070"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&#x000A;&lt;span style="color:#070"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#b48"&gt;id&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;page&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; &lt;span style="color:#b48"&gt;class&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;container&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;&#x000A;    &lt;span style="color:#070"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#b48"&gt;id&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;content&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;&#x000A;     &lt;span style="color:#F00;background-color:#FAA"&gt;&amp;lt;&lt;/span&gt; %= yield % &lt;span style="color:#F00;background-color:#FAA"&gt;&amp;gt;&lt;/span&gt; //Without spaces between % and &lt;span style="color:#F00;background-color:#FAA"&gt;&amp;lt;&lt;/span&gt; or &lt;span style="color:#F00;background-color:#FAA"&gt;&amp;gt;&lt;/span&gt;&#x000A;    &lt;span style="color:#070"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&#x000A;    &lt;span style="color:#070"&gt;&amp;lt;div&lt;/span&gt; &lt;span style="color:#b48"&gt;id&lt;/span&gt;=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;sidebar&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;span style="color:#070"&gt;&amp;gt;&lt;/span&gt;&#x000A;        &lt;span style="color:#070"&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;</code></pre>
+            
+            <p></pre></td>
+            </tr></table>
+            </code></p>
+            
+            <p>En este caso, <strong>&lt;%= yield %&gt;</strong> nos permite colocar el contenido del archivo procesado en esta parte de la página.</p>
+            
+            <p>El archivo <em>layouts/default.yaml</em> tiene parametros de configuración, si embargo, en este momento no tiene ninguna configuración.</p>
+            
+            <h4>Archivos de estilo</h4>
+            
+            <p>El directorio <em>images</em> y el archivo <em>style.css</em> se copia en el directorio <em>output/</em> y se reemplazan las imágenes de presentación y de perfil. El directorio <em>output/</em> es donde es colocado el resultado de la generación de la página web, es decir, este directorio va a contener nuestro sitio web listo para colocar en el servidor web.</p>
+            
+            <h3>Organización del Sitio</h3>
+            
+            <p>Inicialmente el sitio va a tener una página inicial con un mensaje de bienvenida, el parrafo inicial de los cinco últimos articulos, una página <em>posts</em> con todos los articulos y una páginca por cada artículo publicado.  En esta parta seguí completamente el tutorial de <em>Starr Horne</em>, que puede ser encontrado <a href="http://starrhorne.com/posts/howto_build_a_blog_with_nanoc/">aquí</a>, por lo tanto queda de tarea revisar este sito que contiene el paso a paso para configurar el sitio como blog.</p>
+            
+            <hr />
+            
+            <h2>Compilación y Despliegue del Sitio</h2>
+            
+            <p>Durante la edición de la página y en la creación de contenido se hace necesario realizar pruebas con el fin de evaluar el resultado final antes de colocarlo en Internet. Un modo sencillo es usando el comando <code>nanoc3 compile</code> o en versión abraviada <code>nanoc3 co</code>, el cual genera el sitio completa en el directorio <em>output/</em> el cual puede ser colocado en un servidor web local para ser visualizado.  Nanoc ofrece la facilidad de realizar la compilación y despliegue automático en un servidor local por medio del comando <code>nanoc3 aco</code>, este comando inicia un servidor web en el puerto 3000 (con -p XXXX se configura el puerto) y compila el sitio cada vez que se hace un request desde el navegador web. <br /></p>
+            
+            <p>Para visualizar el sitio, use un navegador web (ej, Firefox) y entre a la URL http://localhost:3000/sitename, lá pagina web principal deberia desplegarse.</p>
+            
+            <hr />
+            
+            <h2>Agradecimentos y enlaces importantes</h2>
+            
+            <p>Para llevar a cabo la creación de mi sitio web he seguido los tutoriales de <em>nanoc</em> y de <em>Starr Horne</em>, asi como he utilizado <em>Markdown</em> para crear contenido en archivos de texto plano. Agradezco a todas las personas involucradas en el desarrollo de estos proyectos, por poner a disponibilidad del público en general estas herramientas que facilitan el desarrollo de sitios web, asi como brindar parte de su conocimiento y compartilo con todos. Tambien gracias a <em>nodethirtythree</em> quien disponibilizó la plantilla TerraFirma<sup>2</sup>.</p>
+            
+            <p>Enlaces:
+            * <a href="http://nanoc.stoneship.org/">Nanoc</a>
+            * <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
+            * <a href="http://www.freecsstemplates.org/preview/terrafirma2">TerraFirma<sup>2</sup></a>
+            * <a href="http://starrhorne.com/posts/howto_build_a_blog_with_nanoc/">Starr Horne</a>
+            * <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+          </div>
+        </div>
         <div id='other-articles'>
-              <div class='older'>
-                <ul>
-                </ul>
-              </div>
-              <div class='newer'>
-                <ul>
-                  <li>
-                    <h3>
-                      <a href='/2010/01/04/vpn_con_ssh.html' title='Creando una VPN para accesar artículos de las bases de datos de la Universidad.'>
-                        Creando una VPN atrav&eacute;s de SSH &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2010/02/25/captura_audio_javame.html' title='Este es un ejemplo para la captura de audio con J2ME'>
-                        Captura de audio para Java ME &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                  <li>
-                    <h3>
-                      <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
-                        Desarrollo de aplicaciones móviles &raquo;
-                      </a>
-                    </h3>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div class='older'>
+            <ul>
+            </ul>
+          </div>
+          <div class='newer'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2010/01/04/vpn_con_ssh.html' title='Creando una VPN para accesar artículos de las bases de datos de la Universidad.'>
+                    Creando una VPN atrav&eacute;s de SSH &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2010/02/25/captura_audio_javame.html' title='Este es un ejemplo para la captura de audio con J2ME'>
+                    Captura de audio para Java ME &raquo;
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2011/04/04/tips_mobile.html' title='Tips para desarrollo de aplicaciones móviles.'>
+                    Desarrollo de aplicaciones móviles &raquo;
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class='clear'></div>
         <div class='comments'>
-              <div id='disqus_thread'></div>
-              <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
-              <noscript>
-                <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
-                  View the discussion thread
-                </a>
-              </noscript>
-            </div>
-            <!-- / disqus adds too much visual crap -->
-            <style type='text/css'>
-              .dsq-dc-logo {
-                display: none !important; }
-            </style>
+          <div id='disqus_thread'></div>
+          <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+          <noscript>
+            <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+              View the discussion thread
+            </a>
+          </noscript>
+        </div>
+        <!-- / disqus adds too much visual crap -->
+        <style type='text/css'>
+          <style>
+            .dsq-dc-logo {
+              display: none !important; }
+          </style>
+        </style>
       </div>
       <div class='clear'></div>
     </div>
-    <script type='text/javascript'>
-          //<![CDATA[
-            (function() {
-              var links = document.getElementsByTagName('a');
-              var query = '?';
-              for(var i = 0; i < links.length; i++) {
-                if(links[i].href.indexOf('#disqus_thread') >= 0) {
-                  query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-                }
-              }
-              document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
-            })();
-          //]]>
-        </script>
-    <script type='text/javascript'>
-          //<![CDATA[
-            var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
-            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-          //]]>
-        </script>
-        <script type='text/javascript'>
-          //<![CDATA[
-            try {
-              var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-              piwikTracker.trackPageView();
-              piwikTracker.enableLinkTracking();
-            } catch( err ) {}
-          //]]>
-        </script>
-        <noscript>
-          <p>
-            <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0' />
-          </p>
-        </noscript>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0'>
+      </p>
+    </noscript>
   </body>
 </html>
