@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://leugim.co/</id>
-  <title>emtg.net78.net Syndication</title>
+  <title>leugim.co Syndication</title>
   <updated>2013-11-30T05:00:00Z</updated>
   <link rel="alternate" href="http://leugim.co/"/>
   <link rel="self" href="http://leugim.co/atom.xml"/>
   <author>
     <name>Miguel Triana</name>
-    <uri>http://www.emtg.net78.net</uri>
+    <uri>http://leugim.co</uri>
   </author>
   <entry>
     <id>tag:leugim.co,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
     <published>2013-11-30T05:00:00Z</published>
-    <updated>2013-12-02T03:41:07Z</updated>
+    <updated>2013-12-02T15:34:01Z</updated>
     <link rel="alternate" href="http://leugim.co/2013/11/30_jade_backbone.html"/>
-    <content type="html">&lt;p&gt;I like a lot &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
+    <content type="html">&lt;p&gt;I like &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; a lot for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
 
 &lt;h2&gt;The example&lt;/h2&gt;
 
