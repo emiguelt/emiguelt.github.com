@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://www.emtg.net78.net/</id>
+  <id>http://leugim.co/</id>
   <title>emtg.net78.net Syndication</title>
   <updated>2013-11-30T05:00:00Z</updated>
-  <link rel="alternate" href="http://www.emtg.net78.net/"/>
-  <link rel="self" href="http://www.emtg.net78.net/atom.xml"/>
+  <link rel="alternate" href="http://leugim.co/"/>
+  <link rel="self" href="http://leugim.co/atom.xml"/>
   <author>
     <name>Miguel Triana</name>
     <uri>http://www.emtg.net78.net</uri>
   </author>
   <entry>
-    <id>tag:www.emtg.net78.net,2013-11-30:/2013/11/30_jade_backbone.html</id>
+    <id>tag:leugim.co,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
     <published>2013-11-30T05:00:00Z</published>
     <updated>2013-12-02T03:41:07Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2013/11/30_jade_backbone.html"/>
+    <link rel="alternate" href="http://leugim.co/2013/11/30_jade_backbone.html"/>
     <content type="html">&lt;p&gt;I like a lot &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
 
 &lt;h2&gt;The example&lt;/h2&gt;
@@ -111,11 +111,11 @@ render: function(){
     <summary type="html">This is an example of Jade (runtime) integration with Backbone.js with RequireJS</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
+    <id>tag:leugim.co,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
     <title type="html">Resumen Spring - Parte 2</title>
     <published>2012-05-20T05:00:00Z</published>
     <updated>2012-06-09T19:21:21Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2012/05/20_Spring_summary_p2.html"/>
+    <link rel="alternate" href="http://leugim.co/2012/05/20_Spring_summary_p2.html"/>
     <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1&gt;Database&lt;/h1&gt;
@@ -328,11 +328,11 @@ public class MyObjectHbDao extends MyObjectDAO{
     <summary type="html">Resumen del Framework Spring - Segunda parte</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2012-04-08:/2012/04/08/spring_summary.html</id>
+    <id>tag:leugim.co,2012-04-08:/2012/04/08/spring_summary.html</id>
     <title type="html">Resumen Spring</title>
     <published>2012-04-08T05:00:00Z</published>
     <updated>2012-05-20T22:26:21Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2012/04/08/spring_summary.html"/>
+    <link rel="alternate" href="http://leugim.co/2012/04/08/spring_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1&gt;Spring&lt;/h1&gt;
@@ -721,11 +721,11 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
     <summary type="html">Resumen del Framework Spring</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2012-03-18:/2012/03/18/stripes_summary.html</id>
+    <id>tag:leugim.co,2012-03-18:/2012/03/18/stripes_summary.html</id>
     <title type="html">Resumen de Stripes</title>
     <published>2012-03-18T05:00:00Z</published>
     <updated>2012-04-08T16:12:00Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2012/03/18/stripes_summary.html"/>
+    <link rel="alternate" href="http://leugim.co/2012/03/18/stripes_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del material para desarrollo de aplicaciones web usando Stripes. Este resumen esta basado en el libro &lt;a href="http://pragprog.com/book/fdstr/stripes" target="_blank"&gt;&lt;em&gt;Stripes ...and Java Web Development Is Fun Again&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Durante el resumen, va a ser implementado un administrador de tareas (ToDo list).&lt;/p&gt;
@@ -875,11 +875,11 @@ Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;
     <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2011-10-21:/tips/cmds.html</id>
+    <id>tag:leugim.co,2011-10-21:/tips/cmds.html</id>
     <title type="html">Commands summary</title>
     <published>2011-10-21T05:00:00Z</published>
     <updated>2012-06-09T22:12:55Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/tips/cmds.html"/>
+    <link rel="alternate" href="http://leugim.co/tips/cmds.html"/>
     <content type="html">&lt;h1&gt;Commands reference for development&lt;/h1&gt;
 
 &lt;h2&gt;Maven&lt;/h2&gt;

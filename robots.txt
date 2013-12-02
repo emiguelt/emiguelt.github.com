@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /assets/
 
-Sitemap: http://www.emtg.net78.net/sitemap.xml
+Sitemap: http://leugim.co/sitemap.xml
