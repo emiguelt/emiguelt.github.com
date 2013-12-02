@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://www.emtg.net78.net/</id>
   <title>emtg.net78.net Syndication</title>
-  <updated>2012-05-20T03:00:00Z</updated>
+  <updated>2013-11-30T05:00:00Z</updated>
   <link rel="alternate" href="http://www.emtg.net78.net/"/>
   <link rel="self" href="http://www.emtg.net78.net/atom.xml"/>
   <author>
@@ -10,9 +10,110 @@
     <uri>http://www.emtg.net78.net</uri>
   </author>
   <entry>
+    <id>tag:www.emtg.net78.net,2013-11-30:/2013/11/30_jade_backbone.html</id>
+    <title type="html">Jade, Backbone.js and Require.js, a running example</title>
+    <published>2013-11-30T05:00:00Z</published>
+    <updated>2013-12-02T03:41:07Z</updated>
+    <link rel="alternate" href="http://www.emtg.net78.net/2013/11/30_jade_backbone.html"/>
+    <content type="html">&lt;p&gt;I like a lot &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
+
+&lt;h2&gt;The example&lt;/h2&gt;
+
+&lt;p&gt;The example is the typical TODO application. The original code is from the &lt;a href='http://addyosmani.github.io/backbone-fundamentals/#exercise-3-your-first-modular-backbone-requirejs-app' target='_blank'&gt;example 3&lt;/a&gt; of the book Developing Backbone.js (by Addy Osmani). The final code can be checked &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Configuring Jade&lt;/h2&gt;
+
+&lt;h3&gt;HTML generation&lt;/h3&gt;
+
+&lt;p&gt;The start page (&lt;em&gt;index.html&lt;/em&gt;) is generated with &lt;em&gt;Jade&lt;/em&gt; and the &lt;em&gt;index.jade&lt;/em&gt; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jade -P -o ./deploy ./app/index.jade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Jade templates on client-side&lt;/h3&gt;
+
+&lt;p&gt;There is a Jade browser-compatible version to compile the Jade templates on the cliente-side, but it is advisable to compile the jade files (as javascript) on the server-side and execute them on the browser. For this reason runtime.js to is used to merge the jade-compiled files.&lt;/p&gt;
+
+&lt;p&gt;Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so &lt;a href='https://github.com/mysociety/node-jade-amd' target:'_blank'&gt;node-jade-amd&lt;/a&gt; is used to generate require.js-compatible functions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jade-amd  --from app/templates --to deploy/js/templates
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Integrating Jade and Backbone.js with Require.js&lt;/h2&gt;
+
+&lt;p&gt;Underscore.js is the default Backbone templating engine. It is ovewritten by loading the runtime.js (from Jade) and calling the jade-compiled files in the module definitions.&lt;/p&gt;
+
+&lt;h3&gt;require.config&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;require.config({
+  shim: {
+    backbone:{
+      deps:['jquery'],
+      exports: 'Backbone'
+    }
+  },
+  paths:{
+    jquery: 'libs/jquery.min',
+    backbone: 'libs/backbone-min',
+    "backbone.localStorage": 'libs/backbone.localStorage',
+    underscore: 'libs/underscore-min',
+    jadeRuntime: 'libs/jadeRuntime',
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Backbone is not AMD-compatible, so Require's &lt;em&gt;shim&lt;/em&gt; feature is used&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;paths&lt;/em&gt; config says to require.js where required .js files are located (note that just external files are referenced)&lt;/li&gt;
+&lt;li&gt;runtime.js calls &lt;em&gt;define&lt;/em&gt; method from require.js without name, so it is configured with the file's name, so I renamed it to &lt;em&gt;jadeRuntime.js&lt;/em&gt; because it is the default name used with &lt;em&gt;node-jade-amd&lt;/em&gt; compiled templates.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Using jade-compile files in Backbone.js with Require.js&lt;/h3&gt;
+
+&lt;p&gt;Once the templates have been compiled on the server-side, now we can call them at the client_side via require.js on the module definition:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;define(['templates/my_jade_compiled_witout_dotjs'], function(templatesVariable){
+  template: templateVariable,...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;templateVariable&lt;/em&gt; is a function that receives the model to be merged with the template. It is no necessary  &lt;em&gt;jadeRuntime&lt;/em&gt; on the module definition since it is called  in the template compiled with &lt;em&gt;jade-amd&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then it could be invoked in the &lt;em&gt;render&lt;/em&gt; method to generate the HTML&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+render: function(){
+  this.$el.html(this.template(this.model.toJSON())); 
+  },
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Deploy&lt;/h3&gt;
+
+&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- deploy
+|- index.html //Jade-generated
+|- css
+|- js
+   |- collections // backbone
+   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+   |- models //backone
+   |- templates  // js jade-compiled with jade-amd
+   |- routers //backbone
+   |- views //backone
+   |- main.js // require config, app start
+   |- common.js //utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+    <summary type="html">This is an example of Jade (runtime) integration with Backbone.js with RequireJS</summary>
+  </entry>
+  <entry>
     <id>tag:www.emtg.net78.net,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
     <title type="html">Resumen Spring - Parte 2</title>
-    <published>2012-05-20T03:00:00Z</published>
+    <published>2012-05-20T05:00:00Z</published>
     <updated>2012-06-09T19:21:21Z</updated>
     <link rel="alternate" href="http://www.emtg.net78.net/2012/05/20_Spring_summary_p2.html"/>
     <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
@@ -229,7 +330,7 @@ public class MyObjectHbDao extends MyObjectDAO{
   <entry>
     <id>tag:www.emtg.net78.net,2012-04-08:/2012/04/08/spring_summary.html</id>
     <title type="html">Resumen Spring</title>
-    <published>2012-04-08T03:00:00Z</published>
+    <published>2012-04-08T05:00:00Z</published>
     <updated>2012-05-20T22:26:21Z</updated>
     <link rel="alternate" href="http://www.emtg.net78.net/2012/04/08/spring_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
@@ -622,7 +723,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
   <entry>
     <id>tag:www.emtg.net78.net,2012-03-18:/2012/03/18/stripes_summary.html</id>
     <title type="html">Resumen de Stripes</title>
-    <published>2012-03-18T03:00:00Z</published>
+    <published>2012-03-18T05:00:00Z</published>
     <updated>2012-04-08T16:12:00Z</updated>
     <link rel="alternate" href="http://www.emtg.net78.net/2012/03/18/stripes_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del material para desarrollo de aplicaciones web usando Stripes. Este resumen esta basado en el libro &lt;a href="http://pragprog.com/book/fdstr/stripes" target="_blank"&gt;&lt;em&gt;Stripes ...and Java Web Development Is Fun Again&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -774,547 +875,75 @@ Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;
     <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
   </entry>
   <entry>
-    <id>tag:www.emtg.net78.net,2011-10-21:/2011/10/21/cassandra_cli.html</id>
-    <title type="html">Usando Cassandra_CLI (Básico)</title>
-    <published>2011-10-21T02:00:00Z</published>
-    <updated>2011-10-25T01:46:47Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2011/10/21/cassandra_cli.html"/>
-    <content type="html">&lt;p&gt;Cassandra es un gestor de bases de datos distribuidas altamente escalable basado en NoSQL (mas info en: http://wiki.apache.org/cassandra).
-Este post presenta el uso básico de la consola de definición y manipulación de datos &lt;em&gt;cassandra_cli&lt;/em&gt;. Se asume conocimientos básicos de Cassandra y de su modelo de datos.&lt;/p&gt;
+    <id>tag:www.emtg.net78.net,2011-10-21:/tips/cmds.html</id>
+    <title type="html">Commands summary</title>
+    <published>2011-10-21T05:00:00Z</published>
+    <updated>2012-06-09T22:12:55Z</updated>
+    <link rel="alternate" href="http://www.emtg.net78.net/tips/cmds.html"/>
+    <content type="html">&lt;h1&gt;Commands reference for development&lt;/h1&gt;
 
-&lt;h2&gt;Iniciando &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;Desde el directorio de cassandra ejecutar el comando:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./bin/cassandra_cli --host localhost --port 9160
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Maven&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;host: localhost o la dirección del cluster.&lt;/li&gt;
-&lt;li&gt;port: Puerto definido en conf/cassandra.yaml&lt;/li&gt;
+&lt;li&gt;New project:
+    mvn archetype:generate \
+    -DarchetypeGroupId=org.apache.maven.archetypes \
+    -DgroupId=com.mycompany.app \
+    -DartifactId=my-app&lt;/li&gt;
+&lt;li&gt;mvn compile&lt;/li&gt;
+&lt;li&gt;mvn test&lt;/li&gt;
+&lt;li&gt;mvn install&lt;/li&gt;
+&lt;li&gt;MAVEN_HOME in Ubuntu: &lt;code&gt;/usr/share/maven2/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Skip test in maven: add parameter &lt;code&gt;-DskipTests=true&lt;/code&gt; in the command&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Creando un Keyspace&lt;/h2&gt;
-
-&lt;p&gt;Un Keyspace es como un Schema en una base de datos relacional.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;create keyspace MiBase;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;La salida de consola será algo como:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;448a4920-fbe9-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ahora usamos el keyspace recien creado:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;use MiBase;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Salida:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Authenticated to keyspace: MiBase
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Creando una Column Family (CF)&lt;/h2&gt;
-
-&lt;p&gt;Una CF seria como una tabla...&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;create column family Usuario with comparator = UTF8Type;        
-5c064a30-fbea-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Creamos una CF llamada Usuario, la cual asume que las llaves están en UTF8 para realizar comparaciones.&lt;/p&gt;
-
-&lt;h2&gt;Añadiendo datos en la CF&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['apellido'] = 'miguel'; 
-org.apache.cassandra.db.marshal.MarshalException: cannot parse 'mtriana' as hex bytes
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Intentamos adicionar un usuario, sin embargo obtenemos un error porque las columnas aceptan datos en formato en hexadecimal, entonces ejecutamos el siguiente comando para que sean aceptadas cadenas de caracteres en ASCII:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;assume UsUARIO keys as ascii;
-Assumption for column family 'Usuario' added successfully
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;De nuevo vamos a añadir el usuario:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['nombre'] = 'miguel';            
-Value inserted.
-set Usuario['mtriana']['apellido'] = 'triana';          
-Value inserted.
-set Usuario['mtriana']['edad'] = '10';        
-Value inserted.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;En este caso &lt;em&gt;mtriana&lt;/em&gt; es la llave de accesso a la super columna (es como una fila)  y &lt;em&gt;nombre&lt;/em&gt;, &lt;em&gt;apellido&lt;/em&gt; y &lt;em&gt;edad&lt;/em&gt; son las columnas da la CF.&lt;/p&gt;
-
-&lt;h2&gt;Consultando la CF&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
-=&amp;gt; (column=apellido, value=747269616e61, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=3130, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=6d696775656c, timestamp=1319205140859000)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Obtenemos los datos de super columna con llave &lt;em&gt;mtriana&lt;/em&gt;, sin embargo, los datos son presentados en hexadecimal (ByteType). Para presentarlos en un formato legible se actualizan los metadatos de las columnas.
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;update column family Usuario                                  &lt;br/&gt;
-...        with
-...        column_metadata =                                             &lt;br/&gt;
-...        [
-...        {column_name: nombre, validation_class: UTF8Type},            &lt;br/&gt;
-...        {column_name: apellido, validation_class: UTF8Type},
-...        {column_name: edad, validation_class: UTF8Type, index_type: KEYS}
-...        ];&lt;/p&gt;
-
-&lt;p&gt;c373ec10-fbed-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;De nuevo se consulta la base de datos:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
-Returned 3 results.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Consultando la base por otro indice&lt;/h3&gt;
-
-&lt;p&gt;Cuando modificamos los metadatos de las columnas, también se incluyó un índice para la edad para realizar búsquedas por este parámetro, ahora vamos a consultar la base usando este índice.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;get Usuario where 'edad' = '10';
--------------------
-RowKey: mtriana
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
-1 Row Returned.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Listando todos los datos de la CF&lt;/h3&gt;
-
-&lt;p&gt;Añadimos un usuario y después usamos el comando &lt;em&gt;list&lt;/em&gt; para obtener todos los datos de la super columna:
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
-&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
-&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
-&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
-&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
-&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
-&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] set Usuario['egomez']['apellido'] = 'gomez';                   &lt;br/&gt;
-Value inserted.
-[default@MiBase] set Usuario['egomez']['nombre'] = 'edwin';&lt;br/&gt;
-Value inserted.
-[default@MiBase] set Usuario['egomez']['edad'] = '15';   &lt;br/&gt;
-Value inserted.
-[default@MiBase] list Usuario;&lt;/p&gt;
-
-&lt;h2&gt;Using default limit of 100&lt;/h2&gt;
-
-&lt;p&gt;RowKey: egomez
-=&amp;gt; (column=apellido, value=gomez, timestamp=1319206905155000)
-=&amp;gt; (column=edad, value=15, timestamp=1319206929439000)&lt;/p&gt;
-
-&lt;h2&gt;=&amp;gt; (column=nombre, value=edwin, timestamp=1319206919988000)&lt;/h2&gt;
-
-&lt;p&gt;RowKey: mtriana
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)&lt;/p&gt;
-
-&lt;p&gt;2 Rows Returned.
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Borrando Columnas y Super Columnas&lt;/h2&gt;
-
-&lt;p&gt;Podemos borrar una columna completa de una fila usando el comando &lt;code&gt;del NombreCF['llaveDeFila']['columna'];&lt;/code&gt;
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] del Usuario['mtriana']['nombre'];
-column removed.
-[default@MiBase] get Usuario['mtriana'];
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-Returned 2 results.
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;O se puede borrar una fila completa (super columna) con `del NombreCF['nombreDeFila'];&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;del Usuario['mtriana'];          
-row removed.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Eliminando una CF y un Keyspace (KS)&lt;/h2&gt;
+&lt;h2&gt;Git&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Para eliminar una CF: &lt;code&gt;drop column family NombreCF;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Para eliminar una Base (KS): &lt;code&gt;drop keyspace NombreKS;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Import from CVS (install git-cvs)
+    mkdir tempTest
+    cd tempTest
+    git cvsimport -v -d :pserver:username@cvs.sourceserver.com:/path/to/cvs module&lt;/li&gt;
+&lt;li&gt;Edit a Tag and resend to the server
+    git tag TAGNAME -f
+    git push --tags&lt;/li&gt;
+&lt;li&gt;Add origin for RW in GitHub (must have the keyfile configured)
+    git remote add origin git@github.com:username/projectname.git&lt;/li&gt;
+&lt;li&gt;Save local modifications in a temporal place to be able to push
+    git stash #creates a stash git the changes
+    git stash pop #get the changes back and merge&lt;/li&gt;
+&lt;li&gt;Delete a remote tag
+    git tag -d TAGNAME
+    git push origin :refs/tags/TAGNAME&lt;/li&gt;
+&lt;li&gt;Show current branch in the shell: Add
+    PS1="\u@\h:\w\$(git branch 2&gt;/dev/null | grep -e '* ' | sed 's/^..(.*)/{\1}/') \$ "
+  to &lt;code&gt;~/.profile&lt;/code&gt; or &lt;code&gt;~/.bashrc&lt;/code&gt; &lt;br/&gt;
+  Ref: &lt;em&gt;http://gregk.me/2011/display-active-git-branch-in-bash-prompt/&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] drop column family Usuario;
-cbfa22a0-fbf2-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-[default@MiBase] drop keyspace MiBase;
-d5b6a890-fbf2-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Salir de &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;quit;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr&gt;
-
-
-&lt;h3&gt;Referéncias&lt;/h3&gt;
+&lt;h2&gt;Bash&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;http://wiki.apache.org/cassandra/CassandraCli&lt;/li&gt;
-&lt;li&gt;http://www.datastax.com/docs/0.8/dml/using_cli&lt;/li&gt;
+&lt;li&gt;Get an error in bash
+    if [ "$?" -ne 0 ]; then echo "command failed"; exit 1; fi&lt;/li&gt;
+&lt;li&gt;Execute a script when Ubuntu starts or define a variable: add the script to &lt;code&gt;~/.profile&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Send a task to background: &lt;code&gt;echo "executableToBackground" | at now&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Monitor file changes (like server logs): &lt;code&gt;tail -f logfilePath&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;VirtualBox&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Start a VM without GUI
+    VBoxManage startvm --type headless VMNAME&lt;/li&gt;
+&lt;li&gt;Shutdow a VM from console
+    VBoxManage controlvm VMNAME poweroff&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
-    <summary type="html">Comandos básicos para el cliente (consola) de Cassandra</summary>
-  </entry>
-  <entry>
-    <id>tag:www.emtg.net78.net,2011-10-21:/2011/10/21/cassandra_hector.html</id>
-    <title type="html">Cassandra y Hector</title>
-    <published>2011-10-21T02:00:00Z</published>
-    <updated>2011-10-25T01:46:47Z</updated>
-    <link rel="alternate" href="http://www.emtg.net78.net/2011/10/21/cassandra_hector.html"/>
-    <content type="html">&lt;h2&gt;Crear el proyecto:&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;mvn archetype:generate \
--DarchetypeGroupId=org.apache.maven.archetypes \
--DgroupId=net.emtg.db.hector \
--DartifactId=HectorStarted
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Añadir la dependencia de Hector en el POM&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
-  &amp;lt;groupId&amp;gt;me.prettyprint&amp;lt;/groupId&amp;gt;
-  &amp;lt;artifactId&amp;gt;hector-core&amp;lt;/artifactId&amp;gt;
-  &amp;lt;version&amp;gt;0.8.0-2&amp;lt;/version&amp;gt;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Creando la clase ejemplo&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;HectorStarted&lt;/span&gt;
-{
-  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; CLUSTER=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Test-Cluster&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; KEYSPACE=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;MiBase&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;final&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; USER_CF = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Usuario&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Cluster myCluster;
-  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyDefinition userCFDef;
-  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; KeyspaceDefinition myTestKSDef;
-  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; Keyspace myKS;
-  &lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; ColumnFamilyTemplate&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;&amp;gt; userCFTemplate;&lt;/p&gt;
-
-&lt;p&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Inicializando classes&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
-&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
-&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
-&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
-&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
-&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
-&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
-&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
-&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
-&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
-&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
-&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
-&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
-&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
-&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; init(){&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;myCluster = HFactory.getOrCreateCluster(CLUSTER, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;localhost:9160&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Cluster instantiated&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-
-userCFDef = HFactory.createColumnFamilyDefinition(KEYSPACE, USER_CF, ComparatorType.UTF8TYPE);
-
-myTestKSDef = myCluster.describeKeyspace(KEYSPACE);&amp;lt;span style="color:#777"&amp;gt;//tries to instantiate an existing keyspace&amp;lt;/span&amp;gt;
-&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;if&amp;lt;/span&amp;gt;(myTestKSDef == &amp;lt;span style="color:#069"&amp;gt;null&amp;lt;/span&amp;gt;){
-  &amp;lt;span style="color:#777"&amp;gt;//if the keyspace doesn't exist, it creates one&amp;lt;/span&amp;gt;
-  myTestKSDef = HFactory.createKeyspaceDefinition(KEYSPACE, 
-      ThriftKsDef.DEF_STRATEGY_CLASS,
-      &amp;lt;span style="color:#00D"&amp;gt;1&amp;lt;/span&amp;gt;,
-      &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;Arrays&amp;lt;/span&amp;gt;.asList(userCFDef));
-  myCluster.addKeyspace(myTestKSDef, &amp;lt;span style="color:#069"&amp;gt;true&amp;lt;/span&amp;gt;);
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Keyspace &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; +  KEYSPACE + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; created&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-}&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;else&amp;lt;/span&amp;gt;{
-  &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
-    myCluster.addColumnFamily(userCFDef);
-  } &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
-
-  }
-
-}
-myKS = HFactory.createKeyspace(KEYSPACE, myCluster);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Keyspace &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; +  KEYSPACE + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; instantiated&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-
-userCFTemplate = &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;new&amp;lt;/span&amp;gt; ThriftColumnFamilyTemplate&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt;(myKS,
-    USER_CF,
-    StringSerializer.get(),
-    StringSerializer.get());
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  }
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Creando/Actualizando datos&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; update(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; name, &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; last) {&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ColumnFamilyUpdater&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt; updater = userCFTemplate.createUpdater(key);
-updater.setString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;name&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, name);
-updater.setString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;last&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, last);
-&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
-  userCFTemplate.update(updater);
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;value inserted&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Error during insertion&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(e.getMessage());
-}  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  }
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Consultando datos&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; read(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
-  ColumnFamilyResult&amp;amp;lt;&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;, &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;String&amp;lt;/span&amp;gt;&amp;amp;gt; result = userCFTemplate.queryColumns(key);
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;User: &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + result.getString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;name&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;) + &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + result.getString(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;last&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;));
-} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Not possible to read the column with key &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + key);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  }
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Borrando datos&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; delete(&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; key) {&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;span style="color:#080;font-weight:bold"&amp;gt;try&amp;lt;/span&amp;gt; {
-  userCFTemplate.deleteRow(key);
-} &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;catch&amp;lt;/span&amp;gt; (HectorException e) {
-  &amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Not possible to delete row with key &amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + key);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  }
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Probando los métodos&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class="java"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
-&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
-&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
-&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
-&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
-&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
-&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;public&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#339;font-weight:bold"&gt;void&lt;/span&gt; main( &lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;&lt;span style="color:#339;font-weight:bold"&gt;[]&lt;/span&gt; args )
-  {&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;HectorStarted test = &amp;lt;span style="color:#080;font-weight:bold"&amp;gt;new&amp;lt;/span&amp;gt; HectorStarted();
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;instantiates cluster, keyspace and column family&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-test.init();
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Insert a row in&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + USER_CF);
-test.update(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;miguel&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;triana&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;Reading data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Updating a row in&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; + USER_CF);
-test.update(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;miguel&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;, &amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;gomez&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Reading data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Deleteing data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-test.delete(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&amp;lt;span style="color:#0a5;font-weight:bold"&amp;gt;System&amp;lt;/span&amp;gt;.out.println(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;//Reading non existing data&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-test.read(&amp;lt;span style="background-color:hsla(0,100%,50%,0.05)"&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;span style="color:#D20"&amp;gt;key1&amp;lt;/span&amp;gt;&amp;lt;span style="color:#710"&amp;gt;&amp;amp;quot;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;  }
-}
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;hr&gt;
-
-
-&lt;h4&gt;Referéncias&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;http://rantav.github.com/hector/build/html/index.html&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-    <summary type="html">Uso de la biblioteca Hector para accesar Cassandra</summary>
+    <summary type="html">Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.</summary>
   </entry>
 </feed>

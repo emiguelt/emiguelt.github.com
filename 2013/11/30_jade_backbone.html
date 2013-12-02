@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jade, Backbone.js and Require.js, a running example</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', jade, backbone.js, require.js, jade-amd, runtime.js' name='keywords'>
+    <meta content='This is an example of Jade (runtime) integration with Backbone.js with RequireJS' name='description'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <div class='article'>
+          <h1>
+            Jade, Backbone.js and Require.js, a running example
+          </h1>
+          <div class='meta'>
+            <ul class='tags'>
+              <li>Nov 30, 2013</li>
+              <li>
+                &middot;
+              </li>
+              <li>
+                <a href='/2013/11/30_jade_backbone.html#disqus_thread'></a>
+              </li>
+              <li>&middot;</li>
+              <li>
+                <a class='tag' href='/tags/backbone.js/'>
+                  backbone.js
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/jade/'>
+                  jade
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/jade-amd/'>
+                  jade-amd
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/require.js/'>
+                  require.js
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/runtime.js/'>
+                  runtime.js
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class='body'>
+            <p>I like a lot <a href='http://jade-lang.com/' target='_blank'>Jade</a> for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.</p>
+            
+            <h2>The example</h2>
+            
+            <p>The example is the typical TODO application. The original code is from the <a href='http://addyosmani.github.io/backbone-fundamentals/#exercise-3-your-first-modular-backbone-requirejs-app' target='_blank'>example 3</a> of the book Developing Backbone.js (by Addy Osmani). The final code can be checked <a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'>here</a>.</p>
+            
+            <h2>Configuring Jade</h2>
+            
+            <h3>HTML generation</h3>
+            
+            <p>The start page (<em>index.html</em>) is generated with <em>Jade</em> and the <em>index.jade</em> file.</p>
+            
+            <pre><code>jade -P -o ./deploy ./app/index.jade&#x000A;</code></pre>
+            
+            <h3>Jade templates on client-side</h3>
+            
+            <p>There is a Jade browser-compatible version to compile the Jade templates on the cliente-side, but it is advisable to compile the jade files (as javascript) on the server-side and execute them on the browser. For this reason runtime.js to is used to merge the jade-compiled files.</p>
+            
+            <p>Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so <a href='https://github.com/mysociety/node-jade-amd' target:'_blank'>node-jade-amd</a> is used to generate require.js-compatible functions.</p>
+            
+            <pre><code>jade-amd  --from app/templates --to deploy/js/templates&#x000A;</code></pre>
+            
+            <h2>Integrating Jade and Backbone.js with Require.js</h2>
+            
+            <p>Underscore.js is the default Backbone templating engine. It is ovewritten by loading the runtime.js (from Jade) and calling the jade-compiled files in the module definitions.</p>
+            
+            <h3>require.config</h3>
+            
+            <pre><code>require.config({&#x000A;  shim: {&#x000A;    backbone:{&#x000A;      deps:['jquery'],&#x000A;      exports: 'Backbone'&#x000A;    }&#x000A;  },&#x000A;  paths:{&#x000A;    jquery: 'libs/jquery.min',&#x000A;    backbone: 'libs/backbone-min',&#x000A;    "backbone.localStorage": 'libs/backbone.localStorage',&#x000A;    underscore: 'libs/underscore-min',&#x000A;    jadeRuntime: 'libs/jadeRuntime',&#x000A;  }&#x000A;});&#x000A;</code></pre>
+            
+            <ul>
+            <li>Backbone is not AMD-compatible, so Require's <em>shim</em> feature is used</li>
+            <li>The <em>paths</em> config says to require.js where required .js files are located (note that just external files are referenced)</li>
+            <li>runtime.js calls <em>define</em> method from require.js without name, so it is configured with the file's name, so I renamed it to <em>jadeRuntime.js</em> because it is the default name used with <em>node-jade-amd</em> compiled templates.</li>
+            </ul>
+            
+            
+            <h3>Using jade-compile files in Backbone.js with Require.js</h3>
+            
+            <p>Once the templates have been compiled on the server-side, now we can call them at the client_side via require.js on the module definition:</p>
+            
+            <pre><code>define(['templates/my_jade_compiled_witout_dotjs'], function(templatesVariable){&#x000A;  template: templateVariable,...&#x000A;</code></pre>
+            
+            <p><em>templateVariable</em> is a function that receives the model to be merged with the template. It is no necessary  <em>jadeRuntime</em> on the module definition since it is called  in the template compiled with <em>jade-amd</em>.</p>
+            
+            <p>Then it could be invoked in the <em>render</em> method to generate the HTML</p>
+            
+            <pre><code>...&#x000A;render: function(){&#x000A;  this.$el.html(this.template(this.model.toJSON())); &#x000A;  },&#x000A;...&#x000A;</code></pre>
+            
+            <h3>Deploy</h3>
+            
+            <p>The <em>Makefile</em> defines how the application is organized on the client side.</p>
+            
+            <pre><code>- deploy&#x000A;|- index.html //Jade-generated&#x000A;|- css&#x000A;|- js&#x000A;   |- collections // backbone&#x000A;   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)&#x000A;   |- models //backone&#x000A;   |- templates  // js jade-compiled with jade-amd&#x000A;   |- routers //backbone&#x000A;   |- views //backone&#x000A;   |- main.js // require config, app start&#x000A;   |- common.js //utils&#x000A;</code></pre>
+            
+            <p>That's all. For more details about the implementation, please check the full example <a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'>here</a>.</p>
+          </div>
+        </div>
+        <div id='other-articles'>
+          <div class='older'>
+            <ul>
+              <li>
+                <h3>
+                  <a href='/2012/05/20_Spring_summary_p2.html' title='Resumen del Framework Spring - Segunda parte'>
+                    &laquo; Resumen Spring - Parte 2
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2012/04/08/spring_summary.html' title='Resumen del Framework Spring'>
+                    &laquo; Resumen Spring
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <a href='/2012/03/18/stripes_summary.html' title='Resumen de Desarrollo Web (Stripes)'>
+                    &laquo; Resumen de Stripes
+                  </a>
+                </h3>
+              </li>
+            </ul>
+          </div>
+          <div class='newer'>
+            <ul>
+            </ul>
+          </div>
+        </div>
+        <div class='clear'></div>
+        <div class='comments'>
+          <div id='disqus_thread'></div>
+          <script src='http://disqus.com/forums/emiguelwebpage/embed.js' type='text/javascript'></script>
+          <noscript>
+            <a href='http://disqus.com/forums/emiguelwebpage/?url=ref'>
+              View the discussion thread
+            </a>
+          </noscript>
+        </div>
+        <!-- / disqus adds too much visual crap -->
+        <style type='text/css'>
+          <style>
+            .dsq-dc-logo {
+              display: none !important; }
+          </style>
+        </style>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0'>
+      </p>
+    </noscript>
+  </body>
+</html>

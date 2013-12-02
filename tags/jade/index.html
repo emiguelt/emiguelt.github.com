@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Category: jade</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', ' name='keywords'>
+    <meta content='' name='description'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; Miguel Triana - site</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li><a href='/projects.html'>projects</a></li>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/contact.html'>contact</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <div id='content'>
+        <h1>
+          Jade Articles
+        </h1>
+        <div class='tag-page'>
+          <div class='excerpt'>
+            <h2>
+              <a class='permalink' href='/2013/11/30_jade_backbone.html' title='Full article'>&laquo; Jade, Backbone.js and Require.js, a running example</a>
+            </h2>
+            <div class='body'>
+              <p>
+                This is an example of Jade (runtime) integration with Backbone.js with RequireJS
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/userapps/piwik/emigueltriana/" : "http://sourceforge.net/userapps/piwik/emigueltriana/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://sourceforge.net/userapps/piwik/emigueltriana/piwik.php?idsite=1' style='border:0'>
+      </p>
+    </noscript>
+  </body>
+</html>
