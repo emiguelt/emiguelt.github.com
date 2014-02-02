@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://leugim.co/</loc>
+    <loc>http://emiguelt.github.com/</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2009/12/19/creando_sitio.html</loc>
+    <loc>http://emiguelt.github.com/2009/12/19/creando_sitio.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2010/01/04/vpn_con_ssh.html</loc>
+    <loc>http://emiguelt.github.com/2010/01/04/vpn_con_ssh.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2010/02/25/captura_audio_javame.html</loc>
+    <loc>http://emiguelt.github.com/2010/02/25/captura_audio_javame.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/04/04/tips_mobile.html</loc>
+    <loc>http://emiguelt.github.com/2011/04/04/tips_mobile.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/04/24/intro_android.html</loc>
+    <loc>http://emiguelt.github.com/2011/04/24/intro_android.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/04/25/ejemplo_flyway.html</loc>
+    <loc>http://emiguelt.github.com/2011/04/25/ejemplo_flyway.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/04/27/ejemplo_c5_db.html</loc>
+    <loc>http://emiguelt.github.com/2011/04/27/ejemplo_c5_db.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/10/21/cassandra_cli.html</loc>
+    <loc>http://emiguelt.github.com/2011/10/21/cassandra_cli.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2011/10/21/cassandra_hector.html</loc>
+    <loc>http://emiguelt.github.com/2011/10/21/cassandra_hector.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2012/03/18/stripes_summary.html</loc>
+    <loc>http://emiguelt.github.com/2012/03/18/stripes_summary.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2012/04/08/spring_summary.html</loc>
+    <loc>http://emiguelt.github.com/2012/04/08/spring_summary.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2012/05/20_Spring_summary_p2.html</loc>
+    <loc>http://emiguelt.github.com/2012/05/20_Spring_summary_p2.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/2013/11/30_jade_backbone.html</loc>
+    <loc>http://emiguelt.github.com/2013/11/30_jade_backbone.html</loc>
     <lastmod>2013-12-02</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/about.html</loc>
+    <loc>http://emiguelt.github.com/about.html</loc>
+    <lastmod>2014-02-02</lastmod>
+  </url>
+  <url>
+    <loc>http://emiguelt.github.com/contact.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/contact.html</loc>
+    <loc>http://emiguelt.github.com/projects.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects.html</loc>
+    <loc>http://emiguelt.github.com/projects/doing/</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects/doing/</loc>
+    <loc>http://emiguelt.github.com/projects/sr/</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects/sr/</loc>
+    <loc>http://emiguelt.github.com/projects/sr/language_structure_approaches.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects/sr/language_structure_approaches.html</loc>
+    <loc>http://emiguelt.github.com/projects/sr/poverview.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects/sr/poverview.html</loc>
+    <loc>http://emiguelt.github.com/projects/sr/worknotes.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/projects/sr/worknotes.html</loc>
+    <loc>http://emiguelt.github.com/tips/cmds.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
   <url>
-    <loc>http://leugim.co/tips/cmds.html</loc>
-    <lastmod>2013-04-25</lastmod>
-  </url>
-  <url>
-    <loc>http://leugim.co/tips/siteadmin.html</loc>
+    <loc>http://emiguelt.github.com/tips/siteadmin.html</loc>
     <lastmod>2013-04-25</lastmod>
   </url>
 </urlset>

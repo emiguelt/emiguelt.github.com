@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /assets/
 
-Sitemap: http://leugim.co/sitemap.xml
+Sitemap: http://emiguelt.github.com/sitemap.xml
