@@ -71,11 +71,16 @@
         
         <p><script type="text/javascript">
         //&lt;![CDATA[
-        (function() {</p>
-        
-        <pre><code>var links = document.getElementsByTagName('a');&#x000A;var query = '?';&#x000A;for(var i = 0; i &lt; links.length; i++) {&#x000A;if(links[i].href.indexOf('#disqus_thread') &gt;= 0) {&#x000A;    query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&amp;';&#x000A;}&#x000A;}&#x000A;document.write('&lt;script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '"&gt;&lt;/' + 'script&gt;');&#x000A;</code></pre>
-        
-        <p>})();
+        (function() {
+            var links = document.getElementsByTagName('a');
+            var query = '?';
+            for(var i = 0; i &lt; links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&amp;';
+            }
+            }
+            document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/emiguelwebpage/get_num_replies.js' + query + '">&lt;/' + 'script>');
+        })();
         //]]>
         </script></p>
       </div>

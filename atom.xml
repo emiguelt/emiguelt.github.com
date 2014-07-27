@@ -25,19 +25,15 @@
 
 &lt;h3&gt;HTML generation&lt;/h3&gt;
 
-&lt;p&gt;The start page (&lt;em&gt;index.html&lt;/em&gt;) is generated with &lt;em&gt;Jade&lt;/em&gt; and the &lt;em&gt;index.jade&lt;/em&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jade -P -o ./deploy ./app/index.jade
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The start page (&lt;em&gt;index.html&lt;/em&gt;) is generated with &lt;em&gt;Jade&lt;/em&gt; and the &lt;em&gt;index.jade&lt;/em&gt; file.
+    jade -P -o ./deploy ./app/index.jade&lt;/p&gt;
 
 &lt;h3&gt;Jade templates on client-side&lt;/h3&gt;
 
 &lt;p&gt;There is a Jade browser-compatible version to compile the Jade templates on the cliente-side, but it is advisable to compile the jade files (as javascript) on the server-side and execute them on the browser. For this reason runtime.js to is used to merge the jade-compiled files.&lt;/p&gt;
 
-&lt;p&gt;Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so &lt;a href='https://github.com/mysociety/node-jade-amd' target:'_blank'&gt;node-jade-amd&lt;/a&gt; is used to generate require.js-compatible functions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jade-amd  --from app/templates --to deploy/js/templates
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so &lt;a href='https://github.com/mysociety/node-jade-amd' target:'_blank'&gt;node-jade-amd&lt;/a&gt; is used to generate require.js-compatible functions.
+    jade-amd  --from app/templates --to deploy/js/templates&lt;/p&gt;
 
 &lt;h2&gt;Integrating Jade and Backbone.js with Require.js&lt;/h2&gt;
 
@@ -90,21 +86,19 @@ render: function(){
 
 &lt;h3&gt;Deploy&lt;/h3&gt;
 
-&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;- deploy
-|- index.html //Jade-generated
-|- css
-|- js
-   |- collections // backbone
-   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
-   |- models //backone
-   |- templates  // js jade-compiled with jade-amd
-   |- routers //backbone
-   |- views //backone
-   |- main.js // require config, app start
-   |- common.js //utils
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.
+    - deploy
+    |- index.html //Jade-generated
+    |- css
+    |- js
+       |- collections // backbone
+       |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+       |- models //backone
+       |- templates  // js jade-compiled with jade-amd
+       |- routers //backbone
+       |- views //backone
+       |- main.js // require config, app start
+       |- common.js //utils&lt;/p&gt;
 
 &lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content>
@@ -161,17 +155,15 @@ jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
 
 &lt;h3&gt;Pooled data&lt;/h3&gt;
 
-&lt;p&gt;Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&amp;gt;
-  &amp;lt;property name="driverClassName" value="org.hsqldb.jdbcDriver" /&amp;gt;
-  &amp;lt;property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" /&amp;gt;
-  &amp;lt;property name="username" value="user" /&amp;gt;
-  &amp;lt;property name="password" value="pass" /&amp;gt;
-  &amp;lt;property name="initialSize" value="5" /&amp;gt;
-  &amp;lt;property name="maxActive" value="10" /&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)
+    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&gt;
+      &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver" /&gt;
+      &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" /&gt;
+      &lt;property name="username" value="user" /&gt;
+      &lt;property name="password" value="pass" /&gt;
+      &lt;property name="initialSize" value="5" /&gt;
+      &lt;property name="maxActive" value="10" /&gt;
+    &lt;/bean&gt;&lt;/p&gt;
 
 &lt;h3&gt;JDBC driver-based&lt;/h3&gt;
 
@@ -192,7 +184,7 @@ jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
 
 &lt;p&gt;   &lt;bean id="myJdbcTemplate"
      class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"&gt;
-     &amp;lt;constructor-arg ref="dataSource" /&gt;
+     &lt;constructor-arg ref="dataSource" /&gt;
    &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Configurar los DAO para usar el template&lt;/p&gt;
 
@@ -591,10 +583,8 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;Ejemplo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; execution(* net.co.Class.play(..))
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ejemplo:
+     execution(* net.co.Class.play(..))&lt;/p&gt;
 
 &lt;p&gt;Explicación:
  * execution: interceptar en la ejecución del método
@@ -766,28 +756,24 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
 
 &lt;h3&gt;ActionBeans&lt;/h3&gt;
 
-&lt;p&gt;Un &lt;em&gt;ActionBean&lt;/em&gt; es una clase que implementa la interfaz &lt;em&gt;ActionBean&lt;/em&gt;, esta clase define los métodos (eventos, &lt;em&gt;event handler&lt;/em&gt;) disponibles para procesamiento de los requerimientos (requests) de los usuarios.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface ActionBean {
-  public void setContext(ActionBeanContext context);
-  public ActionBeanContext getContext();
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Un &lt;em&gt;ActionBean&lt;/em&gt; es una clase que implementa la interfaz &lt;em&gt;ActionBean&lt;/em&gt;, esta clase define los métodos (eventos, &lt;em&gt;event handler&lt;/em&gt;) disponibles para procesamiento de los requerimientos (requests) de los usuarios.
+    public interface ActionBean {
+      public void setContext(ActionBeanContext context);
+      public ActionBeanContext getContext();
+    }&lt;/p&gt;
 
 &lt;h3&gt;Event Handlers&lt;/h3&gt;
 
 &lt;p&gt;Un &lt;em&gt;Event Handler&lt;/em&gt; es un método que captura un request de un usuario. Dentro del &lt;em&gt;Action Bean&lt;/em&gt;, es un método público, sin parámetros y que retorna un objeto &lt;em&gt;Resolution&lt;/em&gt;.
-Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;, que es invocado para borrar un registro en la lista de tareas&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class TaskAction extends BaseAction {
-...
-  public Resolution delete() {
-          getTaskDao().delete(getTaskId());
-          return redirectToTaskList();
-      } 
-...
-}
-&lt;/code&gt;&lt;/pre&gt;
+Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;, que es invocado para borrar un registro en la lista de tareas
+    public class TaskAction extends BaseAction {
+    ...
+      public Resolution delete() {
+              getTaskDao().delete(getTaskId());
+              return redirectToTaskList();
+          }
+    ...
+    }&lt;/p&gt;
 
 &lt;p&gt;El cual podría ser llamado desde el browser asi: &lt;code&gt;http://localhost:8080/todos/Task.action?event=delete&amp;amp;taskId=10&lt;/code&gt;&lt;/p&gt;
 
@@ -795,13 +781,11 @@ Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;
 
 &lt;h3&gt;Resolutions&lt;/h3&gt;
 
-&lt;p&gt;Un objeto &lt;em&gt;Resolution&lt;/em&gt; es una "respuesta" para Stripes, indicando cual es el siguiente paso de procesamiento del request. Resolutions pueden ser: ForwardResolution, RedirectResolution, StreamingResolution, JavaScriptResolution, ErrorResolution o cualquier otra que implemente la interfaz:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public interface Resolution {
-  void execute(HttpServletRequest request, HttpServletResponse response)
-  throws Exception;
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Un objeto &lt;em&gt;Resolution&lt;/em&gt; es una "respuesta" para Stripes, indicando cual es el siguiente paso de procesamiento del request. Resolutions pueden ser: ForwardResolution, RedirectResolution, StreamingResolution, JavaScriptResolution, ErrorResolution o cualquier otra que implemente la interfaz:
+    public interface Resolution {
+      void execute(HttpServletRequest request, HttpServletResponse response)
+      throws Exception;
+    }&lt;/p&gt;
 
 &lt;h3&gt;Referenciando un ActionBean desde JSP&lt;/h3&gt;
 
@@ -875,75 +859,243 @@ Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;
     <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
   </entry>
   <entry>
-    <id>tag:emiguelt.github.com,2011-10-21:/tips/cmds.html</id>
-    <title type="html">Commands summary</title>
+    <id>tag:emiguelt.github.com,2011-10-21:/2011/10/21/cassandra_cli.html</id>
+    <title type="html">Usando Cassandra_CLI (Básico)</title>
     <published>2011-10-21T05:00:00Z</published>
-    <updated>2012-06-09T22:12:55Z</updated>
-    <link rel="alternate" href="http://emiguelt.github.com/tips/cmds.html"/>
-    <content type="html">&lt;h1&gt;Commands reference for development&lt;/h1&gt;
+    <updated>2011-10-25T01:46:47Z</updated>
+    <link rel="alternate" href="http://emiguelt.github.com/2011/10/21/cassandra_cli.html"/>
+    <content type="html">&lt;p&gt;Cassandra es un gestor de bases de datos distribuidas altamente escalable basado en NoSQL (mas info en: http://wiki.apache.org/cassandra).
+Este post presenta el uso básico de la consola de definición y manipulación de datos &lt;em&gt;cassandra_cli&lt;/em&gt;. Se asume conocimientos básicos de Cassandra y de su modelo de datos.&lt;/p&gt;
 
-&lt;h2&gt;Maven&lt;/h2&gt;
+&lt;h2&gt;Iniciando &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Desde el directorio de cassandra ejecutar el comando:
+    ./bin/cassandra_cli --host localhost --port 9160
+ * host: localhost o la dirección del cluster.
+ * port: Puerto definido en conf/cassandra.yaml&lt;/p&gt;
+
+&lt;h2&gt;Creando un Keyspace&lt;/h2&gt;
+
+&lt;p&gt;Un Keyspace es como un Schema en una base de datos relacional.
+    create keyspace MiBase;
+La salida de consola será algo como:
+    448a4920-fbe9-11e0-0000-242d50cf1ffd
+    Waiting for schema agreement...
+    ... schemas agree across the cluster
+Ahora usamos el keyspace recien creado:
+    use MiBase;
+Salida:
+    Authenticated to keyspace: MiBase&lt;/p&gt;
+
+&lt;h2&gt;Creando una Column Family (CF)&lt;/h2&gt;
+
+&lt;p&gt;Una CF seria como una tabla...
+    create column family Usuario with comparator = UTF8Type;      &lt;br/&gt;
+    5c064a30-fbea-11e0-0000-242d50cf1ffd
+    Waiting for schema agreement...
+    ... schemas agree across the cluster
+Creamos una CF llamada Usuario, la cual asume que las llaves están en UTF8 para realizar comparaciones.&lt;/p&gt;
+
+&lt;h2&gt;Añadiendo datos en la CF&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['apellido'] = 'miguel'; 
+org.apache.cassandra.db.marshal.MarshalException: cannot parse 'mtriana' as hex bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Intentamos adicionar un usuario, sin embargo obtenemos un error porque las columnas aceptan datos en formato en hexadecimal, entonces ejecutamos el siguiente comando para que sean aceptadas cadenas de caracteres en ASCII:
+    assume UsUARIO keys as ascii;
+    Assumption for column family 'Usuario' added successfully&lt;/p&gt;
+
+&lt;p&gt;De nuevo vamos a añadir el usuario:
+    set Usuario['mtriana']['nombre'] = 'miguel';          &lt;br/&gt;
+    Value inserted.
+    set Usuario['mtriana']['apellido'] = 'triana';        &lt;br/&gt;
+    Value inserted.
+    set Usuario['mtriana']['edad'] = '10';      &lt;br/&gt;
+    Value inserted.
+En este caso &lt;em&gt;mtriana&lt;/em&gt; es la llave de accesso a la super columna (es como una fila)  y &lt;em&gt;nombre&lt;/em&gt;, &lt;em&gt;apellido&lt;/em&gt; y &lt;em&gt;edad&lt;/em&gt; son las columnas da la CF.&lt;/p&gt;
+
+&lt;h2&gt;Consultando la CF&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
+=&amp;gt; (column=apellido, value=747269616e61, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=3130, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=6d696775656c, timestamp=1319205140859000)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Obtenemos los datos de super columna con llave &lt;em&gt;mtriana&lt;/em&gt;, sin embargo, los datos son presentados en hexadecimal (ByteType). Para presentarlos en un formato legible se actualizan los metadatos de las columnas.
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;update column family Usuario                                  &lt;br/&gt;
+...        with
+...        column_metadata =                                             &lt;br/&gt;
+...        [
+...        {column_name: nombre, validation_class: UTF8Type},            &lt;br/&gt;
+...        {column_name: apellido, validation_class: UTF8Type},
+...        {column_name: edad, validation_class: UTF8Type, index_type: KEYS}
+...        ];&lt;/p&gt;
+
+&lt;p&gt;c373ec10-fbed-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;De nuevo se consulta la base de datos:
+    get Usuario['mtriana'];
+    =&gt; (column=apellido, value=triana, timestamp=1319205144832000)
+    =&gt; (column=edad, value=10, timestamp=1319205156161000)
+    =&gt; (column=nombre, value=miguel, timestamp=1319205140859000)
+    Returned 3 results.&lt;/p&gt;
+
+&lt;h3&gt;Consultando la base por otro indice&lt;/h3&gt;
+
+&lt;p&gt;Cuando modificamos los metadatos de las columnas, también se incluyó un índice para la edad para realizar búsquedas por este parámetro, ahora vamos a consultar la base usando este índice.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get Usuario where 'edad' = '10';
+-------------------
+RowKey: mtriana
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
+1 Row Returned.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Listando todos los datos de la CF&lt;/h3&gt;
+
+&lt;p&gt;Añadimos un usuario y después usamos el comando &lt;em&gt;list&lt;/em&gt; para obtener todos los datos de la super columna:
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] set Usuario['egomez']['apellido'] = 'gomez';                   &lt;br/&gt;
+Value inserted.
+[default@MiBase] set Usuario['egomez']['nombre'] = 'edwin';&lt;br/&gt;
+Value inserted.
+[default@MiBase] set Usuario['egomez']['edad'] = '15';   &lt;br/&gt;
+Value inserted.
+[default@MiBase] list Usuario;&lt;/p&gt;
+
+&lt;h2&gt;Using default limit of 100&lt;/h2&gt;
+
+&lt;p&gt;RowKey: egomez
+=&amp;gt; (column=apellido, value=gomez, timestamp=1319206905155000)
+=&amp;gt; (column=edad, value=15, timestamp=1319206929439000)&lt;/p&gt;
+
+&lt;h2&gt;=&amp;gt; (column=nombre, value=edwin, timestamp=1319206919988000)&lt;/h2&gt;
+
+&lt;p&gt;RowKey: mtriana
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)&lt;/p&gt;
+
+&lt;p&gt;2 Rows Returned.
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Borrando Columnas y Super Columnas&lt;/h2&gt;
+
+&lt;p&gt;Podemos borrar una columna completa de una fila usando el comando &lt;code&gt;del NombreCF['llaveDeFila']['columna'];&lt;/code&gt;
+&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] del Usuario['mtriana']['nombre'];
+column removed.
+[default@MiBase] get Usuario['mtriana'];
+=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
+=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
+Returned 2 results.
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;O se puede borrar una fila completa (super columna) con `del NombreCF['nombreDeFila'];
+    del Usuario['mtriana'];        &lt;br/&gt;
+    row removed.&lt;/p&gt;
+
+&lt;h2&gt;Eliminando una CF y un Keyspace (KS)&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;New project:
-    mvn archetype:generate \
-    -DarchetypeGroupId=org.apache.maven.archetypes \
-    -DgroupId=com.mycompany.app \
-    -DartifactId=my-app&lt;/li&gt;
-&lt;li&gt;mvn compile&lt;/li&gt;
-&lt;li&gt;mvn test&lt;/li&gt;
-&lt;li&gt;mvn install&lt;/li&gt;
-&lt;li&gt;MAVEN_HOME in Ubuntu: &lt;code&gt;/usr/share/maven2/&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Skip test in maven: add parameter &lt;code&gt;-DskipTests=true&lt;/code&gt; in the command&lt;/li&gt;
+&lt;li&gt;Para eliminar una CF: &lt;code&gt;drop column family NombreCF;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Para eliminar una Base (KS): &lt;code&gt;drop keyspace NombreKS;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Git&lt;/h2&gt;
+&lt;p&gt;&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] drop column family Usuario;
+cbfa22a0-fbf2-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+[default@MiBase] drop keyspace MiBase;
+d5b6a890-fbf2-11e0-0000-242d50cf1ffd
+Waiting for schema agreement...
+... schemas agree across the cluster
+&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Salir de &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;quit;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+
+&lt;h3&gt;Referéncias&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Import from CVS (install git-cvs)
-    mkdir tempTest
-    cd tempTest
-    git cvsimport -v -d :pserver:username@cvs.sourceserver.com:/path/to/cvs module&lt;/li&gt;
-&lt;li&gt;Edit a Tag and resend to the server
-    git tag TAGNAME -f
-    git push --tags&lt;/li&gt;
-&lt;li&gt;Add origin for RW in GitHub (must have the keyfile configured)
-    git remote add origin git@github.com:username/projectname.git&lt;/li&gt;
-&lt;li&gt;Save local modifications in a temporal place to be able to push
-    git stash #creates a stash git the changes
-    git stash pop #get the changes back and merge&lt;/li&gt;
-&lt;li&gt;Delete a remote tag
-    git tag -d TAGNAME
-    git push origin :refs/tags/TAGNAME&lt;/li&gt;
-&lt;li&gt;Show current branch in the shell: Add
-    PS1="\u@\h:\w\$(git branch 2&gt;/dev/null | grep -e '* ' | sed 's/^..(.*)/{\1}/') \$ "
-  to &lt;code&gt;~/.profile&lt;/code&gt; or &lt;code&gt;~/.bashrc&lt;/code&gt; &lt;br/&gt;
-  Ref: &lt;em&gt;http://gregk.me/2011/display-active-git-branch-in-bash-prompt/&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Bash&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Get an error in bash
-    if [ "$?" -ne 0 ]; then echo "command failed"; exit 1; fi&lt;/li&gt;
-&lt;li&gt;Execute a script when Ubuntu starts or define a variable: add the script to &lt;code&gt;~/.profile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Send a task to background: &lt;code&gt;echo "executableToBackground" | at now&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Monitor file changes (like server logs): &lt;code&gt;tail -f logfilePath&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;VirtualBox&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Start a VM without GUI
-    VBoxManage startvm --type headless VMNAME&lt;/li&gt;
-&lt;li&gt;Shutdow a VM from console
-    VBoxManage controlvm VMNAME poweroff&lt;/li&gt;
+&lt;li&gt;http://wiki.apache.org/cassandra/CassandraCli&lt;/li&gt;
+&lt;li&gt;http://www.datastax.com/docs/0.8/dml/using_cli&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
-    <summary type="html">Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.</summary>
+    <summary type="html">Comandos básicos para el cliente (consola) de Cassandra</summary>
   </entry>
 </feed>

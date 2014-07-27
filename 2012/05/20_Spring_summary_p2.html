@@ -109,9 +109,15 @@
             
             <h3>Pooled data</h3>
             
-            <p>Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)</p>
-            
-            <pre><code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&gt;&#x000A;  &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver" /&gt;&#x000A;  &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" /&gt;&#x000A;  &lt;property name="username" value="user" /&gt;&#x000A;  &lt;property name="password" value="pass" /&gt;&#x000A;  &lt;property name="initialSize" value="5" /&gt;&#x000A;  &lt;property name="maxActive" value="10" /&gt;&#x000A;&lt;/bean&gt;&#x000A;</code></pre>
+            <p>Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)
+                <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+                  <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+                  <property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" />
+                  <property name="username" value="user" />
+                  <property name="password" value="pass" />
+                  <property name="initialSize" value="5" />
+                  <property name="maxActive" value="10" />
+                </bean></p>
             
             <h3>JDBC driver-based</h3>
             
@@ -132,7 +138,7 @@
             
             <p>   <bean id="myJdbcTemplate"
                  class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
-                 &lt;constructor-arg ref="dataSource" />
+                 <constructor-arg ref="dataSource" />
                </bean></p></li>
             <li><p>Configurar los DAO para usar el template</p>
             
@@ -238,8 +244,8 @@
               </li>
               <li>
                 <h3>
-                  <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
-                    &laquo; Commands summary
+                  <a href='/2011/10/21/cassandra_cli.html' title='Comandos básicos para el cliente (consola) de Cassandra'>
+                    &laquo; Usando Cassandra_CLI (Básico)
                   </a>
                 </h3>
               </li>

@@ -111,16 +111,24 @@
             
             <h3>ActionBeans</h3>
             
-            <p>Un <em>ActionBean</em> es una clase que implementa la interfaz <em>ActionBean</em>, esta clase define los métodos (eventos, <em>event handler</em>) disponibles para procesamiento de los requerimientos (requests) de los usuarios.</p>
-            
-            <pre><code>public interface ActionBean {&#x000A;  public void setContext(ActionBeanContext context);&#x000A;  public ActionBeanContext getContext();&#x000A;}&#x000A;</code></pre>
+            <p>Un <em>ActionBean</em> es una clase que implementa la interfaz <em>ActionBean</em>, esta clase define los métodos (eventos, <em>event handler</em>) disponibles para procesamiento de los requerimientos (requests) de los usuarios.
+                public interface ActionBean {
+                  public void setContext(ActionBeanContext context);
+                  public ActionBeanContext getContext();
+                }</p>
             
             <h3>Event Handlers</h3>
             
             <p>Un <em>Event Handler</em> es un método que captura un request de un usuario. Dentro del <em>Action Bean</em>, es un método público, sin parámetros y que retorna un objeto <em>Resolution</em>.
-            Por ejemplo, en la clase TaskAction está el método <em>delete</em>, que es invocado para borrar un registro en la lista de tareas</p>
-            
-            <pre><code>public class TaskAction extends BaseAction {&#x000A;...&#x000A;  public Resolution delete() {&#x000A;          getTaskDao().delete(getTaskId());&#x000A;          return redirectToTaskList();&#x000A;      } &#x000A;...&#x000A;}&#x000A;</code></pre>
+            Por ejemplo, en la clase TaskAction está el método <em>delete</em>, que es invocado para borrar un registro en la lista de tareas
+                public class TaskAction extends BaseAction {
+                ...
+                  public Resolution delete() {
+                          getTaskDao().delete(getTaskId());
+                          return redirectToTaskList();
+                      }
+                ...
+                }</p>
             
             <p>El cual podría ser llamado desde el browser asi: <code>http://localhost:8080/todos/Task.action?event=delete&amp;taskId=10</code></p>
             
@@ -128,9 +136,11 @@
             
             <h3>Resolutions</h3>
             
-            <p>Un objeto <em>Resolution</em> es una "respuesta" para Stripes, indicando cual es el siguiente paso de procesamiento del request. Resolutions pueden ser: ForwardResolution, RedirectResolution, StreamingResolution, JavaScriptResolution, ErrorResolution o cualquier otra que implemente la interfaz:</p>
-            
-            <pre><code>public interface Resolution {&#x000A;  void execute(HttpServletRequest request, HttpServletResponse response)&#x000A;  throws Exception;&#x000A;}&#x000A;</code></pre>
+            <p>Un objeto <em>Resolution</em> es una "respuesta" para Stripes, indicando cual es el siguiente paso de procesamiento del request. Resolutions pueden ser: ForwardResolution, RedirectResolution, StreamingResolution, JavaScriptResolution, ErrorResolution o cualquier otra que implemente la interfaz:
+                public interface Resolution {
+                  void execute(HttpServletRequest request, HttpServletResponse response)
+                  throws Exception;
+                }</p>
             
             <h3>Referenciando un ActionBean desde JSP</h3>
             
@@ -207,6 +217,13 @@
             <ul>
               <li>
                 <h3>
+                  <a href='/2011/10/21/cassandra_cli.html' title='Comandos básicos para el cliente (consola) de Cassandra'>
+                    &laquo; Usando Cassandra_CLI (Básico)
+                  </a>
+                </h3>
+              </li>
+              <li>
+                <h3>
                   <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
                     &laquo; Commands summary
                   </a>
@@ -216,13 +233,6 @@
                 <h3>
                   <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
                     &laquo; Cassandra y Hector
-                  </a>
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <a href='/2011/10/21/cassandra_cli.html' title='Comandos básicos para el cliente (consola) de Cassandra'>
-                    &laquo; Usando Cassandra_CLI (Básico)
                   </a>
                 </h3>
               </li>

@@ -86,17 +86,15 @@
             
             <h3>HTML generation</h3>
             
-            <p>The start page (<em>index.html</em>) is generated with <em>Jade</em> and the <em>index.jade</em> file.</p>
-            
-            <pre><code>jade -P -o ./deploy ./app/index.jade&#x000A;</code></pre>
+            <p>The start page (<em>index.html</em>) is generated with <em>Jade</em> and the <em>index.jade</em> file.
+                jade -P -o ./deploy ./app/index.jade</p>
             
             <h3>Jade templates on client-side</h3>
             
             <p>There is a Jade browser-compatible version to compile the Jade templates on the cliente-side, but it is advisable to compile the jade files (as javascript) on the server-side and execute them on the browser. For this reason runtime.js to is used to merge the jade-compiled files.</p>
             
-            <p>Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so <a href='https://github.com/mysociety/node-jade-amd' target:'_blank'>node-jade-amd</a> is used to generate require.js-compatible functions.</p>
-            
-            <pre><code>jade-amd  --from app/templates --to deploy/js/templates&#x000A;</code></pre>
+            <p>Runtime.js is AMD-compatible, but compiled templates are anonymous functions, so <a href='https://github.com/mysociety/node-jade-amd' target:'_blank'>node-jade-amd</a> is used to generate require.js-compatible functions.
+                jade-amd  --from app/templates --to deploy/js/templates</p>
             
             <h2>Integrating Jade and Backbone.js with Require.js</h2>
             
@@ -127,9 +125,19 @@
             
             <h3>Deploy</h3>
             
-            <p>The <em>Makefile</em> defines how the application is organized on the client side.</p>
-            
-            <pre><code>- deploy&#x000A;|- index.html //Jade-generated&#x000A;|- css&#x000A;|- js&#x000A;   |- collections // backbone&#x000A;   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)&#x000A;   |- models //backone&#x000A;   |- templates  // js jade-compiled with jade-amd&#x000A;   |- routers //backbone&#x000A;   |- views //backone&#x000A;   |- main.js // require config, app start&#x000A;   |- common.js //utils&#x000A;</code></pre>
+            <p>The <em>Makefile</em> defines how the application is organized on the client side.
+                - deploy
+                |- index.html //Jade-generated
+                |- css
+                |- js
+                   |- collections // backbone
+                   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+                   |- models //backone
+                   |- templates  // js jade-compiled with jade-amd
+                   |- routers //backbone
+                   |- views //backone
+                   |- main.js // require config, app start
+                   |- common.js //utils</p>
             
             <p>That's all. For more details about the implementation, please check the full example <a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'>here</a>.</p>
           </div>
