@@ -125,19 +125,9 @@
             
             <h3>Deploy</h3>
             
-            <p>The <em>Makefile</em> defines how the application is organized on the client side.
-                - deploy
-                |- index.html //Jade-generated
-                |- css
-                |- js
-                   |- collections // backbone
-                   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
-                   |- models //backone
-                   |- templates  // js jade-compiled with jade-amd
-                   |- routers //backbone
-                   |- views //backone
-                   |- main.js // require config, app start
-                   |- common.js //utils</p>
+            <p>The <em>Makefile</em> defines how the application is organized on the client side.</p>
+            
+            <pre><code>- deploy&#x000A;|- index.html //Jade-generated&#x000A;|- css&#x000A;|- js&#x000A;   |- collections // backbone&#x000A;   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)&#x000A;   |- models //backone&#x000A;   |- templates  // js jade-compiled with jade-amd&#x000A;   |- routers //backbone&#x000A;   |- views //backone&#x000A;   |- main.js // require config, app start&#x000A;   |- common.js //utils&#x000A;</code></pre>
             
             <p>That's all. For more details about the implementation, please check the full example <a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'>here</a>.</p>
           </div>

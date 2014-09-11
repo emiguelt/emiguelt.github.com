@@ -13,7 +13,7 @@
     <id>tag:emiguelt.github.com,2014-09-10:/2014/09/10_my_scala_learning_guide.html</id>
     <title type="html">My Scala learning guide - In progress...</title>
     <published>2014-09-10T05:00:00Z</published>
-    <updated>2014-09-11T04:41:21Z</updated>
+    <updated>2014-09-11T04:42:05Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2014/09/10_my_scala_learning_guide.html"/>
     <content type="html">&lt;p&gt;Learning Scala language is being a little challenging, first, because functional programming is a really different paradigm for software development, and second, because there are many resources (links, tutorials, books) and sometimes it is a difficult to decide what to read or what to follow to continue in the learning process.&lt;/p&gt;
 
@@ -46,7 +46,7 @@
     <id>tag:emiguelt.github.com,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
     <published>2013-11-30T05:00:00Z</published>
-    <updated>2013-12-02T15:34:01Z</updated>
+    <updated>2014-09-11T04:54:16Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2013/11/30_jade_backbone.html"/>
     <content type="html">&lt;p&gt;I like &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; a lot for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
 
@@ -119,19 +119,21 @@ render: function(){
 
 &lt;h3&gt;Deploy&lt;/h3&gt;
 
-&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.
-    - deploy
-    |- index.html //Jade-generated
-    |- css
-    |- js
-       |- collections // backbone
-       |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
-       |- models //backone
-       |- templates  // js jade-compiled with jade-amd
-       |- routers //backbone
-       |- views //backone
-       |- main.js // require config, app start
-       |- common.js //utils&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- deploy
+|- index.html //Jade-generated
+|- css
+|- js
+   |- collections // backbone
+   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+   |- models //backone
+   |- templates  // js jade-compiled with jade-amd
+   |- routers //backbone
+   |- views //backone
+   |- main.js // require config, app start
+   |- common.js //utils
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content>
@@ -141,7 +143,7 @@ render: function(){
     <id>tag:emiguelt.github.com,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
     <title type="html">Resumen Spring - Parte 2</title>
     <published>2012-05-20T05:00:00Z</published>
-    <updated>2012-06-09T19:21:21Z</updated>
+    <updated>2014-07-27T04:12:28Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2012/05/20_Spring_summary_p2.html"/>
     <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
@@ -356,7 +358,7 @@ public class MyObjectHbDao extends MyObjectDAO{
     <id>tag:emiguelt.github.com,2012-04-08:/2012/04/08/spring_summary.html</id>
     <title type="html">Resumen Spring</title>
     <published>2012-04-08T05:00:00Z</published>
-    <updated>2012-05-20T22:26:21Z</updated>
+    <updated>2014-07-27T04:12:28Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2012/04/08/spring_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
@@ -747,7 +749,7 @@ init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
     <id>tag:emiguelt.github.com,2012-03-18:/2012/03/18/stripes_summary.html</id>
     <title type="html">Resumen de Stripes</title>
     <published>2012-03-18T05:00:00Z</published>
-    <updated>2012-04-08T16:12:00Z</updated>
+    <updated>2014-07-27T04:12:28Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2012/03/18/stripes_summary.html"/>
     <content type="html">&lt;p&gt;Este es un resumen del material para desarrollo de aplicaciones web usando Stripes. Este resumen esta basado en el libro &lt;a href="http://pragprog.com/book/fdstr/stripes" target="_blank"&gt;&lt;em&gt;Stripes ...and Java Web Development Is Fun Again&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
