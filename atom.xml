@@ -2,13 +2,46 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://emiguelt.github.com/</id>
   <title>emiguelt.github.com Syndication</title>
-  <updated>2013-11-30T05:00:00Z</updated>
+  <updated>2014-09-10T05:00:00Z</updated>
   <link rel="alternate" href="http://emiguelt.github.com/"/>
   <link rel="self" href="http://emiguelt.github.com/atom.xml"/>
   <author>
     <name>Miguel Triana</name>
     <uri>http://emiguelt.github.com</uri>
   </author>
+  <entry>
+    <id>tag:emiguelt.github.com,2014-09-10:/2014/09/10_my_scala_learning_guide.html</id>
+    <title type="html">My Scala learning guide - In progress...</title>
+    <published>2014-09-10T05:00:00Z</published>
+    <updated>2014-09-11T04:41:21Z</updated>
+    <link rel="alternate" href="http://emiguelt.github.com/2014/09/10_my_scala_learning_guide.html"/>
+    <content type="html">&lt;p&gt;Learning Scala language is being a little challenging, first, because functional programming is a really different paradigm for software development, and second, because there are many resources (links, tutorials, books) and sometimes it is a difficult to decide what to read or what to follow to continue in the learning process.&lt;/p&gt;
+
+&lt;p&gt;This guide is not about teaching Scala languge, it is about showing the steps I've been following to learn scala, I will include useful references I've read and the methodology I'm applying to get started with this language.&lt;/p&gt;
+
+&lt;p&gt;I'm a newbie in Scala, and also a newbie in making learning guides, but maybe some of my experiences in this process are helpful for anybody wanting to learn Scala.&lt;/p&gt;
+
+&lt;h2&gt;Organization&lt;/h2&gt;
+
+&lt;p&gt;I'm going to split this article in three sections, first it is  described quickly my learning methodoloy, then it is shown I have done, which has been the references/resources I've studied, and finally, an unordered list of resources I've found to choose the next step in my process.&lt;/p&gt;
+
+&lt;h3&gt;Note&lt;/h3&gt;
+
+&lt;p&gt;This article is still in development, so the contents will change in any moment.&lt;/p&gt;
+
+&lt;h2&gt;1. Methodoloy&lt;/h2&gt;
+
+&lt;h2&gt;2. Step by Step&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Follow&lt;/strong&gt; the Functional programming principles in Scala online course at &lt;a href='https://www.coursera.org/course/progfun' target='_blank'&gt;Coursera&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h2&gt;3. Resources to choose next step&lt;/h2&gt;
+</content>
+    <summary type="html">A guide that collect my experiences learning the Scala programming language</summary>
+  </entry>
   <entry>
     <id>tag:emiguelt.github.com,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
@@ -857,245 +890,5 @@ Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;
 &lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Converters, formatters y componentes adicionales de Stripes pueden ser utilizados configurando en el web.xml, configurando el parámetro &lt;em&gt;Extension.Packages&lt;/em&gt; en el &lt;em&gt;StripesFilter&lt;/em&gt;.&lt;/p&gt;
 </content>
     <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
-  </entry>
-  <entry>
-    <id>tag:emiguelt.github.com,2011-10-21:/2011/10/21/cassandra_cli.html</id>
-    <title type="html">Usando Cassandra_CLI (Básico)</title>
-    <published>2011-10-21T05:00:00Z</published>
-    <updated>2011-10-25T01:46:47Z</updated>
-    <link rel="alternate" href="http://emiguelt.github.com/2011/10/21/cassandra_cli.html"/>
-    <content type="html">&lt;p&gt;Cassandra es un gestor de bases de datos distribuidas altamente escalable basado en NoSQL (mas info en: http://wiki.apache.org/cassandra).
-Este post presenta el uso básico de la consola de definición y manipulación de datos &lt;em&gt;cassandra_cli&lt;/em&gt;. Se asume conocimientos básicos de Cassandra y de su modelo de datos.&lt;/p&gt;
-
-&lt;h2&gt;Iniciando &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;Desde el directorio de cassandra ejecutar el comando:
-    ./bin/cassandra_cli --host localhost --port 9160
- * host: localhost o la dirección del cluster.
- * port: Puerto definido en conf/cassandra.yaml&lt;/p&gt;
-
-&lt;h2&gt;Creando un Keyspace&lt;/h2&gt;
-
-&lt;p&gt;Un Keyspace es como un Schema en una base de datos relacional.
-    create keyspace MiBase;
-La salida de consola será algo como:
-    448a4920-fbe9-11e0-0000-242d50cf1ffd
-    Waiting for schema agreement...
-    ... schemas agree across the cluster
-Ahora usamos el keyspace recien creado:
-    use MiBase;
-Salida:
-    Authenticated to keyspace: MiBase&lt;/p&gt;
-
-&lt;h2&gt;Creando una Column Family (CF)&lt;/h2&gt;
-
-&lt;p&gt;Una CF seria como una tabla...
-    create column family Usuario with comparator = UTF8Type;      &lt;br/&gt;
-    5c064a30-fbea-11e0-0000-242d50cf1ffd
-    Waiting for schema agreement...
-    ... schemas agree across the cluster
-Creamos una CF llamada Usuario, la cual asume que las llaves están en UTF8 para realizar comparaciones.&lt;/p&gt;
-
-&lt;h2&gt;Añadiendo datos en la CF&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;set Usuario['mtriana']['apellido'] = 'miguel'; 
-org.apache.cassandra.db.marshal.MarshalException: cannot parse 'mtriana' as hex bytes
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Intentamos adicionar un usuario, sin embargo obtenemos un error porque las columnas aceptan datos en formato en hexadecimal, entonces ejecutamos el siguiente comando para que sean aceptadas cadenas de caracteres en ASCII:
-    assume UsUARIO keys as ascii;
-    Assumption for column family 'Usuario' added successfully&lt;/p&gt;
-
-&lt;p&gt;De nuevo vamos a añadir el usuario:
-    set Usuario['mtriana']['nombre'] = 'miguel';          &lt;br/&gt;
-    Value inserted.
-    set Usuario['mtriana']['apellido'] = 'triana';        &lt;br/&gt;
-    Value inserted.
-    set Usuario['mtriana']['edad'] = '10';      &lt;br/&gt;
-    Value inserted.
-En este caso &lt;em&gt;mtriana&lt;/em&gt; es la llave de accesso a la super columna (es como una fila)  y &lt;em&gt;nombre&lt;/em&gt;, &lt;em&gt;apellido&lt;/em&gt; y &lt;em&gt;edad&lt;/em&gt; son las columnas da la CF.&lt;/p&gt;
-
-&lt;h2&gt;Consultando la CF&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;get Usuario['mtriana'];
-=&amp;gt; (column=apellido, value=747269616e61, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=3130, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=6d696775656c, timestamp=1319205140859000)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Obtenemos los datos de super columna con llave &lt;em&gt;mtriana&lt;/em&gt;, sin embargo, los datos son presentados en hexadecimal (ByteType). Para presentarlos en un formato legible se actualizan los metadatos de las columnas.
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;update column family Usuario                                  &lt;br/&gt;
-...        with
-...        column_metadata =                                             &lt;br/&gt;
-...        [
-...        {column_name: nombre, validation_class: UTF8Type},            &lt;br/&gt;
-...        {column_name: apellido, validation_class: UTF8Type},
-...        {column_name: edad, validation_class: UTF8Type, index_type: KEYS}
-...        ];&lt;/p&gt;
-
-&lt;p&gt;c373ec10-fbed-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;De nuevo se consulta la base de datos:
-    get Usuario['mtriana'];
-    =&gt; (column=apellido, value=triana, timestamp=1319205144832000)
-    =&gt; (column=edad, value=10, timestamp=1319205156161000)
-    =&gt; (column=nombre, value=miguel, timestamp=1319205140859000)
-    Returned 3 results.&lt;/p&gt;
-
-&lt;h3&gt;Consultando la base por otro indice&lt;/h3&gt;
-
-&lt;p&gt;Cuando modificamos los metadatos de las columnas, también se incluyó un índice para la edad para realizar búsquedas por este parámetro, ahora vamos a consultar la base usando este índice.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;get Usuario where 'edad' = '10';
--------------------
-RowKey: mtriana
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)
-1 Row Returned.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Listando todos los datos de la CF&lt;/h3&gt;
-
-&lt;p&gt;Añadimos un usuario y después usamos el comando &lt;em&gt;list&lt;/em&gt; para obtener todos los datos de la super columna:
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
-&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
-&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
-&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
-&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
-&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
-&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
-&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
-&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
-&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
-&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] set Usuario['egomez']['apellido'] = 'gomez';                   &lt;br/&gt;
-Value inserted.
-[default@MiBase] set Usuario['egomez']['nombre'] = 'edwin';&lt;br/&gt;
-Value inserted.
-[default@MiBase] set Usuario['egomez']['edad'] = '15';   &lt;br/&gt;
-Value inserted.
-[default@MiBase] list Usuario;&lt;/p&gt;
-
-&lt;h2&gt;Using default limit of 100&lt;/h2&gt;
-
-&lt;p&gt;RowKey: egomez
-=&amp;gt; (column=apellido, value=gomez, timestamp=1319206905155000)
-=&amp;gt; (column=edad, value=15, timestamp=1319206929439000)&lt;/p&gt;
-
-&lt;h2&gt;=&amp;gt; (column=nombre, value=edwin, timestamp=1319206919988000)&lt;/h2&gt;
-
-&lt;p&gt;RowKey: mtriana
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-=&amp;gt; (column=nombre, value=miguel, timestamp=1319205140859000)&lt;/p&gt;
-
-&lt;p&gt;2 Rows Returned.
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Borrando Columnas y Super Columnas&lt;/h2&gt;
-
-&lt;p&gt;Podemos borrar una columna completa de una fila usando el comando &lt;code&gt;del NombreCF['llaveDeFila']['columna'];&lt;/code&gt;
-&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] del Usuario['mtriana']['nombre'];
-column removed.
-[default@MiBase] get Usuario['mtriana'];
-=&amp;gt; (column=apellido, value=triana, timestamp=1319205144832000)
-=&amp;gt; (column=edad, value=10, timestamp=1319205156161000)
-Returned 2 results.
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;O se puede borrar una fila completa (super columna) con `del NombreCF['nombreDeFila'];
-    del Usuario['mtriana'];        &lt;br/&gt;
-    row removed.&lt;/p&gt;
-
-&lt;h2&gt;Eliminando una CF y un Keyspace (KS)&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Para eliminar una CF: &lt;code&gt;drop column family NombreCF;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Para eliminar una Base (KS): &lt;code&gt;drop keyspace NombreKS;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;code class="bash"&gt;&lt;table class="CodeRay"&gt;&lt;tr&gt;
-  &lt;td class="line-numbers"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
-&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
-&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
-&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
-&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
-&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
-&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
-&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
-&lt;/pre&gt;&lt;/td&gt;
-  &lt;td class="code"&gt;&lt;pre&gt;[default@MiBase] drop column family Usuario;
-cbfa22a0-fbf2-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-[default@MiBase] drop keyspace MiBase;
-d5b6a890-fbf2-11e0-0000-242d50cf1ffd
-Waiting for schema agreement...
-... schemas agree across the cluster
-&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2&gt;Salir de &lt;strong&gt;cassandra_cli&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;quit;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr&gt;
-
-
-&lt;h3&gt;Referéncias&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;http://wiki.apache.org/cassandra/CassandraCli&lt;/li&gt;
-&lt;li&gt;http://www.datastax.com/docs/0.8/dml/using_cli&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-    <summary type="html">Comandos básicos para el cliente (consola) de Cassandra</summary>
   </entry>
 </feed>
