@@ -13,7 +13,7 @@
     <id>tag:emiguelt.github.com,2014-09-10:/2014/09/10_my_scala_learning_guide.html</id>
     <title type="html">My Scala learning guide - In progress...</title>
     <published>2014-09-10T05:00:00Z</published>
-    <updated>2014-09-16T04:33:44Z</updated>
+    <updated>2014-09-16T04:57:04Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2014/09/10_my_scala_learning_guide.html"/>
     <content type="html">&lt;p&gt;Learning Scala language is being a little challenging, first, because functional programming is a really different paradigm for software development, and second, because there are many resources (links, tutorials, books) and sometimes it is a difficult to decide what to read or what to follow to continue in the learning process.&lt;/p&gt;
 
@@ -41,7 +41,7 @@
 &lt;h2&gt;3. Resources to choose next step&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Ninety nine scala problems &lt;a href+"http://aperiodic.net/phil/scala/s-99/" target="_blank"&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ninety nine scala problems &lt;a href="http://aperiodic.net/phil/scala/s-99/" target="_blank"&gt;Go&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
