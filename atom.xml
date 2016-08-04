@@ -13,7 +13,7 @@
     <id>tag:emiguelt.github.com,2016-08-03:/2016/08/03_configuring_qt_environment_with_googletests.html</id>
     <title type="html">Configuring Qt environment for Mobile development with TDD</title>
     <published>2016-08-03T05:00:00Z</published>
-    <updated>2016-08-03T23:59:27Z</updated>
+    <updated>2016-08-04T22:57:52Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2016/08/03_configuring_qt_environment_with_googletests.html"/>
     <content type="html">&lt;p&gt;&lt;strong&gt;IN PROGRESS...&lt;/strong&gt;&lt;/p&gt;
 
@@ -38,10 +38,24 @@
 &lt;/ul&gt;
 
 
-&lt;h2&gt;Known problems&lt;/h2&gt;
+&lt;h3&gt;Links&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Executing tests from console, not from IDE&lt;/li&gt;
+&lt;li&gt;https://github.com/google/googletest/blob/master/googletest/docs/Primer.md&lt;/li&gt;
+&lt;li&gt;http://ninetyninefree.blogspot.com.co/2016/02/using-google-test-framework-with-qt.html&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Testing signals &amp;amp; slots&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;http://stackoverflow.com/questions/33829949/how-to-use-qtimers-in-googletest&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;http://stackoverflow.com/questions/35509374/qt-test-how-to-stop-execution-when-a-signal-is-emitted
+*&lt;/p&gt;
+
+&lt;h2&gt;Known problems&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Executing tests from console, not from IDE&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Executing from console needs extra import: http://www.qtcentre.org/threads/26934-Can-t-run-executable-file-directly-Cannot-open-shared-object-file&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
@@ -112,7 +126,7 @@
     <id>tag:emiguelt.github.com,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
     <published>2013-11-30T05:00:00Z</published>
-    <updated>2013-12-02T15:34:01Z</updated>
+    <updated>2016-08-04T22:51:46Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2013/11/30_jade_backbone.html"/>
     <content type="html">&lt;p&gt;I like &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; a lot for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
 
@@ -185,19 +199,21 @@ render: function(){
 
 &lt;h3&gt;Deploy&lt;/h3&gt;
 
-&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.
-    - deploy
-    |- index.html //Jade-generated
-    |- css
-    |- js
-       |- collections // backbone
-       |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
-       |- models //backone
-       |- templates  // js jade-compiled with jade-amd
-       |- routers //backbone
-       |- views //backone
-       |- main.js // require config, app start
-       |- common.js //utils&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- deploy
+|- index.html //Jade-generated
+|- css
+|- js
+   |- collections // backbone
+   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+   |- models //backone
+   |- templates  // js jade-compiled with jade-amd
+   |- routers //backbone
+   |- views //backone
+   |- main.js // require config, app start
+   |- common.js //utils
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content>
