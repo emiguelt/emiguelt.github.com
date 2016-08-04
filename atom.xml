@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://emiguelt.github.com/</id>
   <title>emiguelt.github.com Syndication</title>
-  <updated>2014-09-10T05:00:00Z</updated>
+  <updated>2016-08-03T05:00:00Z</updated>
   <link rel="alternate" href="http://emiguelt.github.com/"/>
   <link rel="self" href="http://emiguelt.github.com/atom.xml"/>
   <author>
@@ -10,20 +10,81 @@
     <uri>http://emiguelt.github.com</uri>
   </author>
   <entry>
+    <id>tag:emiguelt.github.com,2016-08-03:/2016/08/03_configuring_qt_environment_with_googletests.html</id>
+    <title type="html">Configuring Qt environment for Mobile development with TDD</title>
+    <published>2016-08-03T05:00:00Z</published>
+    <updated>2016-08-03T23:59:27Z</updated>
+    <link rel="alternate" href="http://emiguelt.github.com/2016/08/03_configuring_qt_environment_with_googletests.html"/>
+    <content type="html">&lt;p&gt;&lt;strong&gt;IN PROGRESS...&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Project structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;root   
+|- root.pro       &amp;lt;--- multiproject
+|- src
+   |- source.pro  &amp;lt;--- lib project
+|- app
+   |- app.pro     &amp;lt;--- Desktop/mobile app
+|- tests
+   |- tests.pro   &amp;lt;--- Console project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Configuring GoogleTest framework&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download and compile google tests&lt;/li&gt;
+&lt;li&gt;Add library to project&lt;/li&gt;
+&lt;li&gt;Execute tests&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Known problems&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Executing tests from console, not from IDE&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Code once, deploy any platform. That is the premise of Qt/C++. In this post I'm going to put all information related to start developing for Android and Desktop using Qt since there are missing steps about</summary>
+  </entry>
+  <entry>
+    <id>tag:emiguelt.github.com,2016-08-01:/2016/08/01_functional_programming_learning_path.html</id>
+    <title type="html">Functional programming learning path - The one that worked!</title>
+    <published>2016-08-01T05:00:00Z</published>
+    <updated>2016-08-03T23:59:03Z</updated>
+    <link rel="alternate" href="http://emiguelt.github.com/2016/08/01_functional_programming_learning_path.html"/>
+    <content type="html">&lt;p&gt;&lt;strong&gt;IN PROGRESS...&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;My path:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Book SICP From beginning until Streams&lt;/li&gt;
+&lt;li&gt;Clojure marathon&lt;/li&gt;
+&lt;li&gt;Learn RX + Video QCon&lt;/li&gt;
+&lt;li&gt;Functional patterns (WHICH CHAPTERS???)&lt;/li&gt;
+&lt;li&gt;Thinking functional (Curry &amp;amp; ????)
+
+&lt;h2&gt;- Web dev with Clojure (which???)&lt;/h2&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+    <summary type="html">Finally, a quick and effective (for me) walkthrough for learning Functional Programming in Java, Lisp, Clojure, Scala and Javascript</summary>
+  </entry>
+  <entry>
     <id>tag:emiguelt.github.com,2014-09-10:/2014/09/10_my_scala_learning_guide.html</id>
-    <title type="html">My Scala learning guide - In progress...</title>
+    <title type="html">My Scala learning guide - OBSOLETE</title>
     <published>2014-09-10T05:00:00Z</published>
-    <updated>2014-09-16T04:57:04Z</updated>
+    <updated>2016-07-28T03:53:22Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2014/09/10_my_scala_learning_guide.html"/>
     <content type="html">&lt;p&gt;Learning Scala language is being a little challenging, first, because functional programming is a really different paradigm for software development, and second, because there are many resources (links, tutorials, books) and sometimes it is a difficult to decide what to read or what to follow to continue in the learning process.&lt;/p&gt;
 
-&lt;p&gt;This guide is not about teaching Scala languge, it is about showing the steps I've been following to learn scala, I will include useful references I've read and the methodology I'm applying to get started with this language.&lt;/p&gt;
+&lt;p&gt;This guide is not about teaching Scala language, it is about showing the steps I've been following to learn Scala, I will include useful references I've read and the methodology I'm applying to get started with this language.&lt;/p&gt;
 
 &lt;p&gt;I'm a newbie in Scala, and also a newbie in making learning guides, but maybe some of my experiences in this process are helpful for anybody wanting to learn Scala.&lt;/p&gt;
 
 &lt;h2&gt;Organization&lt;/h2&gt;
 
-&lt;p&gt;I'm going to split this article in three sections, first it is  described quickly my learning methodoloy, then it is shown I have done, which has been the references/resources I've studied, and finally, an unordered list of resources I've found to choose the next step in my process.&lt;/p&gt;
+&lt;p&gt;I'm going to split this article in three sections, first it is  described quickly my learning methodology, then it is shown I have done, which has been the references/resources I've studied, and finally, an unordered list of resources I've found to choose the next step in my process.&lt;/p&gt;
 
 &lt;h3&gt;Note&lt;/h3&gt;
 
@@ -51,7 +112,7 @@
     <id>tag:emiguelt.github.com,2013-11-30:/2013/11/30_jade_backbone.html</id>
     <title type="html">Jade, Backbone.js and Require.js, a running example</title>
     <published>2013-11-30T05:00:00Z</published>
-    <updated>2014-09-11T04:54:16Z</updated>
+    <updated>2013-12-02T15:34:01Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2013/11/30_jade_backbone.html"/>
     <content type="html">&lt;p&gt;I like &lt;a href='http://jade-lang.com/' target='_blank'&gt;Jade&lt;/a&gt; a lot for HTML templating. Currently I'm learning Backbone.js, so after a couple of examples I wanted to use Jade for HTML generation as well as HTML template engine in the client-side. During my searching I didn't found a concrete example using the three technologies (Jade, Backbone and Require), so with this post I want to give some clues to use them successfully.&lt;/p&gt;
 
@@ -124,21 +185,19 @@ render: function(){
 
 &lt;h3&gt;Deploy&lt;/h3&gt;
 
-&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;- deploy
-|- index.html //Jade-generated
-|- css
-|- js
-   |- collections // backbone
-   |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
-   |- models //backone
-   |- templates  // js jade-compiled with jade-amd
-   |- routers //backbone
-   |- views //backone
-   |- main.js // require config, app start
-   |- common.js //utils
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;em&gt;Makefile&lt;/em&gt; defines how the application is organized on the client side.
+    - deploy
+    |- index.html //Jade-generated
+    |- css
+    |- js
+       |- collections // backbone
+       |- libs // jadeRuntime.js (runtime.js from Jade renamed), other libs (backbone, underscore, etc)
+       |- models //backone
+       |- templates  // js jade-compiled with jade-amd
+       |- routers //backbone
+       |- views //backone
+       |- main.js // require config, app start
+       |- common.js //utils&lt;/p&gt;
 
 &lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content>
@@ -148,7 +207,7 @@ render: function(){
     <id>tag:emiguelt.github.com,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
     <title type="html">Resumen Spring - Parte 2</title>
     <published>2012-05-20T05:00:00Z</published>
-    <updated>2014-07-27T04:12:28Z</updated>
+    <updated>2012-06-09T19:21:21Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2012/05/20_Spring_summary_p2.html"/>
     <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
 
@@ -358,544 +417,5 @@ public class MyObjectHbDao extends MyObjectDAO{
 &lt;p&gt;Para capturar excepciones de Hibernate usamos &lt;code&gt;PersistenceExceptionTranslationPostProcessor&lt;/code&gt;, el cual es un bean que "intercepta" las excepciones de cualquier &lt;code&gt;@Repository&lt;/code&gt; y las convierte en Excepciones de Spring.&lt;/p&gt;
 </content>
     <summary type="html">Resumen del Framework Spring - Segunda parte</summary>
-  </entry>
-  <entry>
-    <id>tag:emiguelt.github.com,2012-04-08:/2012/04/08/spring_summary.html</id>
-    <title type="html">Resumen Spring</title>
-    <published>2012-04-08T05:00:00Z</published>
-    <updated>2014-07-27T04:12:28Z</updated>
-    <link rel="alternate" href="http://emiguelt.github.com/2012/04/08/spring_summary.html"/>
-    <content type="html">&lt;p&gt;Este es un resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1&gt;Spring&lt;/h1&gt;
-
-&lt;p&gt;Framework de desarrollo Java que ofrece &lt;em&gt;Dependency Injection&lt;/em&gt;, &lt;em&gt;Aspect Oriented Programming&lt;/em&gt; y &lt;em&gt;Templates&lt;/em&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Inyección de Dependencias (DI): Configuración automático de dependencias de una clase.&lt;/li&gt;
-&lt;li&gt;Programación Orientada a Aspectos: Adición de funcionalidades comunes a lo largo de un sistema (ej. Sistema de Logging).&lt;/li&gt;
-&lt;li&gt;Plantillas: Permiten reutilizar código y reducir escribir funciones repetitivas.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Spring administra clases en un sistema por medio de un &lt;em&gt;Container&lt;/em&gt;, en este contenedor se encuentran todas las referencias de los objetos administrados por Spring. Hay dos tipos de contenedores, los &lt;em&gt;BeanFactories&lt;/em&gt;, para inyección de dependencia, y &lt;em&gt;ApplicationContexts&lt;/em&gt;, que incluyen DI ademas de otros servicios Event Listeners, interceptors, etc.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;ApplicationContexts&lt;/em&gt; relevantes en Spring:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ClassPathApplicationContext: en classpath&lt;/li&gt;
-&lt;li&gt;FileSystemApplicationContext: en el sistema de archivos&lt;/li&gt;
-&lt;li&gt;XmlWebApplicationContext: para aplicaciones web&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Ciclo de vida de un Bean&lt;/h2&gt;
-
-&lt;p&gt;Un Bean es una clase POJO administrada por Spring.&lt;/p&gt;
-
-&lt;p&gt;Ciclo de vida:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Instantiate&lt;/li&gt;
-&lt;li&gt;PopulateProperties&lt;/li&gt;
-&lt;li&gt;BeanNameAware's setBeanName&lt;/li&gt;
-&lt;li&gt;BeanFactoryAware's setBeanFactory&lt;/li&gt;
-&lt;li&gt;ApplicationContextAware's setApplicationContext&lt;/li&gt;
-&lt;li&gt;Pre-initialization BeanPostProcessors&lt;/li&gt;
-&lt;li&gt;InitializatingBean's afterPropertiesSet&lt;/li&gt;
-&lt;li&gt;Call custom init method&lt;/li&gt;
-&lt;li&gt;Post-initialization BeanPostProcessors&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;BEAN READY TO USE&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Container is shutdown&lt;/li&gt;
-&lt;li&gt;DisposableBean's destroy&lt;/li&gt;
-&lt;li&gt;Call custom destroy method&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Configuración de Beans&lt;/h2&gt;
-
-&lt;h3&gt;Constructor injection&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"&amp;gt;
-  &amp;lt;constructor-arg value="10"/&amp;gt;
-  &amp;lt;constructor-arg ref="beanId2"/&amp;gt;
-&amp;lt;/bean&amp;gt;
-...
-&amp;lt;bean id="beanId2" class="package.Class2"/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Factory Method injection&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class" factory-method="getInstance"/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Nota&lt;/strong&gt;: Bean son Singleton por default, el atributo &lt;em&gt;prototype&lt;/em&gt; se utiliza para sobrescribir este patrón. Opciones posibles: singleton, prototypee, request, session, global-session.&lt;/p&gt;
-
-&lt;h3&gt;Init/Destroy beans&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"
-init-method="methodWhenInit" destroy-method="methodWhenDestroy"/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Otro método para inicializar o finalizar un bean es implementando las interfaces &lt;em&gt;InitializingBean y DisposableBean&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;También se puede configurar un método default para inicializar y finalizar de forma global configurando &lt;em&gt;default-init-method&lt;/em&gt; y &lt;em&gt;default_destroy_method&lt;/em&gt; como atributos del tag &lt;em&gt;beans&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Properties injection&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"&amp;gt;
-  &amp;lt;property name="property1" value="10"/&amp;gt;
-  &amp;lt;property name="property2" ref="beanId2"/&amp;gt;
-&amp;lt;/bean&amp;gt;
-...
-&amp;lt;bean id="beanId2" class="package.Class2"/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Inner beans&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"&amp;gt;
-  &amp;lt;property name="property2"&amp;gt;
-    &amp;lt;bean class="package.Class2"/&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Funciona igual para &lt;code&gt;contructor-arg&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3&gt;Wiring Collections&lt;/h3&gt;
-
-&lt;h4&gt;List, sets, arrays&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"&amp;gt;
-  &amp;lt;property name="mycollection"&amp;gt;
-    &amp;lt;list&amp;gt;
-      &amp;lt;ref bean="beanId2"/&amp;gt;
-      &amp;lt;ref bean="beanId3"/&amp;gt;
-      &amp;lt;ref bean="beanId4"/&amp;gt;
-    &amp;lt;/list&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;Maps, Props&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id="beanId1" class="package.Class"&amp;gt;
-  &amp;lt;property name="mycollection"&amp;gt;
-    &amp;lt;map&amp;gt;
-      &amp;lt;entry key="aKey" value="aValue"/&amp;gt;
-      &amp;lt;entry key-ref="keyBean" value-ref="beanId3"/&amp;gt;
-      &amp;lt;entry key="aKey" value-ref="beanId2"/&amp;gt;
-    &amp;lt;/list&amp;gt;
-  &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Wiring to NULL&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;property name="thisPropNull"&amp;gt;&amp;lt;null/&amp;gt;&amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Autowiring&lt;/h2&gt;
-
-&lt;p&gt;Básicamente, hay dos tipos de resolución automática de beans: "autowire" en el XML o usando "annotations".&lt;/p&gt;
-
-&lt;h3&gt;Autowiring in XML&lt;/h3&gt;
-
-&lt;p&gt;Durante la configuración de un bean en el &lt;em&gt;ApplicationContext&lt;/em&gt; se define el tipo de "autowire", es de decir, como son conectadas las propiedades de un bean.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean ... autowire='TIPO_DE_AUTOWIRE' /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;Tipos de &lt;em&gt;Autowire&lt;/em&gt;&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;byName: busca un bean con el mismo NOMBRE de la propiedad (atributo)&lt;/li&gt;
-&lt;li&gt;byType: busca un bean con el mismo TIPO de la propiedad, si hay varios beans que puedan ser seleccionados, se genera una excepción, a menos que hay solo un bean marcado como "&lt;em&gt;primary&lt;/em&gt;", por default, todos los beans son &lt;em&gt;primary=true&lt;/em&gt;, se debe marcar &lt;em&gt;primary=false&lt;/em&gt; para evitar la excepción.&lt;/li&gt;
-&lt;li&gt;constructor: igual que &lt;em&gt;byType&lt;/em&gt; pero para los parametros del constructor&lt;/li&gt;
-&lt;li&gt;autodetect: realiza &lt;em&gt;constructor&lt;/em&gt; y si no es posible, realiza &lt;em&gt;byType&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Para definir &lt;em&gt;autowire&lt;/em&gt; para todos los beans se usa: &lt;code&gt;&amp;lt;beans ... default-autowire='TIPO_DE_AUTOWIRE' /&amp;gt;&lt;/code&gt;, en este caso también esta la opción &lt;em&gt;none&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Autowiring with Annotations&lt;/h3&gt;
-
-&lt;p&gt;Para habilitar las &lt;em&gt;anotaciones&lt;/em&gt; se coloca el elemento &lt;code&gt;&amp;lt;context:annotation-config/&amp;gt;&lt;/code&gt; en el tag &lt;code&gt;&amp;lt;beans&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4&gt;@Autowired&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;La anotacion&lt;em&gt;@Autowired&lt;/em&gt; colocada en atributos o métodos informa a Spring que esa propiedad debe ser configurada por el &lt;em&gt;Framework&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Autowired&lt;/em&gt; es equivalente a &lt;em&gt;@Inject&lt;/em&gt; en la especificación JSR-330.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Autowired&lt;/em&gt; es equivalente a &lt;em&gt;Autowire byType&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;(required=false): parametro opcional para evitar la generación de excepciones en el caso que no sea posible suplir la dependencia.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Qualifier("name")&lt;/em&gt;: Usado para eliminar la ambigüedad en la resolución de dependencias (Similar a &lt;em&gt;byName&lt;/em&gt;). Equivalente a _@Named("name") en la especificación Java.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Qualifiers&lt;/em&gt; pueden ser extendidos en Spring o en Java&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Value("xyz")&lt;/em&gt;: Usado para pasar valores a la propiedad. Usado principalmente con &lt;em&gt;Spring Expression Language&lt;/em&gt; (SpEL).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Hasta aquí, los beans (anotados o no) debían estar listados en el &lt;em&gt;applicationContext&lt;/em&gt;, para evitar esto se usa el &lt;em&gt;descubrimiento automático de beans&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Descubrimiento automático de Beans&lt;/h3&gt;
-
-&lt;p&gt;Se usa &lt;code&gt;&amp;lt;context:component-scan/&amp;gt;&lt;/code&gt; en vez de &lt;code&gt;&amp;lt;context:annotation-config/&amp;gt;&lt;/code&gt;. se debe configurar el atributo &lt;code&gt;base-package="xyz.abc"&lt;/code&gt; para indicar donde deben ser buscados los beans. Los Beans pueden ser de 4 tipos:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;@Component("nombre_opcional")&lt;/em&gt;:  Bean común de Spring.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Controller("nombre_opcional")&lt;/em&gt;: Controlador de Spring MVC&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Service("nombre_opcional")&lt;/em&gt;: Servicio de Spring&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Repository("nombre_opcional")&lt;/em&gt;: Repositorio de accesso a datos (similar a DAOs)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Es posible usar &lt;em&gt;filtros&lt;/em&gt; para incluir o excluir &lt;em&gt;beans&lt;/em&gt; sin anotaciones, usando  el tag &lt;code&gt;&amp;lt;context:include-filter/&amp;gt;&lt;/code&gt; o &lt;code&gt;&amp;lt;context:exclude-filter/&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Configuración de Spring usando Java&lt;/h2&gt;
-
-&lt;p&gt;Se usa una clase Java para obtener la configuración de los beans. La clase debe estar anotada con &lt;em&gt;@Configuration&lt;/em&gt; y cada método que genera un bean debe ser anotada con &lt;em&gt;@Bean&lt;/em&gt;. También se utiliza &lt;code&gt;&amp;lt;context:component-scan/&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Spring AOP Framework&lt;/h2&gt;
-
-&lt;p&gt;AOP: Aspect Oriented Programming, ayuda a modularizar funcionalidades transversales de un sistema, como &lt;em&gt;logging&lt;/em&gt; o seguridad, donde varios puntos de un sistema pueden ser afectados.&lt;/p&gt;
-
-&lt;h3&gt;Vocabulario:&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Advice: Método a ser ejecutado y cuando.
-
-&lt;ul&gt;
-&lt;li&gt;Before,&lt;/li&gt;
-&lt;li&gt;After,&lt;/li&gt;
-&lt;li&gt;After-returning: con exito,&lt;/li&gt;
-&lt;li&gt;After-throwing: con error (&lt;em&gt;throws an exception&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;Around: Envuelve un método (antes, despues)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Join Point: Lugar donde podria ser llamado un &lt;em&gt;Advice&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Pointcuts: Donde DEBE ser llamado un Aspecto&lt;/li&gt;
-&lt;li&gt;Ascpect: Advice + Pointcut&lt;/li&gt;
-&lt;li&gt;Introductions: Adición de nuevos métodos o atributos a una clase&lt;/li&gt;
-&lt;li&gt;Weaving: Proxy an object, puede ser en:
-
-&lt;ul&gt;
-&lt;li&gt;Compilation time&lt;/li&gt;
-&lt;li&gt;Class load time&lt;/li&gt;
-&lt;li&gt;Runtime: asi lo hace Spring AOP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Abordajes de Spring AOP:&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Classic: Proxy-based (1)&lt;/li&gt;
-&lt;li&gt;Anotaciones &lt;em&gt;@AspectJ&lt;/em&gt; (1)&lt;/li&gt;
-&lt;li&gt;Pure POJO aspects (1)&lt;/li&gt;
-&lt;li&gt;Injected AspectJ aspects&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt; (1): Solo para métodos&lt;/p&gt;
-
-&lt;p&gt;Spring solo soporta &lt;em&gt;Proxied-objects&lt;/em&gt; en tiempo de ejecución, por lo tanto solo puede interceptar métodos.&lt;/p&gt;
-
-&lt;h3&gt;Pointcuts&lt;/h3&gt;
-
-&lt;p&gt;Spring soporta un subconjunto de pointcuts de AspectJ debido a la restricción de intercepción solo en metodos.&lt;/p&gt;
-
-&lt;h4&gt;Pointcut expression language para Spring:&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;args(): Los argumentos deben ser instancias de los tipos definidos&lt;/li&gt;
-&lt;li&gt;@args(): Los argumentos deben estar anotados con los tipos definidos&lt;/li&gt;
-&lt;li&gt;this(): Bean reference of a AOP proxy is of a given type&lt;/li&gt;
-&lt;li&gt;target(): El objeto debe ser del tipo especificado&lt;/li&gt;
-&lt;li&gt;@target: El objeto debe tener la anotación especificada&lt;/li&gt;
-&lt;li&gt;within: El objeto debe ser de alguno de los tipos dados&lt;/li&gt;
-&lt;li&gt;@within: El objeto debe tener una de las anotaciones especificadas&lt;/li&gt;
-&lt;li&gt;@annotation: El método tiene la anotación especificada&lt;/li&gt;
-&lt;li&gt;execution: El joint point es un &lt;em&gt;method execution&lt;/em&gt;. Es el mas importante, porque es el único que realiza matching.&lt;/li&gt;
-&lt;li&gt;bean: Especifíca en que Bean debe ser creado el Pointcut (Solo en Spring)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Ejemplo:
-     execution(* net.co.Class.play(..))&lt;/p&gt;
-
-&lt;p&gt;Explicación:
- * execution: interceptar en la ejecución del método
- * &lt;em&gt;*&lt;/em&gt;: Retorna cualquier tipo
- * net.co.Class: Clase a la que el método pertenece
- * play: Método
- * (..): Cualquier argumento&lt;/p&gt;
-
-&lt;p&gt; En la creación de Pointcuts puede usarse operadores logicos &amp;amp;&amp;amp; (and), || (or), ! (not)&lt;/p&gt;
-
-&lt;h3&gt;Declaración de Aspects en Spring&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Namespace: aop&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Elementos:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:advisor&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:after&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:after-returning&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:after-throwing&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:around&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:aspect&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:aspectj-autoproxy&amp;gt;&lt;/code&gt;: Permite anotaciones @AspectJ&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:before&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:config&amp;gt;&lt;/code&gt;: Top level AOP elements&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:declare-parents&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;aop:pointcut&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Ejemplo:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;aop:config&amp;gt;
-  &amp;lt;aop:aspect ref='BeanConFuncionalidad'&amp;gt;
-     &amp;lt;aop:pointcut id='pointId'
-         expression='execution(....)'/&amp;gt;
-     &amp;lt;aop:before pointcut-ref='pointId'
-         method='MetodoAEjectuarEnBeanConFuncionalidad'/&amp;gt;
-  &amp;lt;/aop:aspect&amp;gt;
-&amp;lt;/aop:config&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;La definición de un Pointcut puede ser por fuera del aspecto, asi, esta definición estará disponible para otros aspectos.&lt;/p&gt;
-
-&lt;h3&gt;Around advice&lt;/h3&gt;
-
-&lt;p&gt;Intercepción de un método Antes y Despues (&lt;code&gt;&amp;lt;aop:around&lt;/code&gt;&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public void aroundMethod(ProceedingJoinPoint point){
-  //instrucciones antes de llamar el método
-  point.proceed(); //ejecución del método
-  //instrucciónes despues del método
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Configuración en XML igual que los otros aspectos&lt;/p&gt;
-
-&lt;h3&gt;Pasar parámetros a un advice&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;aop:config&amp;gt;
-  &amp;lt;aop:aspect ref='BeanConFuncionalidad'&amp;gt;
-     &amp;lt;aop:pointcut id='pointId'
-         expression='execution(* net.co.Class.play(String) and args(argname)'/&amp;gt;
-     &amp;lt;aop:before pointcut-ref='pointId'
-         method='MetodoAEjectuarEnBeanConFuncionalidad'
-         arg-names='argName'/&amp;gt;
-  &amp;lt;/aop:aspect&amp;gt;
-&amp;lt;/aop:config&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;El método &lt;em&gt;MetodoAEjecutarEnBeanConFuncionalidad&lt;/em&gt; debe recibir un String&lt;/p&gt;
-
-&lt;h3&gt;Anotando aspects en Spring&lt;/h3&gt;
-
-&lt;p&gt;Spring usa anotaciones &lt;em&gt;@AspectJ&lt;/em&gt;, sin embargo, se encuentra limitado a la intercepción de métodos (con AspectJ tabmién es posible interceptar atributos y constructores).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@Aspect //define un aspecto
-  public class MyAspect{
-  @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod(..))")
-  public void pointcutName(){}//Este método solo define el pointcut, debe permanecer vacio
-
-  @Before("pointcutName()")
-  public void method1(){ ... do stuff ...}
-
-  @AfterReturning("pointcutName()")
-  public void method2(){ ... do stuff ...}
-
-  @AfterThrowing("pointcutName()")
-  public void metho3(){ ... do stuff ...}
-
-  @Aroun("pointcutName()")
-  public void method4(ProcedingJoinPoint joinpoint){
-    try{
-      ... do stuff befoe ...
-      joinpoint.proceed(); // ejecutá el método
-      ... do stuff after ...
-    }catch(SomeException ex){
-      ... do stuff for throwing ...
-    }
-
-  /** Pasando Parametros **/
-  @Pointcut("execution(*.com.mypackage.MyInterceptedClass.interceptedMethod2(String))" +
-  " &amp;amp;&amp;amp; args(someArgumentName)")
-  public void pointcutOther(String someArgumentName){}//Este método solo define el pointcut, debe permanecer vacio
-
-  @Before("pointcutOther(someArgumentName)")
-  public void method5(String someArgumentName){
-    ... do stuff with arguments ...
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Anotaciones requieren tener el código fuente. XML no necesita (Con XML se pueden interceptar objetos de bibliotecas externas)&lt;/li&gt;
-&lt;li&gt;La clase definida como aspecto sigue siendo un POJO, por lo tanto puede ser usada como un Bean en Spring&lt;/li&gt;
-&lt;li&gt;Se deve incluir &lt;code&gt;&amp;lt;aop:aspectj-autoproxy/&amp;gt;&lt;/code&gt; al xml para dar soporte a anotaciones&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
-    <summary type="html">Resumen del Framework Spring</summary>
-  </entry>
-  <entry>
-    <id>tag:emiguelt.github.com,2012-03-18:/2012/03/18/stripes_summary.html</id>
-    <title type="html">Resumen de Stripes</title>
-    <published>2012-03-18T05:00:00Z</published>
-    <updated>2014-07-27T04:12:28Z</updated>
-    <link rel="alternate" href="http://emiguelt.github.com/2012/03/18/stripes_summary.html"/>
-    <content type="html">&lt;p&gt;Este es un resumen del material para desarrollo de aplicaciones web usando Stripes. Este resumen esta basado en el libro &lt;a href="http://pragprog.com/book/fdstr/stripes" target="_blank"&gt;&lt;em&gt;Stripes ...and Java Web Development Is Fun Again&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Durante el resumen, va a ser implementado un administrador de tareas (ToDo list).&lt;/p&gt;
-
-&lt;p&gt;Son utilizadas las siguientes herramientas:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Maven 2: Sistema de construcción y administrador de dependencias&lt;/li&gt;
-&lt;li&gt;Stripes: Framework para desarrollo de aplicaciones Web usando MVC (Model-View-Controller)&lt;/li&gt;
-&lt;li&gt;Eclipse: IDE&lt;/li&gt;
-&lt;li&gt;JDK: Entorno de Desarrollo de Java&lt;/li&gt;
-&lt;li&gt;Git: Control de versiones&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Se asume que el lector ya ha instalado maven, eclipse, java y git.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Sources&lt;/strong&gt;: Todo el código esta disponible en &lt;a href="https://github.com/emiguelt/ToDo-s" target="_blank"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1&gt;Stripes&lt;/h1&gt;
-
-&lt;p&gt;Stripes es un framework MVC para el desarrollo de aplicaciones Web para Java.&lt;/p&gt;
-
-&lt;h3&gt;Configuración de Stripes&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Tag en Git: WDT-P01&lt;/em&gt;&lt;/strong&gt;:  Implementa un CRUD básico para el administrador de tareas de ejemplo&lt;/p&gt;
-
-&lt;p&gt;Para integrar Stripes en una aplicación web es necesario modificar el archivo &lt;em&gt;web.xml&lt;/em&gt; con la siguiente información:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Declaración del filtro de Stripes: &lt;code&gt;net.sourceforge.stripes.controller.StripesFilter&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Establecer en que paquete se encuentran los &lt;em&gt;ActionBeans&lt;/em&gt; (&lt;code&gt;ActionResolver.Packages&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;Declaración de &lt;code&gt;net.sourceforge.stripes.controller.DispatcherServlet&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Configuración del filtro para interceptar todos los requests que van atraves del dispatcher.&lt;/li&gt;
-&lt;li&gt;Mapeamento del patrón de las URLs para ser capturadas por Stripes (Ej: .action)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;ActionBeans&lt;/h3&gt;
-
-&lt;p&gt;Un &lt;em&gt;ActionBean&lt;/em&gt; es una clase que implementa la interfaz &lt;em&gt;ActionBean&lt;/em&gt;, esta clase define los métodos (eventos, &lt;em&gt;event handler&lt;/em&gt;) disponibles para procesamiento de los requerimientos (requests) de los usuarios.
-    public interface ActionBean {
-      public void setContext(ActionBeanContext context);
-      public ActionBeanContext getContext();
-    }&lt;/p&gt;
-
-&lt;h3&gt;Event Handlers&lt;/h3&gt;
-
-&lt;p&gt;Un &lt;em&gt;Event Handler&lt;/em&gt; es un método que captura un request de un usuario. Dentro del &lt;em&gt;Action Bean&lt;/em&gt;, es un método público, sin parámetros y que retorna un objeto &lt;em&gt;Resolution&lt;/em&gt;.
-Por ejemplo, en la clase TaskAction está el método &lt;em&gt;delete&lt;/em&gt;, que es invocado para borrar un registro en la lista de tareas
-    public class TaskAction extends BaseAction {
-    ...
-      public Resolution delete() {
-              getTaskDao().delete(getTaskId());
-              return redirectToTaskList();
-          }
-    ...
-    }&lt;/p&gt;
-
-&lt;p&gt;El cual podría ser llamado desde el browser asi: &lt;code&gt;http://localhost:8080/todos/Task.action?event=delete&amp;amp;taskId=10&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Todos los &lt;em&gt;ActionBeans&lt;/em&gt; deben tener un método predeterminado que debe ser marcado con &lt;code&gt;@DefaultHandler&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3&gt;Resolutions&lt;/h3&gt;
-
-&lt;p&gt;Un objeto &lt;em&gt;Resolution&lt;/em&gt; es una "respuesta" para Stripes, indicando cual es el siguiente paso de procesamiento del request. Resolutions pueden ser: ForwardResolution, RedirectResolution, StreamingResolution, JavaScriptResolution, ErrorResolution o cualquier otra que implemente la interfaz:
-    public interface Resolution {
-      void execute(HttpServletRequest request, HttpServletResponse response)
-      throws Exception;
-    }&lt;/p&gt;
-
-&lt;h3&gt;Referenciando un ActionBean desde JSP&lt;/h3&gt;
-
-&lt;p&gt;Un método o atributo de un ActionBean puede ser invocado desde una página JSP usando &lt;em&gt;Expression Language&lt;/em&gt; con la palabra clave &lt;em&gt;actionBean&lt;/em&gt;, por ejemplo, la expresión &lt;code&gt;${actionBean.task.id}&lt;/code&gt; obtiene el ID de una tarea a partir del ActionBean activo.&lt;/p&gt;
-
-&lt;h3&gt;Preaction Pattern&lt;/h3&gt;
-
-&lt;p&gt;Este patrón recomienda que todos los request en una aplicación web sean hechos a los &lt;em&gt;ActionBeans&lt;/em&gt;  y NO directamente a las JSPs, de esta forma se garantiza que todos los JSPs van a tener un &lt;em&gt;actionBean&lt;/em&gt;, es posible interceptar el ciclo de vida request-response de Stripes y se puede tener un mejor control de acceso. Para evitar el acceso directo a los JSPs, estos deben colocarse en la carpeta &lt;em&gt;WEB-INF&lt;/em&gt; de la aplicación.&lt;/p&gt;
-
-&lt;h2&gt;Validación&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Tag en Git: WDT-P02&lt;/strong&gt;: Fueron adicionadas validaciones básicas en la edición de tareas.&lt;/p&gt;
-
-&lt;p&gt;Para realizar validaciones de formularios se hace uso de &lt;em&gt;Anotaciones&lt;/em&gt; en los &lt;em&gt;ActionBeans&lt;/em&gt;. Sintaxis básica:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;@Validate(required=true, OTRAS RESTRICCIONES)&lt;/em&gt;: esta anotación se coloca en el atributo o método que se quiere validar&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@ValidateNestedProperties({@Validate(field=xxx, Restricción),...)&lt;/em&gt;: Anotación para realizar validaciones en atributos de objetos en el &lt;em&gt;ActionBean&lt;/em&gt;, por ejemplo &lt;em&gt;Persona.edad&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Validate(expression=${REGEX})&lt;/em&gt;: Permite validación con expresiones regulares&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@DontValidate&lt;/em&gt;: Anotación para evitar la validación en un evento (Event handler)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@Validate(on="handler")&lt;/em&gt;: Restringe la validación al método referenciado en el parámetro &lt;em&gt;on&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;@ValidationMethod(on={handlers})&lt;/em&gt;: Anota un método como validador para uno o mas &lt;em&gt;handlers&lt;/em&gt;. El método debe ser publico y debe recibir &lt;em&gt;ValidationErrors&lt;/em&gt; o ningún parametro.&lt;/li&gt;
-&lt;li&gt;Interceptar Errores de Validación. Si el &lt;em&gt;ActionBean&lt;/em&gt; implementa la &lt;em&gt;Interface ValidationErrorHandler&lt;/em&gt; es posible interceptar la validación de errores, para eliminar, adicionar o modificar errores&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Data types&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;De String a &lt;T&gt; : &lt;strong&gt;Conversión&lt;/strong&gt; de una cadena de caracteres a objeto T.&lt;/li&gt;
-&lt;li&gt;De &lt;T&gt; a String: &lt;strong&gt;Formato&lt;/strong&gt; de un objeto T a cadena de caracteres.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Conversión&lt;/h3&gt;
-
-&lt;p&gt;Un &lt;em&gt;Conversor&lt;/em&gt; en Stripes implementa la interfaz &lt;em&gt;TypeConverter&lt;T&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4&gt;Conversores propios de Stripes:&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Conversión de tipos primitivos y &lt;em&gt;wrappers&lt;/em&gt;. Ej. String -&gt; Integer : "1" -&gt; Integer(1)&lt;/li&gt;
-&lt;li&gt;java.util.Date: Stripes usa DateFormat de Java para realizar conversión de fechas, realizando primero un preprocesamiento donde los separadores, como &lt;code&gt;/&lt;/code&gt; o &lt;code&gt;-&lt;/code&gt;, son reemplazados por espacios en blanco, entre otros procedimientos, para obtener un String dentro de los formatos de Java. También es posible configurar un o mas patron propio colocandolo en el archivo StripesResources.properties, usando la clave &lt;code&gt;stripes.dateTypeCoverter.formatString=yyyy MM d, otros...&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Tipos &lt;em&gt;Enumerated&lt;/em&gt;: Stripes soporta conversión automática de tipos &lt;em&gt;Enumerated&lt;/em&gt;. Es case-sensitive&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Booleans&lt;/em&gt;: Stripes acepta como verdadero las siguientes cadenas: &lt;em&gt;true, t, yes, y, on, 1&lt;/em&gt;, el resto es considerado como falso.&lt;/li&gt;
-&lt;li&gt;Single Caracteres: "Hello" -&gt; "H"&lt;/li&gt;
-&lt;li&gt;Otros: &lt;em&gt;EmailTypeConverter, CreditCardConverter, PercentageTypeConverter, OneToManyTypeConverter&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Para usar un conversor específico,  el atributo debe ser anotado con &lt;code&gt;@Validate(converter=ElConversorEspecifico.class)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Formato&lt;/h3&gt;
-
-&lt;p&gt;Un &lt;em&gt;Formateador&lt;/em&gt; en Stripes implementa la interfaz &lt;em&gt;Formatter&lt;T&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;h4&gt;Formateadores propios de Stripes&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Dates: SimpleDateFormta + Locale&lt;/li&gt;
-&lt;li&gt;Número: DecimalFormt + Locale&lt;/li&gt;
-&lt;li&gt;Enumerated: Enum.name()&lt;/li&gt;
-&lt;li&gt;Objects: obj.toString()&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;&lt;em&gt;Formatters&lt;/em&gt; son usados en tags que aceptan atributos &lt;em&gt;formatType&lt;/em&gt; y &lt;em&gt;formatPattern&lt;/em&gt; como &lt;code&gt;&amp;lt;s:format&amp;gt; y &amp;lt;s:text&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; Converters, formatters y componentes adicionales de Stripes pueden ser utilizados configurando en el web.xml, configurando el parámetro &lt;em&gt;Extension.Packages&lt;/em&gt; en el &lt;em&gt;StripesFilter&lt;/em&gt;.&lt;/p&gt;
-</content>
-    <summary type="html">Resumen de Desarrollo Web (Stripes)</summary>
   </entry>
 </feed>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Administración de sitio web estático</title>
+    <title>Configuring Qt environment for Mobile development with TDD</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta content=', admin, sitecopy, tips' name='keywords'>
-    <meta content='Comandos utiles para la administración de mi página web estática' name='description'>
+    <meta content=', qt, c++, android, mobile' name='keywords'>
+    <meta content="Code once, deploy any platform. That is the premise of Qt/C++. In this post I'm going to put all information related to start developing for Android and Desktop using Qt since there are missing steps about" name='description'>
     <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
     <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
   </head>
@@ -31,57 +31,61 @@
       <div id='content'>
         <div class='article'>
           <h1>
-            Administración de sitio web estático
+            Configuring Qt environment for Mobile development with TDD
           </h1>
           <div class='meta'>
             <ul class='tags'>
-              <li>Jul 19, 2011</li>
+              <li>Aug 03, 2016</li>
               <li>
                 &middot;
               </li>
               <li>
-                <a href='/tips/siteadmin.html#disqus_thread'></a>
+                <a href='/2016/08/03_configuring_qt_environment_with_googletests.html#disqus_thread'></a>
               </li>
               <li>&middot;</li>
               <li>
-                <a class='tag' href='/tags/admin/'>
-                  admin
+                <a class='tag' href='/tags/android/'>
+                  android
                 </a>
               </li>
               <li>
-                <a class='tag' href='/tags/sitecopy/'>
-                  sitecopy
+                <a class='tag' href='/tags/c++/'>
+                  c++
                 </a>
               </li>
               <li>
-                <a class='tag' href='/tags/tips/'>
-                  tips
+                <a class='tag' href='/tags/mobile/'>
+                  mobile
+                </a>
+              </li>
+              <li>
+                <a class='tag' href='/tags/qt/'>
+                  qt
                 </a>
               </li>
             </ul>
           </div>
           <div class='body'>
-            <h2>Instalación de herramientas</h2>
+            <p><strong>IN PROGRESS...</strong></p>
             
-            <pre><code>sudo apt get-install ruby ruby1.8-dev rubygems sitecopy&#x000A;sudo gem install nanoc3 BlueCloth mime-types coderay rack builder rdiscount haml sass&#x000A;</code></pre>
+            <h2>Project structure</h2>
             
-            <h2>Uso de sitecopy</h2>
+            <pre><code>root   &#x000A;|- root.pro       &lt;--- multiproject&#x000A;|- src&#x000A;   |- source.pro  &lt;--- lib project&#x000A;|- app&#x000A;   |- app.pro     &lt;--- Desktop/mobile app&#x000A;|- tests&#x000A;   |- tests.pro   &lt;--- Console project&#x000A;</code></pre>
             
-            <h3>Creación de archivos iniciales:</h3>
+            <h2>Configuring GoogleTest framework</h2>
             
-            <pre><code>mkdir -m 700 ~/.sitecopy&#x000A;touch .sitecopyrc&#x000A;chmod 600 .sitecopyrc&#x000A;</code></pre>
+            <ul>
+            <li>Download and compile google tests</li>
+            <li>Add library to project</li>
+            <li>Execute tests</li>
+            </ul>
             
-            <h3>Configurar el sitio en el archivo <em>sitecopyrc</em></h3>
             
-            <p>Ver configuración en <code>man sitecopy</code></p>
+            <h2>Known problems</h2>
             
-            <h3>Actualizar archivo de contenido de sitecopy</h3>
-            
-            <pre><code>sitecopy --fetch mysite&#x000A;</code></pre>
-            
-            <h3>Sincronizar</h3>
-            
-            <pre><code>sitecopy --update mysite  (sube las modificaciones locales)&#x000A;</code></pre>
+            <ul>
+            <li>Executing tests from console, not from IDE</li>
+            </ul>
           </div>
         </div>
         <div id='other-articles'>
@@ -89,22 +93,22 @@
             <ul>
               <li>
                 <h3>
-                  <a href='/2011/04/25/ejemplo_flyway.html' title='Ejemplo de migración de bases de datos para Java'>
-                    &laquo; Flyway, migración de bases de datos
+                  <a href='/2016/08/01_functional_programming_learning_path.html' title='Finally, a quick and effective (for me) walkthrough for learning Functional Programming in Java, Lisp, Clojure, Scala and Javascript'>
+                    &laquo; Functional programming learning path - The one that worked!
                   </a>
                 </h3>
               </li>
               <li>
                 <h3>
-                  <a href='/2011/04/27/ejemplo_c5_db.html' title='Ejemplo de migración de bases de datos para Java'>
-                    &laquo; c5-db-migration, migración de bases de datos
+                  <a href='/2014/09/10_my_scala_learning_guide.html' title='A guide that collect my experiences learning the Scala programming language'>
+                    &laquo; My Scala learning guide - OBSOLETE
                   </a>
                 </h3>
               </li>
               <li>
                 <h3>
-                  <a href='/2011/04/24/intro_android.html' title='Introduciendo Android, el SO para móviles de Google'>
-                    &laquo; Introducción a Android
+                  <a href='/2013/11/30_jade_backbone.html' title='This is an example of Jade (runtime) integration with Backbone.js with RequireJS'>
+                    &laquo; Jade, Backbone.js and Require.js, a running example
                   </a>
                 </h3>
               </li>
@@ -112,27 +116,6 @@
           </div>
           <div class='newer'>
             <ul>
-              <li>
-                <h3>
-                  <a href='/2011/10/21/cassandra_cli.html' title='Comandos básicos para el cliente (consola) de Cassandra'>
-                    Usando Cassandra_CLI (Básico) &raquo;
-                  </a>
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <a href='/tips/cmds.html' title='Commands reference for develoment with Maven, Git, Ant, SVN, CVS, VirtualBox, etc.'>
-                    Commands summary &raquo;
-                  </a>
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <a href='/2011/10/21/cassandra_hector.html' title='Uso de la biblioteca Hector para accesar Cassandra'>
-                    Cassandra y Hector &raquo;
-                  </a>
-                </h3>
-              </li>
             </ul>
           </div>
         </div>
