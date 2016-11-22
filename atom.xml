@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://emiguelt.github.com/</id>
   <title>emiguelt.github.com Syndication</title>
-  <updated>2016-08-03T05:00:00Z</updated>
+  <updated>2016-11-21T05:00:00Z</updated>
   <link rel="alternate" href="http://emiguelt.github.com/"/>
   <link rel="self" href="http://emiguelt.github.com/atom.xml"/>
   <author>
@@ -10,10 +10,105 @@
     <uri>http://emiguelt.github.com</uri>
   </author>
   <entry>
+    <id>tag:emiguelt.github.com,2016-11-21:/2016/11/21_summary_notes_on_functional_reactive_programming.html</id>
+    <title type="html">Summary - Notes on Functional Reactive programming</title>
+    <published>2016-11-21T05:00:00Z</published>
+    <updated>2016-11-22T04:13:07Z</updated>
+    <link rel="alternate" href="http://emiguelt.github.com/2016/11/21_summary_notes_on_functional_reactive_programming.html"/>
+    <content type="html">&lt;h1&gt;PART I&lt;/h1&gt;
+
+&lt;p&gt;https://spring.io/blog/2016/06/07/notes-on-reactive-programming-part-i-the-reactive-landscape&lt;/p&gt;
+
+&lt;p&gt;Intelligent routing of events&lt;/p&gt;
+
+&lt;h2&gt;Use cases&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;External Service Calls: make REST call to heavy services that could block the thread.&lt;/li&gt;
+&lt;li&gt;Highly Concurrent message Consumers: Processing through message sending&lt;/li&gt;
+&lt;li&gt;Spreadsheets: Set dependencies to execute events that trigger chains of events&lt;/li&gt;
+&lt;li&gt;Abstraction Over (A)synchronous Processing&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Comparisons&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby Event-machine: Event machine for heavy IO applications&lt;/li&gt;
+&lt;li&gt;Actor model: like Akka&lt;/li&gt;
+&lt;li&gt;Deferred results (Futures): from Java 1.5 concurrent api&lt;/li&gt;
+&lt;li&gt;Map-reduce and fork-join&lt;/li&gt;
+&lt;li&gt;Coroutines: building blocks for higher abstractions like actors or streams&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Reactive Programming in Java&lt;/h2&gt;
+
+&lt;p&gt;Coroutines are not native in java, until JDK 9.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reactive streams: Java 9&lt;/li&gt;
+&lt;li&gt;RxJava: Netflix library. Good for Java 8 'cause the lambdas&lt;/li&gt;
+&lt;li&gt;Reactor: Java framework from Pivotal. Build on Reactive Streams&lt;/li&gt;
+&lt;li&gt;Spring framework 5.0: Uses Reactor, but can use RxJava too.&lt;/li&gt;
+&lt;li&gt;RatPack: Libraries for High performance services over HTTP. Built on Netty. Can use different Reactive Streams.&lt;/li&gt;
+&lt;li&gt;Akka: Actor model for java or scala. Uses Akka streams or Reactive streams&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Why now?
+"The promise of Reactive is that you can do more with less, specifically you can process higher loads with fewer threads. This is where the intersection of Reactive and non-blocking, asynchronous I/O comes to the foreground."&lt;/p&gt;
+
+&lt;h1&gt;PART II&lt;/h1&gt;
+
+&lt;p&gt;https://spring.io/blog/2016/06/13/notes-on-reactive-programming-part-ii-writing-some-code&lt;/p&gt;
+
+&lt;p&gt;Source code: https://github.com/emiguelt/funprog/tree/master/notesOnReactive&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Reactive programming&lt;/em&gt; is composed of a sequence of &lt;em&gt;events&lt;/em&gt;, a &lt;em&gt;publisher&lt;/em&gt; and a &lt;em&gt;suscriber&lt;/em&gt;. The sequence of events are also called &lt;em&gt;Streams&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;em&gt;ProjectReactor&lt;/em&gt; a publisher is a &lt;em&gt;Flux&lt;/em&gt;  (&lt;em&gt;Observable&lt;/em&gt; in RxJava)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Generators&lt;/em&gt;: A Flux generates events of a T type (Generics), and has static factory methods.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Single valued sequences&lt;/em&gt;: For Streams with zero or one element it is used &lt;em&gt;Mono&lt;/em&gt; class.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Operators&lt;/em&gt;: Make operations with/over stream's elements, like &lt;code&gt;.log()&lt;/code&gt; or &lt;code&gt;.map()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Flux&amp;lt;String&amp;gt; flux = Flux.just("juan", "pedro", "maria");
+flux.log().map(String::toUpperCase);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;   &lt;em&gt;Note:&lt;/em&gt; No data is processed until the flux has at least one subscriber (then the data starts to flow)(Use one of the &lt;em&gt;suscribe()&lt;/em&gt; methods)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Suscribers&lt;/em&gt;: The &lt;em&gt;suscribe()&lt;/em&gt; methods return operators (if any) and request the flux to start generating data. &lt;em&gt;Subscribe()&lt;/em&gt; methods are overridden, so there are a lot of options to start the flux. One options is to pass a function for the &lt;em&gt;onNext()&lt;/em&gt; methods or pass a full subscriber.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;em&gt;doOn*&lt;/em&gt; methods to listen for specific events of the flux&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Subscribe()&lt;/em&gt; methods are overridden with a lot of options, for example, receiving a function for the &lt;em&gt;onNext&lt;/em&gt; event or to receive the full Subscriber.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;flux.subscribe() //basic subscription, no listeners
+flux.subscribe(System.out::println())  //onNext listener
+flux.subscribe(new Subscriber(){...impl...}) //custom subscriber
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    <summary type="html">Summary from "Notes on reactive programming Spring blog"</summary>
+  </entry>
+  <entry>
     <id>tag:emiguelt.github.com,2016-08-03:/2016/08/03_configuring_qt_environment_with_googletests.html</id>
     <title type="html">Configuring Qt environment for Mobile development with TDD</title>
     <published>2016-08-03T05:00:00Z</published>
-    <updated>2016-08-04T22:57:52Z</updated>
+    <updated>2016-08-05T02:50:36Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2016/08/03_configuring_qt_environment_with_googletests.html"/>
     <content type="html">&lt;p&gt;&lt;strong&gt;IN PROGRESS...&lt;/strong&gt;&lt;/p&gt;
 
@@ -50,8 +145,14 @@
 
 &lt;ul&gt;
 &lt;li&gt;http://stackoverflow.com/questions/33829949/how-to-use-qtimers-in-googletest&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;http://stackoverflow.com/questions/35509374/qt-test-how-to-stop-execution-when-a-signal-is-emitted
-*&lt;/p&gt;
+&lt;li&gt;http://stackoverflow.com/questions/35509374/qt-test-how-to-stop-execution-when-a-signal-is-emitted&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Qt&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Connecting C++ &amp;amp; Qml (Signals &amp;amp; slots): https://andrew-jones.com/blog/qml2-to-c-and-back-again-with-signals-and-slots/&lt;/p&gt;
 
 &lt;h2&gt;Known problems&lt;/h2&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Executing tests from console, not from IDE&lt;/p&gt;&lt;/li&gt;
@@ -65,7 +166,7 @@
     <id>tag:emiguelt.github.com,2016-08-01:/2016/08/01_functional_programming_learning_path.html</id>
     <title type="html">Functional programming learning path - The one that worked!</title>
     <published>2016-08-01T05:00:00Z</published>
-    <updated>2016-08-03T23:59:03Z</updated>
+    <updated>2016-11-22T04:17:09Z</updated>
     <link rel="alternate" href="http://emiguelt.github.com/2016/08/01_functional_programming_learning_path.html"/>
     <content type="html">&lt;p&gt;&lt;strong&gt;IN PROGRESS...&lt;/strong&gt;&lt;/p&gt;
 
@@ -75,10 +176,10 @@
 &lt;li&gt;Book SICP From beginning until Streams&lt;/li&gt;
 &lt;li&gt;Clojure marathon&lt;/li&gt;
 &lt;li&gt;Learn RX + Video QCon&lt;/li&gt;
+&lt;li&gt;Read: Notes on reactive programming (3 parts): https://spring.io/blog/2016/06/07/notes-on-reactive-programming-part-i-the-reactive-landscape&lt;/li&gt;
 &lt;li&gt;Functional patterns (WHICH CHAPTERS???)&lt;/li&gt;
-&lt;li&gt;Thinking functional (Curry &amp;amp; ????)
-
-&lt;h2&gt;- Web dev with Clojure (which???)&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;Thinking functional (Curry &amp;amp; ????)&lt;/li&gt;
+&lt;li&gt;Web dev with Clojure (which???)&lt;/li&gt;
 &lt;/ul&gt;
 
 </content>
@@ -218,220 +319,5 @@ render: function(){
 &lt;p&gt;That's all. For more details about the implementation, please check the full example &lt;a href='https://github.com/emiguelt/javascriptLearning/tree/master/backbone/dbba_todos_requirejs' target='_blank'&gt;here&lt;/a&gt;.&lt;/p&gt;
 </content>
     <summary type="html">This is an example of Jade (runtime) integration with Backbone.js with RequireJS</summary>
-  </entry>
-  <entry>
-    <id>tag:emiguelt.github.com,2012-05-20:/2012/05/20_Spring_summary_p2.html</id>
-    <title type="html">Resumen Spring - Parte 2</title>
-    <published>2012-05-20T05:00:00Z</published>
-    <updated>2012-06-09T19:21:21Z</updated>
-    <link rel="alternate" href="http://emiguelt.github.com/2012/05/20_Spring_summary_p2.html"/>
-    <content type="html">&lt;p&gt;Esta es la segunda parte del resumen del framework de desarrollo Java (principalmente Web) Spring, basado en el libro &lt;a href="http://www.manning.com/walls4/" target="_blank"&gt;Spring in Action, Third Edition&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1&gt;Database&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;DAO (Data Access Object): define el acceso a datos por medio de una interface usada por el resto de la aplicación para consultar/guardar información&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h5&gt;Principio POO: Programe para Interfaces para reducir acoplamiento&lt;/h5&gt;
-
-&lt;h2&gt;Data access exceptions in Spring&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Spring provee un rango mucho mas variado y detallado de excepciones de accesso a base de datos que JDBC.&lt;/li&gt;
-&lt;li&gt;Todas las excepciones extienden &lt;em&gt;DataAccessException&lt;/em&gt; la cual es &lt;em&gt;unchecked&lt;/em&gt; y por lo tanto no necesita tener un &lt;em&gt;handle&lt;/em&gt; (pero en alguna capa superior debe ser tratada).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Data Access Templates&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Spring sigue el patrón &lt;em&gt;TemplateMethod&lt;/em&gt; para definir reducir la escritura de código repetitivo, como inicialización de recursos, transacciones, commits, etc. De esta forma, solo es necesario implementar un método que prepara los datos para la consulta, la ejecuta y procesa los resultados.&lt;/li&gt;
-&lt;li&gt;Spring ofrece diferentes template dependiendo la plataforma, pueden ser JdbcTemplate, HibernateTemplate o JpaTemplate, entre otros.&lt;/li&gt;
-&lt;li&gt;Para la implementación de DAOs, Spring también ofrece varios tipos de DAO  para ser extendidas y reaprovechar código (SimpleJdbcDaoSupport, HibernateDaoSupport, JpaDaoSupport, entre otros).&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h2&gt;Configuración del DataSource&lt;/h2&gt;
-
-&lt;p&gt;Un DataSource mantiene la configuración de accesso a la base de datos, puede ser JDBC driver, JNDI o Pool connections (último es recomendado)&lt;/p&gt;
-
-&lt;h3&gt;JNDI&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;jee:jndi-lookup id="dataSource"
-jndi-name="/jdbc/MyDataBaseDS" resource-ref="true" /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;resource-ref=true: adds &lt;code&gt;java:/comp/env&lt;/code&gt; to jndi-name&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Pooled data&lt;/h3&gt;
-
-&lt;p&gt;Ejemplo usando Jakarta Commons Database Connection Pooling (DBCP)
-    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&gt;
-      &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver" /&gt;
-      &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/name1/name2" /&gt;
-      &lt;property name="username" value="user" /&gt;
-      &lt;property name="password" value="pass" /&gt;
-      &lt;property name="initialSize" value="5" /&gt;
-      &lt;property name="maxActive" value="10" /&gt;
-    &lt;/bean&gt;&lt;/p&gt;
-
-&lt;h3&gt;JDBC driver-based&lt;/h3&gt;
-
-&lt;p&gt;Ejemplo usa la misma estructura que Pooled data, pero cambia la clase del bean:
-* org.springframework.jdbc.datasource.DriverManagerDataSource: Retorna una conexión nueva siempre.
-* org.springframework.jdbc.datasource.SingleConnectionDataSource: retorna siempre la misma conexión.&lt;/p&gt;
-
-&lt;h2&gt;JDBC template en Spring&lt;/h2&gt;
-
-&lt;p&gt;Hay tres tipos de templates: (1) JdbcTemplate, (2) NameParameterTemplate y (3) SimpleJdbcTemplate. El tercero es el mas usado actualmente.&lt;/p&gt;
-
-&lt;h3&gt;SimpleJdbcTemplate&lt;/h3&gt;
-
-&lt;p&gt;Pasos (ejemplo)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Configurar el template incluyendo el &lt;code&gt;datasource&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;   &lt;bean id="myJdbcTemplate"
-     class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"&gt;
-     &lt;constructor-arg ref="dataSource" /&gt;
-   &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Configurar los DAO para usar el template&lt;/p&gt;
-
-&lt;p&gt;   public class MyObjectJdbcDAO implements MyObjectDAO {
-   ...
-     private SimpleJdbcTemplate jdbcTemplate;
-     public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {
-       this.jdbcTemplate = jdbcTemplate;
-     }
-   }
-   //En el XML
-    &lt;bean id="myObjectDao"
-     class="net.emtg.spring.persistence.SimpleJdbcTemplateSpitterDao"&gt;
-     &lt;property name="jdbcTemplate" ref="jdbcTemplate" /&gt;
-    &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Usar el template: para usar el template pueden ser usados &lt;em&gt;named parameters&lt;/em&gt; para definir sentencias SQL:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public class MyObjectJdbcDAO implements MyObjectDAO {
- private static final String INSERT_OBJECT="insert into mytable " +
-   "(name, lastname, birthday) " +
-   "values (:firstname, :lastname, :birthday)";
-
- public saveObject(MyObject myObj){
-   Map&amp;lt;String, Object&amp;gt; params = new HashMap&amp;lt;String, Object&amp;gt;();
-   params.put("firstname", myObj.getName());
-   params.put("lastname", myObj.getLastName());
-   params.put("birthday", myObj.getBirthday());
-
-   jdbcTemplate. update(INSERT_OBJECT, params);
- }
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Consultar la base de datos:&lt;/p&gt;
-
-&lt;p&gt;  public class MyObjectJdbcDAO implements MyObjectDAO{
-    private static final String SELECT_OBJECT="select * from "+
-      mytable where id=?";&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public MyObject getObject(String id){
-  return jdbTemplate.queryForObject(
-    SELECT_OBJECT, new ParametrizedRowMapper&amp;lt;MyObject&amp;gt;(){
-      public MyObject mapRow(ResultSet rs, int rowNum) throws SQLException{
-        MyObject myObj = new MyObject();
-        myObj.setId(rs.getString(1));
-        myObj.setName(rs.getString(2)); 
-        myObj.setLastName(rs.getString(3));
-        myObj.setBirthday(rs.getString(4));
-        return myObj;
-      }
-    }, id);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h4&gt;DAO Support&lt;/h4&gt;
-
-&lt;p&gt;Spring viene con e clases que pueden ser extendidas por los DAOs e evitar código repetitivo (SimpleJdbcDAOSupport).&lt;/p&gt;
-
-&lt;h2&gt;Integracion Spring / Hibernate&lt;/h2&gt;
-
-&lt;h3&gt;Hibernate Session Factory&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Interface org.hibernate.Session define todas las operaciones CRUD&lt;/li&gt;
-&lt;li&gt;En Spring se usa Hibernate Session Factory para obtener una Session, las factories son encargadas de administrar la session (abrir, cerrar...)&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Hay dos formas de configurar Hiberntate en Spring:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;LocalSessionFactoryBean: Configura Hibernate usando XML que mapean las tablas, ejemplo:&lt;/p&gt;
-
-&lt;p&gt;  &lt;bean id="sessionFactory"
-    class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&gt;
-      &lt;property name="dataSource" ref="dataSource" /&gt;
-      &lt;property name="mappingResources"&gt;
-        &lt;list&gt;
-          &lt;value&gt;MyObject.hbm.xml &lt;/value&gt;
-        &lt;/list&gt;
-      &lt;/property&gt;
-      &lt;property name="hibernateProperties"&gt;
-        &lt;props&gt;
-        &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
-        &lt;/props&gt;
-      &lt;/property&gt;
-    &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;AnnotationSessionFactoryBean: las clases deben estar anotadas con @Entity (JPA), @MappedSuperclass o @Entity (Hibernate)&lt;/p&gt;
-
-&lt;p&gt;   &lt;bean id="sessionFactory"
-    class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;
-      &lt;property name="dataSource" ref="dataSource" /&gt;
-      &lt;property name="packagesToScan"
-      value="com.habuma.spitter.domain" /&gt;
-      &lt;property name="hibernateProperties"&gt;
-        &lt;props&gt;
-         &lt;prop key="dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
-       &lt;/props&gt;
-      &lt;/property&gt;
-  &lt;/bean&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h3&gt;Usando Hibernate&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;@Repository
-public class MyObjectHbDao extends MyObjectDAO{
-  @Autowired
-  private SessionFactory sessionFactory;
-
-  public setSessionFactory(SessionFactory sessionFactory){
-    this.sessionFactory = sessionFactory;
-  }
-
-  private Session getSession(){
-    return sessionFactory.getCurrentSession();
-  }
-
-  public MyObject getMyObject(String id){
-    return getSession().get(MyObject.class, id);
-  }
-
-  public void save(MyObject obj){
-    getSession().update(obj);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Exception en Hibernate&lt;/h3&gt;
-
-&lt;p&gt;Para capturar excepciones de Hibernate usamos &lt;code&gt;PersistenceExceptionTranslationPostProcessor&lt;/code&gt;, el cual es un bean que "intercepta" las excepciones de cualquier &lt;code&gt;@Repository&lt;/code&gt; y las convierte en Excepciones de Spring.&lt;/p&gt;
-</content>
-    <summary type="html">Resumen del Framework Spring - Segunda parte</summary>
   </entry>
 </feed>
