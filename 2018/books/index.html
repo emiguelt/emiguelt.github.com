@@ -4,17 +4,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta content='text/html; charset=utf-8' http-equiv='content-type' />
 
-  <title>Books - Edwin Miguel, My Site</title>
-  <meta content='Books - Edwin Miguel, My Site' property='title' />
-  <meta content='Books - Edwin Miguel, My Site' property='og:title' />
+  <title>Books I read in 2018 - Edwin Miguel, My Site</title>
+  <meta content='Books I read in 2018 - Edwin Miguel, My Site' property='title' />
+  <meta content='Books I read in 2018 - Edwin Miguel, My Site' property='og:title' />
 
 
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://emiguelt.mysu.co/tags/books/" />
+<meta property="og:description" content="Books 2018 Deep Work - Cal Newport Excelent book for people looking how to improve their focus on knowledge tasks and get things done." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://emiguelt.mysu.co/2018/books/" />
 
 
-<meta property="og:updated_time" content="2018-01-18T00:00:00&#43;00:00"/>
+
+
+
 
 
 
@@ -56,20 +58,43 @@ type="image/x-icon"/>
 </nav>
   
 <main class="center mv4 content-width ph3">
-  <h1 class="f2 fw6 heading-font"><span class="secondary-color">#</span> books</h1>
-  
-  <ul class="list-pages">
+  <div class="f3 fw6 heading-color heading-font post-title">Books I read in 2018</div>
+  <p class="silver f6 mt1 mb4 post-meta">
     
-      <li class="lh-copy"><a href="/posts/2018/books/" class="link f5">Books I read in 2018</a> - <time>18 Jan 2018</time></li>
+     | 
     
-      <li class="lh-copy"><a href="/2018/books/" class="link f5">Books I read in 2018</a> - <time>01 Jan 0001</time></li>
     
-  </ul>
+    tags: [ <a href='/tags/books' class="link silver">books</a>  ]
+    
+  </p>
+  <div class="lh-copy post-content">
+
+<h1 id="books-2018">Books 2018</h1>
+
+<h2 id="deep-work-cal-newport">Deep Work - Cal Newport</h2>
+
+<p>Excelent book for people looking how to improve their focus on knowledge tasks and get things done.</p>
+</div>
 </main>
-<div class="pagination tc db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+ 
 
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
 <a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
-
+<br>
+  <p class="mb0 mt2">
+  
+  
+  </p>
 </div>
 
   <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
@@ -80,6 +105,10 @@ type="image/x-icon"/>
   
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
 
 
 
@@ -124,6 +153,17 @@ function topFunction() {
 
 
 
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
 
 
 </script>
