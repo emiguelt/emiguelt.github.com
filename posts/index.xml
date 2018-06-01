@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Edwin Miguel, My Site</title>
+    <link>http://emiguelt.mysu.co/posts/</link>
+    <description>Recent content in Posts on Edwin Miguel, My Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://emiguelt.mysu.co/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contact</title>
+      <link>http://emiguelt.mysu.co/posts/contact/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://emiguelt.mysu.co/posts/contact/</guid>
+      <description>Loading... </description>
+    </item>
+    
+    <item>
+      <title>Books I read in 2018</title>
+      <link>http://emiguelt.mysu.co/posts/2018/books/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://emiguelt.mysu.co/posts/2018/books/</guid>
+      <description>Books 2018 Deep Work - Cal Newport Excelent book for people looking how to improve their focus on knowledge tasks and get things done.</description>
+    </item>
+    
+  </channel>
+</rss>

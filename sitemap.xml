@@ -1,116 +1,50 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
-    <loc>http://emiguelt.github.com/</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/posts/contact/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2009/12/19/creando_sitio.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/posts/2018/books/</loc>
+    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2010/01/04/vpn_con_ssh.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/tags/2018/</loc>
+    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2010/02/25/captura_audio_javame.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/tags/books/</loc>
+    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2011/04/04/tips_mobile.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/categories/</loc>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2011/04/24/intro_android.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2011/04/25/ejemplo_flyway.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/posts/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://emiguelt.github.com/2011/04/27/ejemplo_c5_db.html</loc>
-    <lastmod>2014-12-08</lastmod>
+    <loc>http://emiguelt.mysu.co/tags/</loc>
+    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
-  <url>
-    <loc>http://emiguelt.github.com/2011/10/21/cassandra_cli.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2011/10/21/cassandra_hector.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2012/03/18/stripes_summary.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2012/04/08/spring_summary.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2012/05/20_Spring_summary_p2.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2013/11/30_jade_backbone.html</loc>
-    <lastmod>2016-08-04</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2014/09/10_my_scala_learning_guide.html</loc>
-    <lastmod>2016-08-04</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2016/08/01_functional_programming_learning_path.html</loc>
-    <lastmod>2016-11-21</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2016/08/03_configuring_qt_environment_with_googletests.html</loc>
-    <lastmod>2016-08-04</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/2016/11/21_summary_notes_on_functional_reactive_programming.html</loc>
-    <lastmod>2016-11-21</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/about.html</loc>
-    <lastmod>2016-08-04</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/contact.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects/doing/</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects/sr/</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects/sr/language_structure_approaches.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects/sr/poverview.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/projects/sr/worknotes.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/tips/cmds.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
-  <url>
-    <loc>http://emiguelt.github.com/tips/siteadmin.html</loc>
-    <lastmod>2014-12-08</lastmod>
-  </url>
+  
 </urlset>
-
