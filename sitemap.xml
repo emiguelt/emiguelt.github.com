@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://emiguelt.mysu.co/posts/2018/tools/</loc>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://emiguelt.mysu.co/posts/contact/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
   </url>
@@ -14,7 +19,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/2018/</loc>
-    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -30,20 +35,38 @@
   </url>
   
   <url>
+    <loc>http://emiguelt.mysu.co/tags/conemu/</loc>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://emiguelt.mysu.co/tags/dbeaver/</loc>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://emiguelt.mysu.co/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://emiguelt.mysu.co/posts/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/</loc>
-    <lastmod>2018-01-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://emiguelt.mysu.co/tags/tools/</loc>
+    <lastmod>2018-06-05T17:50:23-05:00</lastmod>
     <priority>0</priority>
   </url>
   
