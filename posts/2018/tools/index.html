@@ -9,8 +9,8 @@
   <meta content='Tools - Edwin Miguel, My Site' property='og:title' />
 
 
-<meta property="og:description" content="This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
- DBeaver: as its site says, a Universsal Database tool ConEmu: Excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc)  " />
+<meta property="og:description" content=" This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
+   Tool Description OS Free     DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y    Conventions  OS (Operating System):  Linux: L, Windows: W   " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://emiguelt.mysu.co/posts/2018/tools/" />
 
@@ -66,14 +66,55 @@ type="image/x-icon"/>
      | 
     
     
-    tags: [ <a href='/tags/2018' class="link silver">2018</a> <a href='/tags/tools' class="link silver">tools</a> <a href='/tags/dbeaver' class="link silver">dbeaver</a> <a href='/tags/conemu' class="link silver">conemu</a>  ]
+    tags: [ <a href='/tags/2018' class="link silver">2018</a> <a href='/tags/tools' class="link silver">tools</a> <a href='/tags/dbeaver' class="link silver">dbeaver</a> <a href='/tags/conemu' class="link silver">conemu</a> <a href='/tags/keepass' class="link silver">keepass</a>  ]
     
   </p>
-  <div class="lh-copy post-content"><p>This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source</p>
+  <div class="lh-copy post-content">
+
+<p>This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source</p>
+
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th align="center">OS</th>
+<th align="center">Free</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="https://dbeaver.io/" target="_blank">DBeaver</a></td>
+<td>as its site says, a Universsal Database tool</td>
+<td align="center">WL</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td><a href="https://conemu.github.io/" target="_blank">ConEmu</a></td>
+<td>excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc)</td>
+<td align="center">W</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td><a href="https://keepass.info/" target="_blank">KeePass</a></td>
+<td>tool to manage your passwords in secure way</td>
+<td align="center">WL</td>
+<td align="center">y</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="conventions">Conventions</h3>
 
 <ul>
-<li><a href="https://dbeaver.io/" target="_blank">DBeaver</a>: as its site says, a Universsal Database tool</li>
-<li><a href="https://conemu.github.io/" target="_blank">ConEmu</a>: Excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc)</li>
+<li>OS (Operating System):
+
+<ul>
+<li>Linux: L, Windows: W</li>
+</ul></li>
 </ul>
 </div>
 </main>
@@ -83,6 +124,8 @@ type="image/x-icon"/>
 
 
 
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
 
 
 
@@ -104,6 +147,10 @@ type="image/x-icon"/>
   
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
 
 
 
@@ -148,6 +195,17 @@ function topFunction() {
 
 
 
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
 
 
 </script>
