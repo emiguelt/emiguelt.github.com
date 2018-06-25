@@ -18,7 +18,7 @@
       
       <guid>http://emiguelt.mysu.co/posts/2018/tools/</guid>
       <description> This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
-   Tool Description OS Free     DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
+   Tool Description OS Free     DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
     </item>
     
     <item>

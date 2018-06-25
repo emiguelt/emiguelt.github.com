@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Edwin Miguel, My Site</title>
+    <title>Home on Edwin Miguel, My Site</title>
     <link>http://emiguelt.mysu.co/</link>
-    <description>Recent content on Edwin Miguel, My Site</description>
+    <description>Recent content in Home on Edwin Miguel, My Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jun 2018 17:50:23 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Jun 2018 14:03:55 -0500</lastBuildDate>
     
 	<atom:link href="http://emiguelt.mysu.co/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,7 +18,7 @@
       
       <guid>http://emiguelt.mysu.co/posts/2018/tools/</guid>
       <description> This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
-   Tool Description OS Free     DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible wit many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
+   Tool Description OS Free     DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
     </item>
     
     <item>
