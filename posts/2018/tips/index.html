@@ -4,20 +4,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta content='text/html; charset=utf-8' http-equiv='content-type' />
 
-  <title>Tools - Edwin Miguel, My Site</title>
-  <meta content='Tools - Edwin Miguel, My Site' property='title' />
-  <meta content='Tools - Edwin Miguel, My Site' property='og:title' />
+  <title>Tips - Edwin Miguel, My Site</title>
+  <meta content='Tips - Edwin Miguel, My Site' property='title' />
+  <meta content='Tips - Edwin Miguel, My Site' property='og:title' />
 
 
-<meta property="og:description" content=" This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
-   Tool Description OS Free     Babun windows shell based on Cygwin. I use it with tmux :) W y   DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y    Conventions  OS (Operating System):  Linux: L, Windows: W   " />
+<meta property="og:description" content="This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc. It is mainly as a reference for me, but it could be useful for other person.
+PDF  Remove the password from many PDF files and join in single file (QPDF): Assuming all pdfs are in the folder and has the same password  for F in *; do qpdf --password=&lt;THE_PASSWORD&gt; --decrypt $F d_$F; rm $F; done; qpdf --empty &lt;MERGED_NAME&gt;." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://emiguelt.mysu.co/posts/2018/tools/" />
+<meta property="og:url" content="http://emiguelt.mysu.co/posts/2018/tips/" />
 
 
-<meta property="article:published_time" content="2018-06-05T17:50:23-05:00"/>
+<meta property="article:published_time" content="2018-07-09T15:03:17-05:00"/>
 
-<meta property="article:modified_time" content="2018-06-25T14:07:51-05:00"/>
+<meta property="article:modified_time" content="2018-07-09T17:20:22-05:00"/>
 
 
 
@@ -59,78 +59,39 @@ type="image/x-icon"/>
 </nav>
   
 <main class="center mv4 content-width ph3">
-  <div class="f3 fw6 heading-color heading-font post-title">Tools</div>
+  <div class="f3 fw6 heading-color heading-font post-title">Tips</div>
   <p class="silver f6 mt1 mb4 post-meta">
-    <time>05 Jun 2018</time> 
-     |Last update: <time>25 Jun 2018</time>
+    <time>09 Jul 2018</time> 
+     |Last update: <time>09 Jul 2018</time>
      | 
     
     
-    tags: [ <a href='/tags/2018' class="link silver">2018</a> <a href='/tags/tools' class="link silver">tools</a> <a href='/tags/dbeaver' class="link silver">dbeaver</a> <a href='/tags/conemu' class="link silver">conemu</a> <a href='/tags/keepass' class="link silver">keepass</a>  ]
+    tags: [ <a href='/tags/pdf' class="link silver">PDF</a> <a href='/tags/sql' class="link silver">SQL</a> <a href='/tags/qpdf' class="link silver">QPDF</a> <a href='/tags/ssh' class="link silver">SSH</a>  ]
     
   </p>
   <div class="lh-copy post-content">
 
-<p>This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source</p>
+<p>This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc. It is mainly as a reference for me, but it could be useful for other person.</p>
 
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Description</th>
-<th align="center">OS</th>
-<th align="center">Free</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><a href="http://babun.github.io/" target="_blank">Babun</a></td>
-<td>windows shell based on Cygwin. I use it with tmux :)</td>
-<td align="center">W</td>
-<td align="center">y</td>
-</tr>
-
-<tr>
-<td><a href="https://dbeaver.io/" target="_blank">DBeaver</a></td>
-<td>as its site says, a Universsal Database tool</td>
-<td align="center">WL</td>
-<td align="center">y</td>
-</tr>
-
-<tr>
-<td><a href="https://conemu.github.io/" target="_blank">ConEmu</a></td>
-<td>excellent terminal emulator for Windows, something like &ldquo;tmux&rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershel, git-bash :), etc)</td>
-<td align="center">W</td>
-<td align="center">y</td>
-</tr>
-
-<tr>
-<td><a href="https://keepass.info/" target="_blank">KeePass</a></td>
-<td>tool to manage your passwords in secure way</td>
-<td align="center">WL</td>
-<td align="center">y</td>
-</tr>
-
-<tr>
-<td><a href="http://www.softwareok.com/" target="_blank">Q-Dir</a></td>
-<td>file explorer with support to splits and tabs</td>
-<td align="center">W</td>
-<td align="center">y</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="conventions">Conventions</h3>
+<h1 id="pdf">PDF</h1>
 
 <ul>
-<li>OS (Operating System):
-
-<ul>
-<li>Linux: L, Windows: W</li>
-</ul></li>
+<li>Remove the password from many PDF files and join in single file (<strong>QPDF</strong>): Assuming all pdfs are in the folder and has the same password</li>
 </ul>
-</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> F in *; <span style="color:#66d9ef">do</span> qpdf --password<span style="color:#f92672">=</span>&lt;THE_PASSWORD&gt; --decrypt $F d_$F; rm $F; <span style="color:#66d9ef">done</span>; qpdf --empty &lt;MERGED_NAME&gt;.pdf --pages *.pdf --; rm d_*.pdf</code></pre></div>
+<h1 id="sql">SQL</h1>
+
+<ul>
+<li>How to know the current connections in Postgres</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> pg_stat_activity <span style="color:#66d9ef">where</span> datname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;SCHEMA&gt;&#39;</span></code></pre></div>
+<h1 id="ssh">SSH</h1>
+
+<ul>
+<li>Permissions for <em>.ssh</em> folder and <em>authorized_keys</em> file for automatic login with certifcate</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod <span style="color:#ae81ff">700</span> ~/.ssh
+chmod <span style="color:#ae81ff">600</span> ~/.ssh/authorized_keys</code></pre></div></div>
 </main>
  
 
@@ -148,8 +109,8 @@ type="image/x-icon"/>
 <a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
 <br>
   <p class="mb0 mt2">
-  <a href="http://emiguelt.mysu.co/posts/contact/">prev post</a>
-  <a href="http://emiguelt.mysu.co/posts/2018/tips/">next post</a>
+  <a href="http://emiguelt.mysu.co/posts/2018/tools/">prev post</a>
+  
   </p>
 </div>
 
