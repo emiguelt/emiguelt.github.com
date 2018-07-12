@@ -28,7 +28,7 @@ PDF  Remove the password from many PDF files and join in single file (QPDF): Ass
       
       <guid>http://emiguelt.mysu.co/posts/2018/tools/</guid>
       <description> This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
-   Tool Description OS Free     Babun windows shell based on Cygwin. I use it with tmux :) W y   DBeaver as its site says, a Universsal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershel, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
+   Tool Description OS Free     Babun windows shell based on Cygwin. I use it with tmux :) W y   DBeaver as its site says, a Universal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershell, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y   WinDirStat Tool to analyze hard disk to remove big files, there is KDirStat for Linux WL y   Conda dependency &amp;amp; environment management for many languages WL y   Grip render markdown files locally WL y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ PDF  Remove the password from many PDF files and join in single file (QPDF): Ass
       <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>http://emiguelt.mysu.co/posts/2018/books/</guid>
-      <description>Deep Work - Cal Newport Excelent book for people looking how to improve their focus on knowledge tasks and get things done.
+      <description>Deep Work - Cal Newport Excellent book for people looking how to improve their focus on knowledge tasks and get things done.
 The book is divided in two main parts, in the first one, the author justifies why it is important to be focus and having a well structured strategy to reach our objective. The second part presents a set of 4 rules to follow in order to improve our performance in the activities we are interested in.</description>
     </item>
     
