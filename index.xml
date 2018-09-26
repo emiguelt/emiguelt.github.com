@@ -12,6 +12,19 @@
     
     
     <item>
+      <title>Linux on asus transformer t100ha</title>
+      <link>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</link>
+      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+      
+      <guid>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</guid>
+      <description> Problems found installing Xubuntu 18.04 on an Asus Transformer T100ha
+ERROR: GDBus.Error.org.freedesktop.login1 SleepVerbNotSupported Solution:  edit /etc/modprobe.d/blacklist.confand add the following line:
+blacklist snd_hdmi_lpe_audio
+ reboot
+  </description>
+    </item>
+    
+    <item>
       <title>Tips</title>
       <link>http://emiguelt.mysu.co/posts/2018/tips/</link>
       <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>

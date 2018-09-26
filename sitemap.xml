@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</loc>
+    <lastmod>2018-09-26T08:01:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://emiguelt.mysu.co/posts/2018/tips/</loc>
     <lastmod>2018-07-12T14:30:25-05:00</lastmod>
   </url>
@@ -24,7 +29,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/posts/2018/books/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
   </url>
   
   <url>
@@ -35,7 +40,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/books/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -70,7 +75,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/holiday/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -81,8 +86,14 @@
   </url>
   
   <url>
+    <loc>http://emiguelt.mysu.co/tags/linux/</loc>
+    <lastmod>2018-09-26T08:01:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://emiguelt.mysu.co/tags/newport/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,7 +105,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/posts/</loc>
-    <lastmod>2018-07-12T14:30:25-05:00</lastmod>
+    <lastmod>2018-09-26T08:01:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -112,7 +123,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/rensselaer/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,7 +153,7 @@
   
   <url>
     <loc>http://emiguelt.mysu.co/tags/ward/</loc>
-    <lastmod>2018-08-27T13:43:05-05:00</lastmod>
+    <lastmod>2018-09-04T18:02:21-05:00</lastmod>
     <priority>0</priority>
   </url>
   
