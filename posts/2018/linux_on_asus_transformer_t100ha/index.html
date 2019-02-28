@@ -15,14 +15,14 @@ blacklist snd_hdmi_lpe_audio
  reboot
   ERROR (Lubuntu 18.04): Backlight not working  Check if /sys/class/backlight link file exists. If does not exist, create like in this tutorial: https://askubuntu.com/a/715310/578393. On Asus T110H: /sys/class/backlight/intel_backlight -&gt; ../../devices/pci0000:00/0000:00:02.0/drm/card0/card0-DSI-1/intel_backlight
  Create the /etc/X11/xorg.conf file with:
-   Section &quot;Device&quot; Identifier &quot;Intel Graphics&quot; Driver &quot;intel&quot; Option &quot;Backlight&quot; &quot;intel_backlight&quot; EndSection   The backlight will work with ctrl&#43;f10 and ctrl&#43;f11 (Pending, change to fn&#43;f5 and fn&#43;f6 keys)  Enable autorotation  Identify the display ID: Execute xrandr and check the name, for Asus T110AH is DSI1 Identify the touchscren ID  Execute xinput Identify all slave pointer devices You can disable/enable de device and touch the display to test if is the correct device: xinput disable &lt;ID&gt;." />
+   Section &quot;Device&quot; Identifier &quot;Intel Graphics&quot; Driver &quot;intel&quot; Option &quot;Backlight&quot; &quot;intel_backlight&quot; EndSection   The backlight will work with ctrl&#43;f10 and ctrl&#43;f11 (Pending, change to fn&#43;f5 and fn&#43;f6 keys)  Enable autorotation  Identify the display ID: Execute xrandr and check the name, for Asus T101H is DSI1 Identify the touchscren ID  Execute xinput Identify all slave pointer devices You can disable/enable de device and touch the display to test if is the correct device: xinput disable &lt;ID&gt;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/" />
 
 
 <meta property="article:published_time" content="2018-09-26T07:33:48-05:00"/>
 
-<meta property="article:modified_time" content="2019-02-25T13:54:35-05:00"/>
+<meta property="article:modified_time" content="2019-02-28T13:59:30-05:00"/>
 
 
 
@@ -124,7 +124,7 @@ On Asus T110H: <code>/sys/class/backlight/intel_backlight -&gt; ../../devices/pc
 <h3 id="enable-autorotation">Enable autorotation</h3>
 
 <ul>
-<li>Identify the display ID: Execute <code>xrandr</code> and check the name, for Asus T110AH is DSI1</li>
+<li>Identify the display ID: Execute <code>xrandr</code> and check the name, for Asus T101H is DSI1</li>
 <li>Identify the touchscren ID
 
 <ul>
