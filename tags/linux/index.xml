@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Edwin Miguel, My Site</title>
+    <title>linux on Edwin Miguel, My Site</title>
     <link>http://emiguelt.mysu.co/tags/linux/</link>
-    <description>Recent content in Linux on Edwin Miguel, My Site</description>
+    <description>Recent content in linux on Edwin Miguel, My Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Sep 2018 07:33:48 -0500</lastBuildDate>
@@ -23,7 +23,7 @@ blacklist snd_hdmi_lpe_audio
  reboot
   ERROR (Lubuntu 18.04): Backlight not working  Check if /sys/class/backlight link file exists. If does not exist, create like in this tutorial: https://askubuntu.com/a/715310/578393. On Asus T101H: /sys/class/backlight/intel_backlight -&amp;gt; ../../devices/pci0000:00/0000:00:02.0/drm/card0/card0-DSI-1/intel_backlight
  Create the /etc/X11/xorg.conf file with:
-   Section &amp;quot;Device&amp;quot; Identifier &amp;quot;Intel Graphics&amp;quot; Driver &amp;quot;intel&amp;quot; Option &amp;quot;Backlight&amp;quot; &amp;quot;intel_backlight&amp;quot; EndSection   The backlight will work with ctrl+f10 and ctrl+f11 (Pending, change to fn+f5 and fn+f6 keys)  Enable autorotation  Identify the display ID: Execute xrandr and check the name, for Asus T101H is DSI1 Identify the touchscren ID  Execute xinput Identify all slave pointer devices You can disable/enable de device and touch the display to test if is the correct device: xinput disable &amp;lt;ID&amp;gt;.</description>
+Section &amp;quot;Device&amp;quot; Identifier &amp;quot;Intel Graphics&amp;quot; Driver &amp;quot;intel&amp;quot; Option &amp;quot;Backlight&amp;quot; &amp;quot;intel_backlight&amp;quot; EndSection  The backlight will work with ctrl+f10 and ctrl+f11 (Pending, change to fn+f5 and fn+f6 keys)</description>
     </item>
     
   </channel>
