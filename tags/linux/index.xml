@@ -1,30 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>linux on Edwin Miguel, My Site</title>
-    <link>http://emiguelt.mysu.co/tags/linux/</link>
-    <description>Recent content in linux on Edwin Miguel, My Site</description>
+    <title>linux on Hugo Zzo Theme</title>
+    <link>https://emiguelt.github.io/tags/linux/</link>
+    <description>Recent content in linux on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 26 Sep 2018 07:33:48 -0500</lastBuildDate>
     
-	<atom:link href="http://emiguelt.mysu.co/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emiguelt.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Linux on asus transformer T101H</title>
-      <link>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</link>
-      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+    
+
       
-      <guid>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</guid>
-      <description>Problems found installing *ubuntu 18.04/18.10 on an Asus Transformer T101H
-ERROR (Xubuntu 18.04): GDBus.Error.org.freedesktop.login1 SleepVerbNotSupported Solution:  edit /etc/modprobe.d/blacklist.conf and add the following line:
-blacklist snd_hdmi_lpe_audio
- reboot
-  ERROR (Lubuntu 18.04): Backlight not working  Check if /sys/class/backlight link file exists. If does not exist, create like in this tutorial: https://askubuntu.com/a/715310/578393. On Asus T101H: /sys/class/backlight/intel_backlight -&amp;gt; ../../devices/pci0000:00/0000:00:02.0/drm/card0/card0-DSI-1/intel_backlight
- Create the /etc/X11/xorg.conf file with:
-Section &amp;quot;Device&amp;quot; Identifier &amp;quot;Intel Graphics&amp;quot; Driver &amp;quot;intel&amp;quot; Option &amp;quot;Backlight&amp;quot; &amp;quot;intel_backlight&amp;quot; EndSection  The backlight will work with ctrl+f10 and ctrl+f11 (Pending, change to fn+f5 and fn+f6 keys)</description>
-    </item>
+      <item>
+        <title>Linux on asus transformer T101H</title>
+        <link>https://emiguelt.github.io/posts/2018/linux_on_asus_transformer_t100ha/</link>
+        <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+        
+        <atom:modified>Wed, 26 Sep 2018 07:33:48 -0500</atom:modified>
+        <guid>https://emiguelt.github.io/posts/2018/linux_on_asus_transformer_t100ha/</guid>
+        <description>Problems found installing *ubuntu 18.04/18.10 on an Asus Transformer T101H</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux</category>
+            
+          
+            
+              <category>asus</category>
+            
+          
+            
+              <category>ubuntu</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
     
   </channel>
 </rss>

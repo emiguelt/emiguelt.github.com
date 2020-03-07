@@ -1,25 +1,70 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>books on Edwin Miguel, My Site</title>
-    <link>http://emiguelt.mysu.co/tags/books/</link>
-    <description>Recent content in books on Edwin Miguel, My Site</description>
+    <title>books on Hugo Zzo Theme</title>
+    <link>https://emiguelt.github.io/tags/books/</link>
+    <description>Recent content in books on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://emiguelt.mysu.co/tags/books/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emiguelt.github.io/tags/books/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Books I read in 2018</title>
-      <link>http://emiguelt.mysu.co/posts/2018/books/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+    
+
       
-      <guid>http://emiguelt.mysu.co/posts/2018/books/</guid>
-      <description>Deep Work - Cal Newport Excellent book for people looking how to improve their focus on knowledge tasks and get things done.
-The book is divided in two main parts, in the first one, the author justifies why it is important to be focus and having a well structured strategy to reach our objective. The second part presents a set of 4 rules to follow in order to improve our performance in the activities we are interested in.</description>
-    </item>
+      <item>
+        <title>Books I read in 2018</title>
+        <link>https://emiguelt.github.io/books/2018_books/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        <atom:modified>Thu, 18 Jan 2018 00:00:00 +0000</atom:modified>
+        <guid>https://emiguelt.github.io/books/2018_books/</guid>
+        <description>Deep Work - Cal Newport Excellent book for people looking how to improve their focus on knowledge tasks and get things done.</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>books</category>
+            
+          
+            
+              <category>2018</category>
+            
+          
+            
+              <category>Newport</category>
+            
+          
+            
+              <category>Holiday</category>
+            
+          
+            
+              <category>Ward</category>
+            
+          
+            
+              <category>Rensselaer</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
     
   </channel>
 </rss>

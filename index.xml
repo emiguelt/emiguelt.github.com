@@ -1,69 +1,215 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>Home on Edwin Miguel, My Site</title>
-    <link>http://emiguelt.mysu.co/</link>
-    <description>Recent content in Home on Edwin Miguel, My Site</description>
+    <title>Home on Hugo Zzo Theme</title>
+    <link>https://emiguelt.github.io/</link>
+    <description>Recent content in Home on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 21 Jun 2018 14:03:55 -0500</lastBuildDate>
     
-	<atom:link href="http://emiguelt.mysu.co/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emiguelt.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Linux on asus transformer T101H</title>
-      <link>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</link>
-      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+    
       
-      <guid>http://emiguelt.mysu.co/posts/2018/linux_on_asus_transformer_t100ha/</guid>
-      <description>Problems found installing *ubuntu 18.04/18.10 on an Asus Transformer T101H
-ERROR (Xubuntu 18.04): GDBus.Error.org.freedesktop.login1 SleepVerbNotSupported Solution:  edit /etc/modprobe.d/blacklist.conf and add the following line:
-blacklist snd_hdmi_lpe_audio
- reboot
-  ERROR (Lubuntu 18.04): Backlight not working  Check if /sys/class/backlight link file exists. If does not exist, create like in this tutorial: https://askubuntu.com/a/715310/578393. On Asus T101H: /sys/class/backlight/intel_backlight -&amp;gt; ../../devices/pci0000:00/0000:00:02.0/drm/card0/card0-DSI-1/intel_backlight
- Create the /etc/X11/xorg.conf file with:
-Section &amp;quot;Device&amp;quot; Identifier &amp;quot;Intel Graphics&amp;quot; Driver &amp;quot;intel&amp;quot; Option &amp;quot;Backlight&amp;quot; &amp;quot;intel_backlight&amp;quot; EndSection  The backlight will work with ctrl+f10 and ctrl+f11 (Pending, change to fn+f5 and fn+f6 keys)</description>
-    </item>
-    
-    <item>
-      <title>Tips</title>
-      <link>http://emiguelt.mysu.co/posts/2018/tips/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
       
-      <guid>http://emiguelt.mysu.co/posts/2018/tips/</guid>
-      <description>This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc. It is mainly as a reference for me, but it could be useful for other person.
-PDF  Remove the password from many PDF files and join in single file (QPDF): Assuming all pdfs are in the folder and has the same password  for F in *; do qpdf --password=&amp;lt;THE_PASSWORD&amp;gt; --decrypt $F d_$F; rm $F; done; qpdf --empty &amp;lt;MERGED_NAME&amp;gt;.</description>
-    </item>
-    
-    <item>
-      <title>Tools</title>
-      <link>http://emiguelt.mysu.co/posts/2018/tools/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
       
-      <guid>http://emiguelt.mysu.co/posts/2018/tools/</guid>
-      <description> This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source
-   Tool Description OS Free     Babun windows shell based on Cygwin. I use it with tmux :) W y   DBeaver as its site says, a Universal Database tool WL y   ConEmu excellent terminal emulator for Windows, something like &amp;ldquo;tmux&amp;rdquo; (not as sophisticated), and compatible with many terminals (cmd, powershell, git-bash :), etc) W y   KeePass tool to manage your passwords in secure way WL y   Q-Dir file explorer with support to splits and tabs W y   WinDirStat Tool to analyze hard disk to remove big files, there is KDirStat for Linux WL y   Conda dependency &amp;amp; environment management for many languages WL y   Grip render markdown files locally WL y   trang java project to generate xsd from xml samples WL y   Process Explorer Check processes in Windows and which one has opened an specific file W y    Conventions  OS (Operating System):  Linux: L, Windows: W   </description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>http://emiguelt.mysu.co/posts/contact/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+        
       
-      <guid>http://emiguelt.mysu.co/posts/contact/</guid>
-      <description>Loading... </description>
-    </item>
-    
-    <item>
-      <title>Books I read in 2018</title>
-      <link>http://emiguelt.mysu.co/posts/2018/books/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
       
-      <guid>http://emiguelt.mysu.co/posts/2018/books/</guid>
-      <description>Deep Work - Cal Newport Excellent book for people looking how to improve their focus on knowledge tasks and get things done.
-The book is divided in two main parts, in the first one, the author justifies why it is important to be focus and having a well structured strategy to reach our objective. The second part presents a set of 4 rules to follow in order to improve our performance in the activities we are interested in.</description>
-    </item>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+
+      
+      <item>
+        <title>Linux on asus transformer T101H</title>
+        <link>https://emiguelt.github.io/posts/2018/linux_on_asus_transformer_t100ha/</link>
+        <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+        
+        <atom:modified>Wed, 26 Sep 2018 07:33:48 -0500</atom:modified>
+        <guid>https://emiguelt.github.io/posts/2018/linux_on_asus_transformer_t100ha/</guid>
+        <description>Problems found installing *ubuntu 18.04/18.10 on an Asus Transformer T101H</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>linux</category>
+            
+          
+            
+              <category>asus</category>
+            
+          
+            
+              <category>ubuntu</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Tips</title>
+        <link>https://emiguelt.github.io/posts/2018/tips/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        <atom:modified>Mon, 09 Jul 2018 15:03:17 -0500</atom:modified>
+        <guid>https://emiguelt.github.io/posts/2018/tips/</guid>
+        <description>This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc.</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>PDF</category>
+            
+          
+            
+              <category>SQL</category>
+            
+          
+            
+              <category>QPDF</category>
+            
+          
+            
+              <category>SSH</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Tools</title>
+        <link>https://emiguelt.github.io/posts/2018/tools/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        <atom:modified>Tue, 05 Jun 2018 17:50:23 -0500</atom:modified>
+        <guid>https://emiguelt.github.io/posts/2018/tools/</guid>
+        <description>This entry coverages some tools I found useful during my work in software development (Windows and Linux), most of the open source</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>2018</category>
+            
+          
+            
+              <category>tools</category>
+            
+          
+            
+              <category>dbeaver</category>
+            
+          
+            
+              <category>conemu</category>
+            
+          
+            
+              <category>keepass</category>
+            
+          
+            
+              <category>q-dir</category>
+            
+          
+            
+              <category>conda</category>
+            
+          
+            
+              <category>grip</category>
+            
+          
+            
+              <category>windirstat</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Books I read in 2018</title>
+        <link>https://emiguelt.github.io/books/2018_books/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        <atom:modified>Thu, 18 Jan 2018 00:00:00 +0000</atom:modified>
+        <guid>https://emiguelt.github.io/books/2018_books/</guid>
+        <description>Deep Work - Cal Newport Excellent book for people looking how to improve their focus on knowledge tasks and get things done.</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>books</category>
+            
+          
+            
+              <category>2018</category>
+            
+          
+            
+              <category>Newport</category>
+            
+          
+            
+              <category>Holiday</category>
+            
+          
+            
+              <category>Ward</category>
+            
+          
+            
+              <category>Rensselaer</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
     
   </channel>
 </rss>

@@ -1,204 +1,404 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>Tags on Edwin Miguel, My Site</title>
-    <link>http://emiguelt.mysu.co/tags/</link>
-    <description>Recent content in Tags on Edwin Miguel, My Site</description>
+    <title>Tags on Hugo Zzo Theme</title>
+    <link>https://emiguelt.github.io/tags/</link>
+    <description>Recent content in Tags on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 26 Sep 2018 07:33:48 -0500</lastBuildDate>
     
-	<atom:link href="http://emiguelt.mysu.co/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emiguelt.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>asus</title>
-      <link>http://emiguelt.mysu.co/tags/asus/</link>
-      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+    
+
       
-      <guid>http://emiguelt.mysu.co/tags/asus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>http://emiguelt.mysu.co/tags/linux/</link>
-      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+      <item>
+        <title>asus</title>
+        <link>https://emiguelt.github.io/tags/asus/</link>
+        <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/asus/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>http://emiguelt.mysu.co/tags/ubuntu/</link>
-      <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+      <item>
+        <title>linux</title>
+        <link>https://emiguelt.github.io/tags/linux/</link>
+        <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/linux/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/ubuntu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PDF</title>
-      <link>http://emiguelt.mysu.co/tags/pdf/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+      <item>
+        <title>ubuntu</title>
+        <link>https://emiguelt.github.io/tags/ubuntu/</link>
+        <pubDate>Wed, 26 Sep 2018 07:33:48 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/ubuntu/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/pdf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>QPDF</title>
-      <link>http://emiguelt.mysu.co/tags/qpdf/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+      <item>
+        <title>PDF</title>
+        <link>https://emiguelt.github.io/tags/pdf/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/pdf/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/qpdf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SQL</title>
-      <link>http://emiguelt.mysu.co/tags/sql/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+      <item>
+        <title>QPDF</title>
+        <link>https://emiguelt.github.io/tags/qpdf/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/qpdf/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/sql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SSH</title>
-      <link>http://emiguelt.mysu.co/tags/ssh/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+      <item>
+        <title>SQL</title>
+        <link>https://emiguelt.github.io/tags/sql/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/sql/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/ssh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>2018</title>
-      <link>http://emiguelt.mysu.co/tags/2018/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>SSH</title>
+        <link>https://emiguelt.github.io/tags/ssh/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/ssh/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/2018/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>conda</title>
-      <link>http://emiguelt.mysu.co/tags/conda/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>2018</title>
+        <link>https://emiguelt.github.io/tags/2018/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/2018/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/conda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>conemu</title>
-      <link>http://emiguelt.mysu.co/tags/conemu/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>conda</title>
+        <link>https://emiguelt.github.io/tags/conda/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/conda/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/conemu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dbeaver</title>
-      <link>http://emiguelt.mysu.co/tags/dbeaver/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>conemu</title>
+        <link>https://emiguelt.github.io/tags/conemu/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/conemu/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/dbeaver/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>grip</title>
-      <link>http://emiguelt.mysu.co/tags/grip/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>dbeaver</title>
+        <link>https://emiguelt.github.io/tags/dbeaver/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/dbeaver/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/grip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>keepass</title>
-      <link>http://emiguelt.mysu.co/tags/keepass/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>grip</title>
+        <link>https://emiguelt.github.io/tags/grip/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/grip/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/keepass/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>q-dir</title>
-      <link>http://emiguelt.mysu.co/tags/q-dir/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>keepass</title>
+        <link>https://emiguelt.github.io/tags/keepass/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/keepass/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/q-dir/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tools</title>
-      <link>http://emiguelt.mysu.co/tags/tools/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>q-dir</title>
+        <link>https://emiguelt.github.io/tags/q-dir/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/q-dir/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/tools/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>windirstat</title>
-      <link>http://emiguelt.mysu.co/tags/windirstat/</link>
-      <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+      <item>
+        <title>tools</title>
+        <link>https://emiguelt.github.io/tags/tools/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/tools/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/windirstat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Holiday</title>
-      <link>http://emiguelt.mysu.co/tags/holiday/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      <item>
+        <title>windirstat</title>
+        <link>https://emiguelt.github.io/tags/windirstat/</link>
+        <pubDate>Tue, 05 Jun 2018 17:50:23 -0500</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/windirstat/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/holiday/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Newport</title>
-      <link>http://emiguelt.mysu.co/tags/newport/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      <item>
+        <title>books</title>
+        <link>https://emiguelt.github.io/tags/books/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/books/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/newport/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rensselaer</title>
-      <link>http://emiguelt.mysu.co/tags/rensselaer/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      <item>
+        <title>Holiday</title>
+        <link>https://emiguelt.github.io/tags/holiday/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/holiday/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/rensselaer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ward</title>
-      <link>http://emiguelt.mysu.co/tags/ward/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      <item>
+        <title>Newport</title>
+        <link>https://emiguelt.github.io/tags/newport/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/newport/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/ward/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>books</title>
-      <link>http://emiguelt.mysu.co/tags/books/</link>
-      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      <item>
+        <title>Rensselaer</title>
+        <link>https://emiguelt.github.io/tags/rensselaer/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/rensselaer/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
-      <guid>http://emiguelt.mysu.co/tags/books/</guid>
-      <description></description>
-    </item>
+      <item>
+        <title>Ward</title>
+        <link>https://emiguelt.github.io/tags/ward/</link>
+        <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://emiguelt.github.io/tags/ward/</guid>
+        <description></description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+
     
   </channel>
 </rss>

@@ -1,25 +1,62 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>PDF on Edwin Miguel, My Site</title>
-    <link>http://emiguelt.mysu.co/tags/pdf/</link>
-    <description>Recent content in PDF on Edwin Miguel, My Site</description>
+    <title>PDF on Hugo Zzo Theme</title>
+    <link>https://emiguelt.github.io/tags/pdf/</link>
+    <description>Recent content in PDF on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 09 Jul 2018 15:03:17 -0500</lastBuildDate>
     
-	<atom:link href="http://emiguelt.mysu.co/tags/pdf/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://emiguelt.github.io/tags/pdf/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>Tips</title>
-      <link>http://emiguelt.mysu.co/posts/2018/tips/</link>
-      <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+    
+
       
-      <guid>http://emiguelt.mysu.co/posts/2018/tips/</guid>
-      <description>This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc. It is mainly as a reference for me, but it could be useful for other person.
-PDF  Remove the password from many PDF files and join in single file (QPDF): Assuming all pdfs are in the folder and has the same password  for F in *; do qpdf --password=&amp;lt;THE_PASSWORD&amp;gt; --decrypt $F d_$F; rm $F; done; qpdf --empty &amp;lt;MERGED_NAME&amp;gt;.</description>
-    </item>
+      <item>
+        <title>Tips</title>
+        <link>https://emiguelt.github.io/posts/2018/tips/</link>
+        <pubDate>Mon, 09 Jul 2018 15:03:17 -0500</pubDate>
+        
+        <atom:modified>Mon, 09 Jul 2018 15:03:17 -0500</atom:modified>
+        <guid>https://emiguelt.github.io/posts/2018/tips/</guid>
+        <description>This post contains some useful tips related with my daily work in software development like commands, database, ssh, etc.</description>
+        
+        <dc:creator>Edwin Miguel</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>PDF</category>
+            
+          
+            
+              <category>SQL</category>
+            
+          
+            
+              <category>QPDF</category>
+            
+          
+            
+              <category>SSH</category>
+            
+          
+        
+        
+        
+      </item>
+      
+
     
   </channel>
 </rss>
